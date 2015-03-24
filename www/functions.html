@@ -42,21 +42,121 @@
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
         <script type="text/javascript">             
             function endOfFunctionsButton(){ window.location = './index.html' };
+            
+            function makeImageArray(correctImg)
+  			{
+  				var i, randomNum;		
+  				
+  				for(i = 1; i < q1.length; i++)
+  				{
+  					
+  					randomNum = Math.floor(Math.random() * 10)
+  					//console.log(randomNum);
+  					if(randomNum == correctImg)
+  					{
+  						while(randomNum == correctImg)
+  						{
+  							randomNum = Math.floor(Math.random() * 10)
+  						}
+  					}
+  					else
+  					{
+  						q1[i] = new Image();
+  						q1[i] = 'img/testImages/functionsTestImg/realistic/functions/' + randomNum + '.jpg';
+  					}
+  				}
+  				//sort array for random order
+  				q1.sort();
+  			}
+  			
+  			function displayImageArray(questNum)
+  			{
+  				for(i = 0; i < q1.length; i++)
+  				{
+  					document.write("<a href='#functionsQ" + questNum + "'><img src='" + q1[i] + "' width='150' height='100' class='imgSpacing'/></a>");
+  				}
+  			}
+  			
+  			function refreshPage()
+  			{
+  				parent.location.reload();
+  			}
 
         </script>
         
     </head>
 
 <body>
+	
+  <div data-role="page" align="center" id="testOptions">
+  	<div data-role="content">
+  		<div data-role="fieldcontain">
+  			<label>Choose how many images to choose from:</label>
+	  		<select id="imgDisplaySize" onchange="refreshPage()">
+	  			<option value="3">3</option>
+	  			<option value="4">4</option>
+	  			<option value="5">5</option>
+	  			<option value="6">6</option>
+	  			<option value="7">7</option>
+	  			<option value="8">8</option>
+	  			<option value="9">9</option>
+	  			<option value="10">10</option>
+	  		</select>
+	  		
+  		</div>
+  		
+  		<a href="#functionsQ1" data-role="button">Start</a>
+  		<script>
+  			//array used to hold images
+  			//gets array size from image size selection field
+  			var q1 = new Array();
+  			var e = document.getElementById("imgDisplaySize");
+  			q1.length = e.options[e.selectedIndex].value;
+  			//used for going to the different questions
+  			var questNum = 2;
+  			
+  		</script>
+  	</div>
+  	
+  </div>
+	
+	
   <div data-role="page" align="center" id="functionsQ1">
   	<div data-role="header">
   		<h1 style="font-size: 20px">Point to the one that cuts</h1>
   	</div>
   	<div data-role="content">	
-  		answers go here
+  		<div>
+  			<script>
+	  			//get the correct image (knife)
+	  			q1[0] = new Image();
+	  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/4.jpg';
+	  			var q1Img = 4;
+	  			console.log(q1Img);
+	  			//function call for the rest of the images
+	  			makeImageArray(q1Img);
+	  			displayImageArray(questNum);
+	  			questNum++;
+  			</script>
+  		</div>
+  		
+  		<script>
+  		/*
+  			//if knife image (labeled 4 in folder) is chosen, 1 is stored in array (meaning correct answer)
+  			document.getElementById("knifeImg").onclick = function() 
+  			{
+         		var functionsTest.va;
+      		};
+      		// 0 is given for incorrect answer
+      		document.getElementById("incorrectImg").onclick = function()
+      		{
+      			var functionsTest = [0];
+      		};
+      		*/
+  		</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#functionsQ2" data-role="button">Question 2</a>
+  		
   	</div>
   
   </div>
@@ -67,10 +167,19 @@
   		<h1 style="font-size: 20px">Point to the one you ride</h1>
   	</div>
   	<div data-role="content">
-  		answers go here
+  		<script>
+  			//get the correct image (car)
+  			q1[0] = new Image();
+  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/0.jpg';
+  			var q2Img = 0;
+  			//function call for the rest of the images
+  			makeImageArray(q2Img);
+  			displayImageArray(questNum);
+  			questNum++;
+  		</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#functionsQ3" data-role="button">Question 3</a>
+  		
   	</div>
   
   </div>
@@ -81,12 +190,19 @@
 		<h1 style="font-size: 20px">Point to the one you write with</h1>
 	</div>
   	<div data-role="content">
-  		answers go here
+  		<script>
+  			//get the correct image (pencil)
+  			q1[0] = new Image();
+  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/5.jpg';
+  			var q3Img = 5;
+  			//function call for the rest of the images
+  			makeImageArray(q3Img);
+  			displayImageArray(questNum);
+  			questNum++;
+  		</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#functionsQ4" data-role="button">Question 4</a>
   	</div>
-  
   </div>
   
   
@@ -95,89 +211,160 @@
   		<h1 style="font-size: 20px">Point to the one you ride(duplicate?)</h1>
   	</div>
   	<div data-role="content">
-  		answers go here
-  	</div>
+  		<div>
+  			<script>
+	  			//get the correct image (car)
+	  			q1[0] = new Image();
+	  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/0.jpg';
+	  			var q4Img = 0;
+	  			//function call for the rest of the images
+	  			makeImageArray(q4Img);
+	  			displayImageArray(questNum);
+	  			questNum++;
+  			</script>
+  		</div>
   	<div data-role="footer">
-  		<a href="#functionsQ5" data-role="button">Question 5</a>
   	</div>
+  </div>
+  </div>
   
   
-  </div><div data-role="page" align="center" id="functionsQ5">
+  <div data-role="page" align="center" id="functionsQ5">
   	<div data-role="header">
   		<h1 style="font-size: 20px">Point to the one you read</h1>
   	</div>
   	<div data-role="content">
-  		answers go here
+  		<div>
+  			<script>
+  			//get the correct image (book)
+  			q1[0] = new Image();
+  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/3.jpg';
+  			var q5Img = 3;
+  			//function call for the rest of the images
+  			makeImageArray(q5Img);
+  			displayImageArray(questNum);
+  			questNum++;
+  		</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#functionsQ6" data-role="button">Question 6</a>
   	</div>
   
   </div>
+  </div>
   
   
-  </div><div data-role="page" align="center" id="functionsQ6">
+  <div data-role="page" align="center" id="functionsQ6">
   	<div data-role="header">
   		<h1 style="font-size: 20px">Point to the one you eat</h1>
   	</div>
   	<div data-role="content">
-  		answers go here
+  		<div>
+  			<script>
+  			//get the correct image (sandwich)
+  			q1[0] = new Image();
+  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/1.jpg';
+  			var q6Img = 1;
+  			//function call for the rest of the images
+  			makeImageArray(q6Img);
+  			displayImageArray(questNum);
+  			questNum++;
+  		</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#functionsQ7" data-role="button">Question 7</a>
   	</div>
   
   </div>
+  </div>
   
   
-  </div><div data-role="page" align="center" id="functionsQ7">
+  <div data-role="page" align="center" id="functionsQ7">
   	<div data-role="header">
   		<h1 style="font-size: 20px">Point to the one you watch</h1>
   	</div>
   	<div data-role="content">
-  		answers go here
+  		<div>
+  			<script>
+  			//get the correct image (tv)
+  			q1[0] = new Image();
+  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/9.jpg';
+  			var q7Img = 9;
+  			//function call for the rest of the images
+  			makeImageArray(q7Img);
+  			displayImageArray(questNum);
+  			questNum++;
+  		</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#functionsQ8" data-role="button">Question 8</a>
   	</div>
   
   </div>
+  </div>
   
   
-  </div><div data-role="page" align="center" id="functionsQ8">
+  <div data-role="page" align="center" id="functionsQ8">
   	<div data-role="header">
   		<h1 style="font-size: 20px">Point to the one you wear</h1>
   	</div>
   	<div data-role="content">
-  		answers go here
+  		<div>
+  			<script>
+  			//get the correct image (t-shirt)
+  			q1[0] = new Image();
+  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/8.jpg';
+  			var q8Img = 8;
+  			//function call for the rest of the images
+  			makeImageArray(q8Img);
+  			displayImageArray(questNum);
+  			questNum++;
+  		</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#functionsQ9" data-role="button">Question 9</a>
   	</div>
   
   </div>
+  </div>
   
   
-  </div><div data-role="page" align="center" id="functionsQ9">
+  <div data-role="page" align="center" id="functionsQ9">
   	<div data-role="header">
   		<h1 style="font-size: 20px">Point to the one you drink</h1>
   	</div>
   	<div data-role="content">
-  		answers go here
+  		<div>
+  			<script>
+  			//get the correct image (water)
+  			q1[0] = new Image();
+  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/6.jpg';
+  			var q9Img = 6;
+  			//function call for the rest of the images
+  			makeImageArray(q9Img);
+  			displayImageArray(questNum);
+  			questNum++;
+  		</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#functionsQ10" data-role="button">Question 10</a>
   	</div>
   
   </div>
+  </div>
   
   
-  </div><div data-role="page" align="center" id="functionsQ10">
+  <div data-role="page" align="center" id="functionsQ10">
   	<div data-role="header">
   		<h1 style="font-size: 20px">Point to the one you sleep on</h1>
   	</div>
   	<div data-role="content">
-  		answers go here
+  		<div>
+  			<script>
+  			//get the correct image (bed)
+  			q1[0] = new Image();
+  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/7.jpg';
+  			var q10Img = 7;
+  			//function call for the rest of the images
+  			makeImageArray(q10Img);
+  			displayImageArray(questNum);
+  			questNum++;
+  		</script>
   	</div>
   	<div data-role="footer">
   		<button onclick="endOfFunctionsButton();">((End of Section))</button>
