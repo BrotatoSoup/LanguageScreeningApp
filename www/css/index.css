@@ -120,3 +120,13 @@ h1 {
 .imgSpacing{
 	padding: 10px;
 }
+ul
+{
+	margin: 0;
+	list-style-type: none;
+}
+li
+{
+	display:inline;
+	
+}

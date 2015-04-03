@@ -41,11 +41,170 @@
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
         <script type="text/javascript"> 
+        	//global variables
+        	var quiz2 = [];
+  			var numAlreadyPicked = [];
+  			var gradingArray = [];
+  			var gradingImgArray = [];
+  			var correct = [];
+  			correct.length = 10;
+  			var choice;
+  			//used for going to the different questions
+  			var questNum = 2;
+  			//counter is used to iterate through grading arrays
+  			var counter = 0;
+  			var correctArrayCounter = 0;
+        	
+        	
         	function endOfCategorizingButton(){ window.location = './index.html' };
             
+            
+            //randomNum must be hard coded to a number as there is no way for JScript to count the number of pictures in a folder
+            //setting a limit of 15 pictures
+            //10 of the pictures will be a correct image for one of the questions
+            //the last 5 pictures will always be wrong
+            //all picutures must not be related in any way (ex. knife and sword could both cut you---> not good)
+            function makeImageArray(correctImg)
+  			{
+  				var i, j, randomNum;
+  				quiz2[0] = categorizingFilePath + correctImg + '.png';
+  				numAlreadyPicked[0] = correctImg;		
+  				for(i = 1; i < quiz2.length; i++)
+				{
+					//pick random number
+					randomNum = Math.floor(Math.random() * 10)
+					//for loop used to iterate through number tracking array to find duplicates
+					for(j = 0; j < numAlreadyPicked.length; j++)
+					{
+						if(randomNum == correctImg || randomNum == numAlreadyPicked[j])
+						{
+								randomNum = Math.floor(Math.random() * 10)
+								j = 0;
+						}
+					}
+					
+					quiz2[i] = categorizingFilePath + randomNum + '.png';
+					numAlreadyPicked[i] = randomNum;
+				}
+  				//sort array for random order
+  				quiz2.sort();
+  				numAlreadyPicked.sort();	
+  			}
+  			
+  			
+  			function displayImageArray(questNum, num)
+  			{
+  				document.write("<ul>")
+  				for(u = 0; u < quiz2.length; u++)
+  				{
+  					document.write("<li id='potentialChoices"+u+"' value ='" + numAlreadyPicked[u] +"'><a href='#categorizingQ" + questNum + "'><img src='" + quiz2[u] + "' width='150' height='100' class='imgSpacing' onclick='gradeQuestion("+ numAlreadyPicked[u] +")'/></a></li>");
+  				}				
+  				document.write("</ul>")
+  			}
+  			
+  			
+  			function gradeQuestion(imgVal)
+		  	{
+		  		if(imgVal == correct[counter])
+		  		{
+		  			gradingArray[counter] = "Correct";
+		  			gradingImgArray[counter] = categorizingFilePath + imgVal + '.png';		  				
+		  		}
+		  		else
+		  		{
+		  			gradingArray[counter] = "Incorrect";
+		  			gradingImgArray[counter] = categorizingFilePath + imgVal + '.png';
+		  		}
+		  		counter++;
+		  		//at the end of test
+  				if (counter > 9)
+		  		{
+		  			//create a text file with grades 
+		  			//store text file to a folder to be ready to be emailed
+		  			
+		  			//just to show grading works, print the grades (refresh to end the section)
+		  			printGrades();
+		  			//endOfcategorizingButton();
+		  		}
+		  	}
+  			
+  			  			
+  			function setCorrectArray(num)
+  			{
+  				correct[correctArrayCounter] = num;
+  				correctArrayCounter++;
+  			}
+  			
+  			
+  			function printGrades()	
+  			{
+  				var z, y;
+  				document.write("Scores: <br>");
+  				for(z = 0; z < gradingArray.length; z++)
+	  			{
+	  				document.write("Question " + (z+1) + ": " + gradingArray[z] + "<br>");
+	  			}
+	  			document.write("<br>grading image array content: <br>");
+	  			for(y = 0; y < gradingImgArray.length; y++)
+	  			{	
+	  				document.write("Question " + (y+1) + " image selected: " + "<img src='" + gradingImgArray[y] + "' width='150' height='100' class='imgSpacing'/> <br>");
+	  			}
+	  			
+  			}
+  			
         </script>
 
 <body>
+	<div data-role="page" align="center" id="testOptions">
+  	<div data-role="content">
+  		<div data-role="fieldcontain">
+  			<label>Choose how many images to choose from:</label>
+	  		<select id="imgDisplaySize" onchange="location.reload()">
+	  			<option value="3">3</option>
+	  			<option value="4">4</option>
+	  			<option value="5">5</option>
+	  			<option value="6">6</option>
+	  			<option value="7">7</option>
+	  			<option value="8">8</option>
+	  			</select>
+	  		
+  		</div>
+  		
+  		<div data-role="fieldcontain">
+  			<label>Choose realistic or symbolic pictures to display:</label>
+  			<select id="typeOfImg" onchange="location.reload()">
+  				<option value="realistic">Realistic</option>
+  				<option value="symbols">Symbols</option>
+  			</select>
+  		</div>
+  		
+  		<a href="#categorizingQ1" data-role="button">Start</a>
+  		<script>
+  			//get number of images to display and which type of pictures
+  			var numImgDisplay = document.getElementById("imgDisplaySize");
+  			var realOrSymbol = document.getElementById("typeOfImg");
+  			
+  			//set lengths for arrays
+  			quiz2.length = numImgDisplay.options[numImgDisplay.selectedIndex].value;
+  			numAlreadyPicked.length = numImgDisplay.options[numImgDisplay.selectedIndex].value;
+  			
+  			//get value for symbols or realistic images
+  			choice = realOrSymbol.options[realOrSymbol.selectedIndex].value;
+ 		
+  			//grading arrays lengths set to 10 to match amount of questions
+  			gradingArray.length = 10;
+  			gradingImgArray.length = 10;
+  			
+  			//set filepath used for pictures
+  			var categorizingFilePath = 'img/testImages/categorizingTestImg/' + choice + '/';
+  			console.log("categFilePath: " + categorizingFilePath);
+  		</script>
+  	</div>
+  	
+  </div>
+	
+	
+	
   <div data-role="page" align="center" id="categorizingQ1">
   	<div data-role="header">
   		<h1 style="font-size: 20px">Point to the food</h1>

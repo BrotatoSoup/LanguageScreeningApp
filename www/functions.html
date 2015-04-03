@@ -40,48 +40,117 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-        <script type="text/javascript">             
+        <script type="text/javascript">     
+        	//global variables
+        	var quiz1 = [];
+  			var numAlreadyPicked = [];
+  			var gradingArray = [];
+  			var gradingImgArray = [];
+  			var correct = [];
+  			correct.length = 10;
+  			var choice;
+  			//used for going to the different questions
+  			var questNum = 2;
+  			//counter is used to iterate through grading arrays
+  			var counter = 0;
+  			var correctArrayCounter = 0;
+  			
+                
             function endOfFunctionsButton(){ window.location = './index.html' };
             
+            //randomNum must be hard coded to a number as there is no way for JScript to count the number of pictures in a folder
+            //setting a limit of 15 pictures
+            //10 of the pictures will be a correct image for one of the questions
+            //the last 5 pictures will always be wrong
+            //all picutures must not be related in any way (ex. knife and sword could both cut you---> not good)
             function makeImageArray(correctImg)
   			{
-  				var i, randomNum;		
-  				
-  				for(i = 1; i < q1.length; i++)
-  				{
-  					
-  					randomNum = Math.floor(Math.random() * 10)
-  					//console.log(randomNum);
-  					if(randomNum == correctImg)
-  					{
-  						while(randomNum == correctImg)
-  						{
-  							randomNum = Math.floor(Math.random() * 10)
-  						}
-  					}
-  					else
-  					{
-  						q1[i] = new Image();
-  						q1[i] = 'img/testImages/functionsTestImg/realistic/functions/' + randomNum + '.jpg';
-  					}
-  				}
+  				var i, j, randomNum;
+  				quiz1[0] = functionsFilePath + correctImg + '.png';
+  				numAlreadyPicked[0] = correctImg;		
+  				for(i = 1; i < quiz1.length; i++)
+				{
+					//pick random number
+					randomNum = Math.floor(Math.random() * 15)
+					//for loop used to iterate through number tracking array to find duplicates
+					for(j = 0; j < numAlreadyPicked.length; j++)
+					{
+						if(randomNum == correctImg || randomNum == numAlreadyPicked[j])
+						{
+								randomNum = Math.floor(Math.random() * 15)
+								j = 0;
+						}
+					}
+					
+					quiz1[i] = functionsFilePath + randomNum + '.png';
+					numAlreadyPicked[i] = randomNum;
+				}
   				//sort array for random order
-  				q1.sort();
+  				quiz1.sort();
+  				numAlreadyPicked.sort();	
   			}
   			
-  			function displayImageArray(questNum)
+  			
+  			function displayImageArray(questNum, num)
   			{
-  				for(i = 0; i < q1.length; i++)
+  				document.write("<ul>")
+  				for(u = 0; u < quiz1.length; u++)
   				{
-  					document.write("<a href='#functionsQ" + questNum + "'><img src='" + q1[i] + "' width='150' height='100' class='imgSpacing'/></a>");
-  				}
+  					document.write("<li id='potentialChoices"+u+"' value ='" + numAlreadyPicked[u] +"'><a href='#functionsQ" + questNum + "'><img src='" + quiz1[u] + "' width='150' height='100' class='imgSpacing' onclick='gradeQuestion("+ numAlreadyPicked[u] +")'/></a></li>");
+  				}				
+  				document.write("</ul>")
   			}
   			
-  			function refreshPage()
+  			
+  			function gradeQuestion(imgVal)
+		  	{
+		  		if(imgVal == correct[counter])
+		  		{
+		  			gradingArray[counter] = "Correct";
+		  			gradingImgArray[counter] = functionsFilePath + imgVal + '.png';		  				
+		  		}
+		  		else
+		  		{
+		  			gradingArray[counter] = "Incorrect";
+		  			gradingImgArray[counter] = functionsFilePath + imgVal + '.png';
+		  		}
+		  		counter++;
+		  		//at the end of test
+  				if (counter > 9)
+		  		{
+		  			//create a text file with grades 
+		  			//store text file to a folder to be ready to be emailed
+		  			
+		  			//just to show grading works, print the grades (refresh to end the section)
+		  			printGrades();
+		  			//endOfFunctionsButton();
+		  		}
+		  	}
+  			
+  			  			
+  			function setCorrectArray(num)
   			{
-  				parent.location.reload();
+  				correct[correctArrayCounter] = num;
+  				correctArrayCounter++;
   			}
-
+  			
+  			
+  			function printGrades()	
+  			{
+  				var z, y;
+  				document.write("Scores: <br>");
+  				for(z = 0; z < gradingArray.length; z++)
+	  			{
+	  				document.write("Question " + (z+1) + ": " + gradingArray[z] + "<br>");
+	  			}
+	  			document.write("<br>grading image array content: <br>");
+	  			for(y = 0; y < gradingImgArray.length; y++)
+	  			{	
+	  				document.write("Question " + (y+1) + " image selected: " + "<img src='" + gradingImgArray[y] + "' width='150' height='100' class='imgSpacing'/> <br>");
+	  			}
+	  			
+  			}
+  			  			
         </script>
         
     </head>
@@ -92,7 +161,7 @@
   	<div data-role="content">
   		<div data-role="fieldcontain">
   			<label>Choose how many images to choose from:</label>
-	  		<select id="imgDisplaySize" onchange="refreshPage()">
+	  		<select id="imgDisplaySize" onchange="location.reload()">
 	  			<option value="3">3</option>
 	  			<option value="4">4</option>
 	  			<option value="5">5</option>
@@ -105,16 +174,34 @@
 	  		
   		</div>
   		
+  		<div data-role="fieldcontain">
+  			<label>Choose realistic or symbolic pictures to display:</label>
+  			<select id="typeOfImg" onchange="location.reload()">
+  				<option value="realistic">Realistic</option>
+  				<option value="symbols">Symbols</option>
+  			</select>
+  		</div>
+  		
   		<a href="#functionsQ1" data-role="button">Start</a>
   		<script>
-  			//array used to hold images
-  			//gets array size from image size selection field
-  			var q1 = new Array();
-  			var e = document.getElementById("imgDisplaySize");
-  			q1.length = e.options[e.selectedIndex].value;
-  			//used for going to the different questions
-  			var questNum = 2;
+  			//get number of images to display and which type of pictures
+  			var numImgDisplay = document.getElementById("imgDisplaySize");
+  			var realOrSymbol = document.getElementById("typeOfImg");
   			
+  			//set lengths for arrays
+  			quiz1.length = numImgDisplay.options[numImgDisplay.selectedIndex].value;
+  			numAlreadyPicked.length = numImgDisplay.options[numImgDisplay.selectedIndex].value;
+  			
+  			//get value for symbols or realistic images
+  			choice = realOrSymbol.options[realOrSymbol.selectedIndex].value;
+ 		
+  			//grading arrays lengths set to 10 to match amount of questions
+  			gradingArray.length = 10;
+  			gradingImgArray.length = 10;
+  			
+  			//set filepath used for pictures
+  			var functionsFilePath = 'img/testImages/functionsTestImg/' + choice + '/';
+  			console.log("funcFilePath: " + functionsFilePath);
   		</script>
   	</div>
   	
@@ -128,32 +215,15 @@
   	<div data-role="content">	
   		<div>
   			<script>
-	  			//get the correct image (knife)
-	  			q1[0] = new Image();
-	  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/4.jpg';
-	  			var q1Img = 4;
-	  			console.log(q1Img);
-	  			//function call for the rest of the images
-	  			makeImageArray(q1Img);
-	  			displayImageArray(questNum);
+	  			//send number for right image
+	  			var quiz1Img = 4;
+	  			setCorrectArray(quiz1Img);
+	  			makeImageArray(quiz1Img);
+	  			displayImageArray(questNum, quiz1Img);
 	  			questNum++;
   			</script>
   		</div>
   		
-  		<script>
-  		/*
-  			//if knife image (labeled 4 in folder) is chosen, 1 is stored in array (meaning correct answer)
-  			document.getElementById("knifeImg").onclick = function() 
-  			{
-         		var functionsTest.va;
-      		};
-      		// 0 is given for incorrect answer
-      		document.getElementById("incorrectImg").onclick = function()
-      		{
-      			var functionsTest = [0];
-      		};
-      		*/
-  		</script>
   	</div>
   	<div data-role="footer">
   		
@@ -168,13 +238,11 @@
   	</div>
   	<div data-role="content">
   		<script>
-  			//get the correct image (car)
-  			q1[0] = new Image();
-  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/0.jpg';
+  			//send number for right image
   			var q2Img = 0;
-  			//function call for the rest of the images
+  			setCorrectArray(q2Img);
   			makeImageArray(q2Img);
-  			displayImageArray(questNum);
+  			displayImageArray(questNum, q2Img);
   			questNum++;
   		</script>
   	</div>
@@ -191,13 +259,11 @@
 	</div>
   	<div data-role="content">
   		<script>
-  			//get the correct image (pencil)
-  			q1[0] = new Image();
-  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/5.jpg';
+  			//send number for right image
   			var q3Img = 5;
-  			//function call for the rest of the images
+  			setCorrectArray(q3Img);
   			makeImageArray(q3Img);
-  			displayImageArray(questNum);
+  			displayImageArray(questNum, q3Img);
   			questNum++;
   		</script>
   	</div>
@@ -213,13 +279,11 @@
   	<div data-role="content">
   		<div>
   			<script>
-	  			//get the correct image (car)
-	  			q1[0] = new Image();
-	  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/0.jpg';
+	  			//send number for right image
 	  			var q4Img = 0;
-	  			//function call for the rest of the images
+	  			setCorrectArray(q4Img);
 	  			makeImageArray(q4Img);
-	  			displayImageArray(questNum);
+	  			displayImageArray(questNum, q4Img);
 	  			questNum++;
   			</script>
   		</div>
@@ -236,13 +300,11 @@
   	<div data-role="content">
   		<div>
   			<script>
-  			//get the correct image (book)
-  			q1[0] = new Image();
-  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/3.jpg';
+  			//send number for right image
   			var q5Img = 3;
-  			//function call for the rest of the images
+  			setCorrectArray(q5Img);
   			makeImageArray(q5Img);
-  			displayImageArray(questNum);
+  			displayImageArray(questNum, q5Img);
   			questNum++;
   		</script>
   	</div>
@@ -260,13 +322,11 @@
   	<div data-role="content">
   		<div>
   			<script>
-  			//get the correct image (sandwich)
-  			q1[0] = new Image();
-  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/1.jpg';
+  			//send number for right image
   			var q6Img = 1;
-  			//function call for the rest of the images
+  			setCorrectArray(q6Img);
   			makeImageArray(q6Img);
-  			displayImageArray(questNum);
+  			displayImageArray(questNum, q6Img);
   			questNum++;
   		</script>
   	</div>
@@ -284,13 +344,11 @@
   	<div data-role="content">
   		<div>
   			<script>
-  			//get the correct image (tv)
-  			q1[0] = new Image();
-  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/9.jpg';
+  			//send number for right image
   			var q7Img = 9;
-  			//function call for the rest of the images
+  			setCorrectArray(q7Img);
   			makeImageArray(q7Img);
-  			displayImageArray(questNum);
+  			displayImageArray(questNum, q7Img);
   			questNum++;
   		</script>
   	</div>
@@ -308,13 +366,11 @@
   	<div data-role="content">
   		<div>
   			<script>
-  			//get the correct image (t-shirt)
-  			q1[0] = new Image();
-  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/8.jpg';
+  			//send number for right image
   			var q8Img = 8;
-  			//function call for the rest of the images
+  			setCorrectArray(q8Img);
   			makeImageArray(q8Img);
-  			displayImageArray(questNum);
+  			displayImageArray(questNum, q8Img);
   			questNum++;
   		</script>
   	</div>
@@ -332,14 +388,13 @@
   	<div data-role="content">
   		<div>
   			<script>
-  			//get the correct image (water)
-  			q1[0] = new Image();
-  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/6.jpg';
+  			//send number for right image
   			var q9Img = 6;
-  			//function call for the rest of the images
+  			setCorrectArray(q9Img);
   			makeImageArray(q9Img);
-  			displayImageArray(questNum);
+  			displayImageArray(questNum, q9Img);
   			questNum++;
+  			
   		</script>
   	</div>
   	<div data-role="footer">
@@ -356,20 +411,37 @@
   	<div data-role="content">
   		<div>
   			<script>
-  			//get the correct image (bed)
-  			q1[0] = new Image();
-  			q1[0] = 'img/testImages/functionsTestImg/realistic/functions/7.jpg';
-  			var q10Img = 7;
-  			//function call for the rest of the images
-  			makeImageArray(q10Img);
-  			displayImageArray(questNum);
-  			questNum++;
-  		</script>
+	  			//send number for right image
+	  			var quiz10Img = 7;
+	  			setCorrectArray(quiz10Img);
+	  			makeImageArray(quiz10Img);
+	  			displayImageArray(questNum, quiz10Img);
+	  			questNum++;
+	  			
+  			</script>
+  		</div>
   	</div>
   	<div data-role="footer">
-  		<button onclick="endOfFunctionsButton();">((End of Section))</button>
+  		
   	</div>
+  </div>
   
+  
+  <div data-role="page" align="center" id="functionsQ11">
+  	<div data-role="header">
+  		<h1 style="font-size: 20px">Results of the Test</h1>
+  	</div>
+  	<div data-role="content">
+  		<div id="gradedResults">
+  			<script>
+  			
+  			</script>
+  			
+  	</div>
+  	</div>
+  	<div data-role="footer">
+		<button onclick="endOfFunctionsButton();">((End of Section))</button>  	
+	</div>
   </div>
 </body>
 </html>
