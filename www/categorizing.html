@@ -47,7 +47,6 @@
   			var gradingArray = [];
   			var gradingImgArray = [];
   			var correct = [];
-  			correct.length = 10;
   			var choice;
   			//used for going to the different questions
   			var questNum = 2;
@@ -60,9 +59,7 @@
             
             
             //randomNum must be hard coded to a number as there is no way for JScript to count the number of pictures in a folder
-            //setting a limit of 15 pictures
-            //10 of the pictures will be a correct image for one of the questions
-            //the last 5 pictures will always be wrong
+            //setting a limit of 10 pictures
             //all picutures must not be related in any way (ex. knife and sword could both cut you---> not good)
             function makeImageArray(correctImg)
   			{
@@ -117,7 +114,7 @@
 		  		}
 		  		counter++;
 		  		//at the end of test
-  				if (counter > 9)
+  				if (counter > 4)
 		  		{
 		  			//create a text file with grades 
 		  			//store text file to a folder to be ready to be emailed
@@ -163,9 +160,6 @@
 	  			<option value="3">3</option>
 	  			<option value="4">4</option>
 	  			<option value="5">5</option>
-	  			<option value="6">6</option>
-	  			<option value="7">7</option>
-	  			<option value="8">8</option>
 	  			</select>
 	  		
   		</div>
@@ -192,12 +186,12 @@
   			choice = realOrSymbol.options[realOrSymbol.selectedIndex].value;
  		
   			//grading arrays lengths set to 10 to match amount of questions
-  			gradingArray.length = 10;
-  			gradingImgArray.length = 10;
+  			gradingArray.length = 5;
+  			gradingImgArray.length = 5;
+  			correct.length = 5;
   			
   			//set filepath used for pictures
   			var categorizingFilePath = 'img/testImages/categorizingTestImg/' + choice + '/';
-  			console.log("categFilePath: " + categorizingFilePath);
   		</script>
   	</div>
   	
@@ -209,11 +203,17 @@
   	<div data-role="header">
   		<h1 style="font-size: 20px">Point to the food</h1>
   	</div>
-  	<div data-role="content">	
-  		answers go here
-  	</div>
+  		<div data-role="content">	
+			<script>
+	  			//send number for right image
+	  			var q1Img = 4;
+	  			setCorrectArray(q1Img);
+	  			makeImageArray(q1Img);
+	  			displayImageArray(questNum, q1Img);
+	  			questNum++;
+  			</script>  	
+  		</div>
   	<div data-role="footer">
-  		<a href="#categorizingQ2" data-role="button">Question 2</a>
   	</div>
   
   </div>
@@ -224,10 +224,16 @@
   		<h1 style="font-size: 20px">Point to the animal</h1>
   	</div>
   	<div data-role="content">	
-  		answers go here
+  		<script>
+	  			//send number for right image
+	  			var q2Img = 6;
+	  			setCorrectArray(q2Img);
+	  			makeImageArray(q2Img);
+	  			displayImageArray(questNum, q2Img);
+	  			questNum++;
+  			</script>  
   	</div>
   	<div data-role="footer">
-  		<a href="#categorizingQ3" data-role="button">Question 3</a>
   	</div>
   
   </div>
@@ -238,10 +244,16 @@
   		<h1 style="font-size: 20px">Point to the color</h1>
   	</div>
   	<div data-role="content">	
-  		answers go here
+  		<script>
+	  			//send number for right image
+	  			var q3Img = 1;
+	  			setCorrectArray(q3Img);
+	  			makeImageArray(q3Img);
+	  			displayImageArray(questNum, q3Img);
+	  			questNum++;
+  			</script>  
   	</div>
   	<div data-role="footer">
-  		<a href="#categorizingQ4" data-role="button">Question 4</a>
   	</div>
   
   </div>
@@ -252,10 +264,16 @@
   		<h1 style="font-size: 20px">Point to the number</h1>
   	</div>
   	<div data-role="content">	
-  		answers go here
+  		<script>
+	  			//send number for right image
+	  			var q4Img = 2;
+	  			setCorrectArray(q4Img);
+	  			makeImageArray(q4Img);
+	  			displayImageArray(questNum, q4Img);
+	  			questNum++;
+  			</script>  
   	</div>
   	<div data-role="footer">
-  		<a href="#categorizingQ5" data-role="button">Question 5</a>
   	</div>
   
   </div>
@@ -266,12 +284,36 @@
   		<h1 style="font-size: 20px">Point to the toy</h1>
   	</div>
   	<div data-role="content">	
-  		answers go here
+  		<script>
+	  			//send number for right image
+	  			var q5Img = 5;
+	  			setCorrectArray(q5Img);
+	  			makeImageArray(q5Img);
+	  			displayImageArray(questNum, q5Img);
+	  			questNum++;
+  			</script>  
   	</div>
   	<div data-role="footer">
-  		<button onclick="endOfCategorizingButton();">((End of Section))</button>
   	</div>
   
+  </div>
+  
+  
+  <div data-role="page" align="center" id="categorizingQ6">
+  	<div data-role="header">
+  		<h1 style="font-size: 20px">Results of the Test</h1>
+  	</div>
+  	<div data-role="content">
+  		<div id="gradedResults">
+  			<script>
+  			
+  			</script>
+  			
+  	</div>
+  	</div>
+  	<div data-role="footer">
+		<button onclick="endOfCategorizingButton();">((End of Section))</button>  	
+	</div>
   </div>
 </body>
 </html>

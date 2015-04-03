@@ -47,7 +47,6 @@
   			var gradingArray = [];
   			var gradingImgArray = [];
   			var correct = [];
-  			correct.length = 10;
   			var choice;
   			//used for going to the different questions
   			var questNum = 2;
@@ -59,9 +58,7 @@
             function endOfFunctionsButton(){ window.location = './index.html' };
             
             //randomNum must be hard coded to a number as there is no way for JScript to count the number of pictures in a folder
-            //setting a limit of 15 pictures
-            //10 of the pictures will be a correct image for one of the questions
-            //the last 5 pictures will always be wrong
+            //setting a limit of 10 pictures
             //all picutures must not be related in any way (ex. knife and sword could both cut you---> not good)
             function makeImageArray(correctImg)
   			{
@@ -71,13 +68,13 @@
   				for(i = 1; i < quiz1.length; i++)
 				{
 					//pick random number
-					randomNum = Math.floor(Math.random() * 15)
+					randomNum = Math.floor(Math.random() * 10)
 					//for loop used to iterate through number tracking array to find duplicates
 					for(j = 0; j < numAlreadyPicked.length; j++)
 					{
 						if(randomNum == correctImg || randomNum == numAlreadyPicked[j])
 						{
-								randomNum = Math.floor(Math.random() * 15)
+								randomNum = Math.floor(Math.random() * 10)
 								j = 0;
 						}
 					}
@@ -168,8 +165,6 @@
 	  			<option value="6">6</option>
 	  			<option value="7">7</option>
 	  			<option value="8">8</option>
-	  			<option value="9">9</option>
-	  			<option value="10">10</option>
 	  		</select>
 	  		
   		</div>
@@ -198,6 +193,7 @@
   			//grading arrays lengths set to 10 to match amount of questions
   			gradingArray.length = 10;
   			gradingImgArray.length = 10;
+  			correct.length = 10;
   			
   			//set filepath used for pictures
   			var functionsFilePath = 'img/testImages/functionsTestImg/' + choice + '/';
@@ -216,10 +212,10 @@
   		<div>
   			<script>
 	  			//send number for right image
-	  			var quiz1Img = 4;
-	  			setCorrectArray(quiz1Img);
-	  			makeImageArray(quiz1Img);
-	  			displayImageArray(questNum, quiz1Img);
+	  			var q1Img = 4;
+	  			setCorrectArray(q1Img);
+	  			makeImageArray(q1Img);
+	  			displayImageArray(questNum, q1Img);
 	  			questNum++;
   			</script>
   		</div>
