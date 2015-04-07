@@ -90,20 +90,29 @@
   			}
   			
   			
-  			function displayImageArray(questNum, num)
+  			function displayImageArray(questionNum, num)
   			{
   				document.write("<ul>")
   				for(u = 0; u < quiz6.length; u++)
   				{
-  					document.write("<li id='potentialChoices"+u+"' value ='" + numAlreadyPicked[u] +"'><a href='#basicConceptsQ" + questNum + "'><img src='" + quiz6[u] + "' width='150' height='100' class='imgSpacing' onclick='gradeQuestion("+ numAlreadyPicked[u] +")'/></a></li>");
+  					document.write("<li id='potentialChoices"+u+"' value ='" + numAlreadyPicked[u] +"'><a href='#basicConceptsQ" + questionNum + "'><img src='" + quiz6[u] + "' width='150' height='100' class='imgSpacing' onclick='gradeQuestion("+ numAlreadyPicked[u] +")'/></a></li>");
   				}				
   				document.write("</ul>")
   			}
   			
   			
-  			function gradeQuestion(imgVal)
+  			function gradeQuestion(imgVal, endTest)
 		  	{
-		  		if(imgVal == correct[counter])
+		  		if (endTest == true)
+		  		{
+		  			//create a text file with grades 
+		  			//store text file to a folder to be ready to be emailed
+		  			
+		  			//just to show grading works, print the grades (refresh to end the section)
+		  			printGrades();
+		  			//endOfBasicConceptsButton();
+		  		}
+		  		else if(imgVal == correct[counter])
 		  		{
 		  			gradingArray[counter] = "Correct";
 		  			gradingImgArray[counter] = basicConceptsFilePath + imgVal + '.png';		  				
@@ -114,16 +123,7 @@
 		  			gradingImgArray[counter] = basicConceptsFilePath + imgVal + '.png';
 		  		}
 		  		counter++;
-		  		//at the end of test
-  				if (counter > 9)
-		  		{
-		  			//create a text file with grades 
-		  			//store text file to a folder to be ready to be emailed
-		  			
-		  			//just to show grading works, print the grades (refresh to end the section)
-		  			printGrades();
-		  			//endOfBasicConceptsButton();
-		  		}
+  				
 		  	}
   			
   			  			
@@ -148,6 +148,13 @@
 	  				document.write("Question " + (y+1) + " image selected: " + "<img src='" + gradingImgArray[y] + "' width='150' height='100' class='imgSpacing'/> <br>");
 	  			}
 	  			
+  			}
+  			
+  			
+  			function setEnd()
+  			{
+  				var end = true;
+  				gradeQuestion(-1, end);
   			}
   			  			
         </script>
@@ -223,7 +230,7 @@
   		
   	</div>
   	<div data-role="footer">
-  		
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -244,7 +251,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -265,6 +272,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   </div>
   
@@ -285,6 +293,7 @@
   			</script>
   		</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   </div>
   </div>
@@ -306,6 +315,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -328,6 +338,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -350,6 +361,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -372,6 +384,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -395,6 +408,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -406,12 +420,7 @@
   		<h1 style="font-size: 20px">Results of the Test</h1>
   	</div>
   	<div data-role="content">
-  		<div id="gradedResults">
-  			<script>
-  			
-  			</script>
-  			
-  	</div>
+  		
   	</div>
   	<div data-role="footer">
 		<button onclick="endOfBasicConceptsButton();">((End of Section))</button>  	

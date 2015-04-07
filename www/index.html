@@ -41,28 +41,27 @@
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
         <script type="text/javascript"> 
-            app.initialize();
             
-            function updateButton(){};
-            
+            app.initialize(); 
+                        
             function startButton(){ window.location = './chooseTest.html' };
 
-			function optionsButton(){ window.location = './options.html' };
-
 			function loginButton(){ window.location = './login.html' };
+			
+			
 
         </script>
         
     </head>
     <body>
-        <div class="app">
-        	<div id="mainMenu">
-        		<h1>Welcome</h1>
-        		<span class="buttonSpacing"><button id="startButton" onclick="startButton();">Start</button></span><br /><br />
-        		<span class="buttonSpacing"><button id="updateButton" onclick="updateButton();">Update</button></span>
-        		<span class="buttonSpacing"><button id="optionsButton" onclick="optionsButton();">Grid Options</button></span>
-        		<span class="buttonSpacing"><button id="loginButton" onclick="loginButton();">Login</button></span>
-        	</div>       
+        <div >
+        	<h1>Welcome <span id="output"><script>$('#output').html(window.sessionStorage.getItem("name"));</script></span></h1>
+        	
+        	<span class="buttonSpacing"><button id="startButton" onclick="startButton();">Start</button></span><br /><br />
+	        <span class="buttonSpacing"><button id="loginButton" onclick="loginButton();">Login</button></span>
+        </div>       
+        	
+        	
             
         </div>
     </body>

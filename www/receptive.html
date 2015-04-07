@@ -91,12 +91,12 @@
   			}
   			
   			
-  			function displayImageArray(questNum, num)
+  			function displayImageArray(questionNum, num)
   			{
   				document.write("<ul>")
   				for(u = 0; u < quiz3.length; u++)
   				{
-  					document.write("<li id='potentialChoices"+u+"' value ='" + numAlreadyPicked[u] +"'><a href='#receptiveQ" + questNum + "'><img src='" + quiz3[u] + "' width='150' height='100' class='imgSpacing' onclick='gradeQuestion("+ numAlreadyPicked[u] +")'/></a></li>");
+  					document.write("<li id='potentialChoices"+u+"' value ='" + numAlreadyPicked[u] +"'><a href='#receptiveQ" + questionNum + "'><img src='" + quiz3[u] + "' width='150' height='100' class='imgSpacing' onclick='gradeQuestion("+ numAlreadyPicked[u] +")'/></a></li>");
   				}				
   				document.write("</ul>")
   			}
@@ -104,7 +104,16 @@
   			
   			function gradeQuestion(imgVal)
 		  	{
-		  		if(imgVal == correct[counter])
+		  		if (counter > 9)
+		  		{
+		  			//create a text file with grades 
+		  			//store text file to a folder to be ready to be emailed
+		  			
+		  			//just to show grading works, print the grades (refresh to end the section)
+		  			printGrades();
+		  			//endOfBasicConceptsButton();
+		  		}
+		  		else if(imgVal == correct[counter])
 		  		{
 		  			gradingArray[counter] = "Correct";
 		  			gradingImgArray[counter] = receptiveFilePath + imgVal + '.png';		  				
@@ -115,16 +124,7 @@
 		  			gradingImgArray[counter] = receptiveFilePath + imgVal + '.png';
 		  		}
 		  		counter++;
-		  		//at the end of test
-  				if (counter > 9)
-		  		{
-		  			//create a text file with grades 
-		  			//store text file to a folder to be ready to be emailed
-		  			
-		  			//just to show grading works, print the grades (refresh to end the section)
-		  			printGrades();
-		  			//endOfReceptiveButton();
-		  		}
+		  		
 		  	}
   			
   			  			
@@ -149,6 +149,13 @@
 	  				document.write("Question " + (y+1) + " image selected: " + "<img src='" + gradingImgArray[y] + "' width='150' height='100' class='imgSpacing'/> <br>");
 	  			}
 	  			
+  			}
+  			
+  			
+  			function setEnd()
+  			{
+  				var end = true;
+  				gradeQuestion(-1, end);
   			}
   			
         </script>
@@ -220,6 +227,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -240,6 +248,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -259,6 +268,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -279,6 +289,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   
@@ -297,6 +308,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -317,6 +329,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -337,6 +350,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -357,6 +371,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -377,6 +392,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -397,6 +413,7 @@
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -407,12 +424,7 @@
   		<h1 style="font-size: 20px">Results of the Test</h1>
   	</div>
   	<div data-role="content">
-  		<div id="gradedResults">
-  			<script>
-  			
-  			</script>
-  			
-  	</div>
+  		
   	</div>
   	<div data-role="footer">
 		<button onclick="endOfReceptiveButton();">((End of Section))</button>  	
