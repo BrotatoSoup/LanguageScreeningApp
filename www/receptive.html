@@ -51,8 +51,8 @@
   			//used for going to the different questions
   			var questNum = 2;
   			//counter is used to iterate through grading arrays
-  			var counter = 0;
-  			var correctArrayCounter = 0;
+  			var counter;
+  			var correctArrayCounter;
   			
   			         
             function endOfReceptiveButton(){ window.location = './index.html' };
@@ -102,9 +102,9 @@
   			}
   			
   			
-  			function gradeQuestion(imgVal)
+  			function gradeQuestion(imgVal, endTest)
 		  	{
-		  		if (counter > 9)
+		  		if (endTest == true)
 		  		{
 		  			//create a text file with grades 
 		  			//store text file to a folder to be ready to be emailed
@@ -186,11 +186,28 @@
   			</select>
   		</div>
   		
-  		<a href="#receptiveQ1" data-role="button">Start</a>
+  		<div data-role="fieldcontain">
+  			<label>Start from question:</label>
+  			<select id="questionStartFrom" onchange="location.reload()">
+  				<option value="1">1</option>
+  				<option value="2">2</option>
+	  			<option value="3">3</option>
+	  			<option value="4">4</option>
+	  			<option value="5">5</option>
+	  			<option value="6">6</option>
+	  			<option value="7">7</option>
+	  			<option value="8">8</option>
+	  			<option value="9">9</option>
+	  			<option value="10">10</option>
+	  		</select>
+  		</div>
+  		
+  		<a href="" id="startTheTest" data-role="button">Start</a>
   		<script>
   			//get number of images to display and which type of pictures
   			var numImgDisplay = document.getElementById("imgDisplaySize");
   			var realOrSymbol = document.getElementById("typeOfImg");
+  			var startFrom = document.getElementById("questionStartFrom");
   			
   			//set lengths for arrays
   			quiz3.length = numImgDisplay.options[numImgDisplay.selectedIndex].value;
@@ -198,6 +215,7 @@
   			
   			//get value for symbols or realistic images
   			choice = realOrSymbol.options[realOrSymbol.selectedIndex].value;
+  			startingFrom = startFrom.options[startFrom.selectedIndex].value;
  		
   			//grading arrays lengths set to 10 to match amount of questions
   			gradingArray.length = 10;
@@ -206,6 +224,15 @@
   			
   			//set filepath used for pictures
   			var receptiveFilePath = 'img/testImages/receptiveTestImg/' + choice + '/';
+  			console.log("recepFilePath: " + receptiveFilePath);
+  			//set which question to start on
+  			var start = "#receptiveQ" + startingFrom;
+  			console.log("start: "+ start);
+  			document.getElementById("startTheTest").setAttribute("href", start);
+  			counter = (startingFrom - 1);
+  			correctArrayCounter = (startingFrom - 1);
+  			console.log("counter: "+ counter);
+  			console.log("correctArrayCounter: "+ correctArrayCounter);
   		</script>
   	</div>
   	
@@ -424,7 +451,13 @@
   		<h1 style="font-size: 20px">Results of the Test</h1>
   	</div>
   	<div data-role="content">
-  		
+  		<div>
+  			Student: <span id="studentName"></span>
+  			<script>
+  				$('#studentName').html(window.sessionStorage.getItem("name"));
+  			</script>
+  		<button onclick="setEnd();">grade</button>
+  		</div>
   	</div>
   	<div data-role="footer">
 		<button onclick="endOfReceptiveButton();">((End of Section))</button>  	
