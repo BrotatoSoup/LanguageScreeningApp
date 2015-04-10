@@ -68,8 +68,6 @@
 			subject: 'Email test',
 			body:    'Testing email sending capability. Abcdefghijklmnopqrstuvwxyz'
 			}); 
-				
-			// window.plugin.email.open();
 		};
 		// tests for open draft (all blank)
 		function emailButton2(){ 
@@ -81,8 +79,16 @@
 			cordova.plugins.email.open({
 				app: 'gmail',
     				subject: 'Sent from Gmail'	
-			})	
+			});	
 		};
+		function cordova.plugins.email.open({ 
+			to:      ['rfalcon@csumb.edu'],
+			cc:      ['bfilippo@csumb.edu'],
+			//bcc:     ['john.doe@appplant.com', 'jane.doe@appplant.com'],
+			subject: 'Email test',
+			body:    'Testing email sending capability. Abcdefghijklmnopqrstuvwxyz'
+		}); 
+		
 		
 
         </script>
@@ -99,6 +105,7 @@
         		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton();">TEST EMAIL pre-filled </button></span>
         		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton2();">TEST EMAIL open draft</button></span>
         		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton3();">TEST EMAIL android</button></span>
+        		<span class="buttonSpacing"><button id="emailButton" onclick="cordova.plugins.email.open();">TEST EMAIL 4</button></span>
         	</div>       
             
         </div>
