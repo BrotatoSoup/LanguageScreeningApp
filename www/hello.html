@@ -45,16 +45,9 @@
         <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/ios/APPEmailComposer.h"></script>
         <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/ios/APPEmailComposer.m"></script>
         <script type="text/javascript"> 
+            app.initialize();
             
-            app.initialize(); 
-                        
-            function startButton(){ window.location = './chooseTest.html' };
-
-			function loginButton(){ window.location = './login.html' };
-			
-			function adminButton(){ window.location = './adminPage.html'};
-
-			document.addEventListener('deviceready', function () {
+            document.addEventListener('deviceready', function () {
     				// window.plugin.email is now available
     			alert('plugin.email available');
 			}, false);
@@ -64,8 +57,15 @@
 					// alert('Service is not available');
 				}
 			);
+            
+            function updateButton(){};
+            
+            function startButton(){ window.location = './chooseTest.html' };
+
+			function optionsButton(){ window.location = './options.html' };
+
+			function loginButton(){ window.location = './login.html' }; 
 			
-			//testing pre-field
 			function emailButton(){ 
 				
 				//alert('it works');
@@ -78,39 +78,38 @@
 				body:    'Testing email sending capability. Abcdefghijklmnopqrstuvwxyz'
 				}); 
 				
+				//window.plugin.email.open();
 			}; 
 			
-			//draft email (all fields blank)
 			function emailButton2(){ 
 				
 				//alert('it works');
 				
+				/*cordova.plugins.email.open({ 
+				to:      ['rjphalcon@gmail.com'],
+				//cc:      ['rfalcon@csumb.edu'],
+				//bcc:     ['john.doe@appplant.com', 'jane.doe@appplant.com'],
+				subject: 'Email test',
+				body:    'Testing email sending capability. Abcdefghijklmnopqrstuvwxyz'
+				}); */
+				
 				window.plugin.email.open();
-			};
+			};  
+
         </script>
         
     </head>
     <body>
-        <div >
-        	<h1>Welcome <span id="output"><script>$('#output').html(window.sessionStorage.getItem("name"));</script></span></h1>
-        	
-        	<span class="buttonSpacing"><button id="startButton" onclick="startButton();">Start</button></span><br /><br />
-	        <span class="buttonSpacing"><button id="loginButton" onclick="loginButton();">Login</button></span>
-        	
-        	<span class="buttonSpacing" id="hideaway" style="display: none;"><button onclick="adminButton();">Admin Page</button></span>
-        	<script>
-        		if(window.sessionStorage.getItem("name") == "admin")
-        		{
-        			document.getElementById("hideaway").style.display='block';
-        		}
-        	</script>
-        	
-        	<br /><br />
-        	<span class="buttonSpacing"><button id="emailButton" onclick="emailButton();">TEST EMAIL Pre-filled Draft</button></span>
-        	<span class="buttonSpacing"><button id="emailButton2" onclick="emailButton2();">TEST EMAIL Open Draft</button></span>
-        </div>       
-        	
-        	
+        <div class="app">
+        	<div id="mainMenu">
+        		<h1>Welcome</h1>
+        		<span class="buttonSpacing"><button id="startButton" onclick="startButton();">Start</button></span><br /><br />
+        		<span class="buttonSpacing"><button id="updateButton" onclick="updateButton();">Update</button></span>
+        		<span class="buttonSpacing"><button id="optionsButton" onclick="optionsButton();">Grid Options</button></span>
+        		<span class="buttonSpacing"><button id="loginButton" onclick="loginButton();">Login</button></span>
+        		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton();">TEST EMAIL Pre-filled Draft</button></span>
+        		<span class="buttonSpacing"><button id="emailButton2" onclick="emailButton2();">TEST EMAIL Open Draft</button></span>
+        	</div>       
             
         </div>
     </body>

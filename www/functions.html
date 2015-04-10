@@ -63,7 +63,7 @@
             function makeImageArray(correctImg)
   			{
   				var i, j, randomNum;
-  				quiz1[0] = functionsFilePath + correctImg + '.png';
+  				quiz1[0] = functionsFilePath + correctImg + '.jpg';
   				numAlreadyPicked[0] = correctImg;		
   				for(i = 1; i < quiz1.length; i++)
 				{
@@ -79,7 +79,7 @@
 						}
 					}
 					
-					quiz1[i] = functionsFilePath + randomNum + '.png';
+					quiz1[i] = functionsFilePath + randomNum + '.jpg';
 					numAlreadyPicked[i] = randomNum;
 				}
   				//sort array for random order
@@ -114,12 +114,12 @@
 		  		else if(imgVal == correct[counter])
 		  		{
 		  			gradingArray[counter] = "Correct";
-		  			gradingImgArray[counter] = functionsFilePath + imgVal + '.png';		  				
+		  			gradingImgArray[counter] = functionsFilePath + imgVal + '.jpg';		  				
 		  		}
 		  		else
 		  		{
 		  			gradingArray[counter] = "Incorrect";
-		  			gradingImgArray[counter] = functionsFilePath + imgVal + '.png';
+		  			gradingImgArray[counter] = functionsFilePath + imgVal + '.jpg';
 		  		}
 		  		counter++;
 		  		
