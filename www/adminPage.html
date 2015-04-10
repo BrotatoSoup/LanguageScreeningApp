@@ -40,8 +40,11 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-        <script type="text/javascript">    
-        //realistic photo functions 
+        <script type="text/javascript">
+        	var testModify, testValue;
+        
+            
+        	//realistic photo functions 
         	function onSuccess(imageData)
 		  	{
 		  		var image = document.getElementById('realisticImage');
@@ -57,7 +60,7 @@
 		  		navigator.camera.getPicture(onSuccess, onFail, {quality: 50, sourceType: source});
 		  	}
 		  	
-		//symbol photo functions
+			//symbol photo functions
 			function onSymbolSuccess(imageData)
 		  	{
 		  		var image2 = document.getElementById('symbolImage');
@@ -72,6 +75,39 @@
 		  	{
 		  		navigator.camera.getPicture(onSymbolSuccess, onSymbolFail, {quality: 50, sourceType: source});
 		  	}
+		  	
+		  	function goToTest()
+	  		{
+	  			
+	  			testModify = document.getElementById("adminOptions");
+	  			testValue = testModify.options[testModify.selectedIndex].value;
+	  			console.log("tV: " + testValue);
+	  			//determine which page to go to
+	  			if(testValue == "personalInfo")
+	  			{
+	  				//$("#functionOptions").pagecontainer("change");
+	  			}
+	  			else if(testValue == "functions")
+	  			{
+	  				$("#functionOptions").pagecontainer("change");
+	  			}
+	  			else if(testValue == "categorizing")
+	  			{
+	  				
+	  			}
+	  			else if(testValue == "receptive")
+	  			{
+	  				
+	  			}
+	  			else if(testValue == "association")
+	  			{
+	  				
+	  			}
+	  			else if(testValue == "basicConcepts")
+	  			{
+	  				
+	  			}
+	  		}
         </script>
         	
         
@@ -82,7 +118,7 @@
   	<div data-role="content">
   		<div data-role="fieldcontain">
   			<label>Which test would you like to modify:</label>
-	  		<select id="imgDisplaySize" onchange="location.reload()">
+	  		<select id="testDisplayOptions" onchange="location.reload()">
 	  			<option value="personalInfo">Personal Info</option>
 	  			<option value="functions">Funcitons</option>
 	  			<option value="categorizing">Categorizing</option>
@@ -90,13 +126,24 @@
 	  			<option value="association">Association</option>
 	  			<option value="basicConcepts">Basic Concepts</option>
 	  		</select>
-	  		<script>
-	  			var testModify, testValue;
-	  			testModify = document.getElementById("adminOptions");
-	  			testValue = testModify.options[testModify.selectedIndex].value
-	  			//determine which page to go to
-	  			if()
-	  		</script>
+	  			<button onclick="goToTest();">Submit</button>
+  		</div>
+  	</div>
+  </div>
+  
+  
+  <div data-role="page" align="center" id="functionOptions">
+  	<div data-role="content">
+  		<div data-role="fieldcontain">
+  			<label>Which question would you like to modify:</label>
+	  		<select id="functionDisplayOptions" onchange="location.reload()">
+	  			<option value="personalInfo">Personal Info</option>
+	  			<option value="functions">Funcitons</option>
+	  			<option value="categorizing">Categorizing</option>
+	  			<option value="receptive">Receptive</option>
+	  			<option value="association">Association</option>
+	  			<option value="basicConcepts">Basic Concepts</option>
+	  		</select>
   		</div>
   	</div>
   </div>
