@@ -40,11 +40,7 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-        <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/www/email_composer.js"></script>
-        <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/windows/EmailComposerProxy.js"></script>
         <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/android/EmailComposer.java"></script>
-        <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/ios/APPEmailComposer.h"></script>
-	<script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/ios/APPEmailComposer.h"></script>
         <script type="text/javascript"> 
 		app.initialize();
 		document.addEventListener("deviceready", function () {
@@ -60,6 +56,7 @@
 		function loginButton(){ window.location = './login.html' };
 		// tests pre-filled 
 		function emailButton(){ 
+			alert('first email button works');
 			cordova.plugins.email.open({ 
 			to:      ['rfalcon@csumb.edu'],
 			//cc:      ['bfilippo@csumb.edu'],
@@ -70,11 +67,12 @@
 		};
 		// tests for open draft (all blank)
 		function emailButton2(){ 
-				
+			alert('second email button works');
 			cordova.plugins.email.open();
 		}; 
 		// tests specifically for android
 		function emailButton3(){
+			alert('third email button works');
 			cordova.plugins.email.open({
 				app: 'gmail',
     				subject: 'Sent from Gmail'	
