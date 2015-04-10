@@ -43,10 +43,11 @@
         <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/android/EmailComposer.java"></script>
         <script type="text/javascript"> 
 		app.initialize();
-		document.addEventListener("deviceready", function () {
-		// cordova.plugins.email is now available
-		}, false);
-            
+		function onLoad() {
+			document.addEventListener("deviceready", function () {
+			// cordova.plugins.email is now available
+			}, false);
+		};
 		function updateButton(){};
             
         	function startButton(){ window.location = './chooseTest.html' };
@@ -82,7 +83,7 @@
         </script>
         
     </head>
-    <body>
+    <body onload="onLoad()">
         <div class="app">
         	<div id="mainMenu">
         		<h1>Welcome</h1>
