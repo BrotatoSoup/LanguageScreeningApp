@@ -47,42 +47,39 @@
   			var gradingArray = [];
   			var gradingImgArray = [];
   			var correct = [];
-  			correct.length = 10;
-  			var choice;
+  			var choice, startingFrom;
   			//used for going to the different questions
   			var questNum = 2;
   			//counter is used to iterate through grading arrays
-  			var counter = 0;
-  			var correctArrayCounter = 0;
+  			var counter;
+  			var correctArrayCounter;
   			
                 
             function endOfFunctionsButton(){ window.location = './index.html' };
             
             //randomNum must be hard coded to a number as there is no way for JScript to count the number of pictures in a folder
-            //setting a limit of 15 pictures
-            //10 of the pictures will be a correct image for one of the questions
-            //the last 5 pictures will always be wrong
+            //setting a limit of 10 pictures
             //all picutures must not be related in any way (ex. knife and sword could both cut you---> not good)
             function makeImageArray(correctImg)
   			{
   				var i, j, randomNum;
-  				quiz1[0] = functionsFilePath + correctImg + '.png';
+  				quiz1[0] = functionsFilePath + correctImg + '.jpg';
   				numAlreadyPicked[0] = correctImg;		
   				for(i = 1; i < quiz1.length; i++)
 				{
 					//pick random number
-					randomNum = Math.floor(Math.random() * 15)
+					randomNum = Math.floor(Math.random() * 10)
 					//for loop used to iterate through number tracking array to find duplicates
 					for(j = 0; j < numAlreadyPicked.length; j++)
 					{
 						if(randomNum == correctImg || randomNum == numAlreadyPicked[j])
 						{
-								randomNum = Math.floor(Math.random() * 15)
+								randomNum = Math.floor(Math.random() * 10)
 								j = 0;
 						}
 					}
 					
-					quiz1[i] = functionsFilePath + randomNum + '.png';
+					quiz1[i] = functionsFilePath + randomNum + '.jpg';
 					numAlreadyPicked[i] = randomNum;
 				}
   				//sort array for random order
@@ -91,32 +88,20 @@
   			}
   			
   			
-  			function displayImageArray(questNum, num)
+  			function displayImageArray(questionNum, num)
   			{
   				document.write("<ul>")
   				for(u = 0; u < quiz1.length; u++)
   				{
-  					document.write("<li id='potentialChoices"+u+"' value ='" + numAlreadyPicked[u] +"'><a href='#functionsQ" + questNum + "'><img src='" + quiz1[u] + "' width='150' height='100' class='imgSpacing' onclick='gradeQuestion("+ numAlreadyPicked[u] +")'/></a></li>");
+  					document.write("<li id='potentialChoices"+u+"' value ='" + numAlreadyPicked[u] +"'><a href='#functionsQ" + questionNum + "'><img src='" + quiz1[u] + "' width='150' height='100' class='imgSpacing' onclick='gradeQuestion("+ numAlreadyPicked[u] +")'/></a></li>");
   				}				
   				document.write("</ul>")
   			}
   			
   			
-  			function gradeQuestion(imgVal)
+  			function gradeQuestion(imgVal, endTest)
 		  	{
-		  		if(imgVal == correct[counter])
-		  		{
-		  			gradingArray[counter] = "Correct";
-		  			gradingImgArray[counter] = functionsFilePath + imgVal + '.png';		  				
-		  		}
-		  		else
-		  		{
-		  			gradingArray[counter] = "Incorrect";
-		  			gradingImgArray[counter] = functionsFilePath + imgVal + '.png';
-		  		}
-		  		counter++;
-		  		//at the end of test
-  				if (counter > 9)
+		  		if (endTest == true)
 		  		{
 		  			//create a text file with grades 
 		  			//store text file to a folder to be ready to be emailed
@@ -125,6 +110,19 @@
 		  			printGrades();
 		  			//endOfFunctionsButton();
 		  		}
+
+		  		else if(imgVal == correct[counter])
+		  		{
+		  			gradingArray[counter] = "Correct";
+		  			gradingImgArray[counter] = functionsFilePath + imgVal + '.jpg';		  				
+		  		}
+		  		else
+		  		{
+		  			gradingArray[counter] = "Incorrect";
+		  			gradingImgArray[counter] = functionsFilePath + imgVal + '.jpg';
+		  		}
+		  		counter++;
+		  		
 		  	}
   			
   			  			
@@ -150,6 +148,17 @@
 	  			}
 	  			
   			}
+  			
+  			function setEnd()
+  			{
+  				var end = true;
+  				gradeQuestion(-1, end);
+  			}
+  			
+  			function incrementQuestNum()
+  			{
+  				questNum++;
+  			}
   			  			
         </script>
         
@@ -161,7 +170,30 @@
   	<div data-role="content">
   		<div data-role="fieldcontain">
   			<label>Choose how many images to choose from:</label>
-	  		<select id="imgDisplaySize" onchange="location.reload()">
+	  		<select id="imgDisplaySize">
+	  			<option value="3">3</option>
+	  			<option value="4">4</option>
+	  			<option value="5">5</option>
+	  			<option value="6">6</option>
+	  			<option value="7">7</option>
+	  			<option value="8">8</option>
+	  		</select>
+	  		
+  		</div>
+  		
+  		<div data-role="fieldcontain">
+  			<label>Choose realistic or symbolic pictures to display:</label>
+  			<select id="typeOfImg" >
+  				<option value="realistic">Realistic</option>
+  				<option value="symbols">Symbols</option>
+  			</select>
+  		</div>
+  		
+  		<div data-role="fieldcontain">
+  			<label>Start from question:</label>
+  			<select id="questionStartFrom">
+  				<option value="1">1</option>
+  				<option value="2">2</option>
 	  			<option value="3">3</option>
 	  			<option value="4">4</option>
 	  			<option value="5">5</option>
@@ -171,22 +203,14 @@
 	  			<option value="9">9</option>
 	  			<option value="10">10</option>
 	  		</select>
-	  		
   		</div>
   		
-  		<div data-role="fieldcontain">
-  			<label>Choose realistic or symbolic pictures to display:</label>
-  			<select id="typeOfImg" onchange="location.reload()">
-  				<option value="realistic">Realistic</option>
-  				<option value="symbols">Symbols</option>
-  			</select>
-  		</div>
-  		
-  		<a href="#functionsQ1" data-role="button">Start</a>
+  		<a href="" id="startTheTest" data-role="button">Start</a>
   		<script>
   			//get number of images to display and which type of pictures
   			var numImgDisplay = document.getElementById("imgDisplaySize");
   			var realOrSymbol = document.getElementById("typeOfImg");
+  			var startFrom = document.getElementById("questionStartFrom");
   			
   			//set lengths for arrays
   			quiz1.length = numImgDisplay.options[numImgDisplay.selectedIndex].value;
@@ -194,14 +218,25 @@
   			
   			//get value for symbols or realistic images
   			choice = realOrSymbol.options[realOrSymbol.selectedIndex].value;
+  			startingFrom = startFrom.options[startFrom.selectedIndex].value;
  		
   			//grading arrays lengths set to 10 to match amount of questions
   			gradingArray.length = 10;
   			gradingImgArray.length = 10;
+  			correct.length = 10;
   			
   			//set filepath used for pictures
   			var functionsFilePath = 'img/testImages/functionsTestImg/' + choice + '/';
   			console.log("funcFilePath: " + functionsFilePath);
+  			//set which question to start on
+  			var start = "#functionsQ" + startingFrom;
+  			console.log("start: "+ start);
+  			document.getElementById("startTheTest").setAttribute("href", start);
+  			counter = (startingFrom - 1);
+  			correctArrayCounter = (startingFrom - 1);
+  			console.log("counter: "+ counter);
+  			console.log("correctArrayCounter: "+ correctArrayCounter);
+
   		</script>
   	</div>
   	
@@ -216,17 +251,17 @@
   		<div>
   			<script>
 	  			//send number for right image
-	  			var quiz1Img = 4;
-	  			setCorrectArray(quiz1Img);
-	  			makeImageArray(quiz1Img);
-	  			displayImageArray(questNum, quiz1Img);
-	  			questNum++;
+	  			var q1Img = 4;
+	  			setCorrectArray(q1Img);
+	  			makeImageArray(q1Img);
+	  			displayImageArray(questNum, q1Img);
+	  			incrementQuestNum();
   			</script>
   		</div>
   		
   	</div>
   	<div data-role="footer">
-  		
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -243,11 +278,11 @@
   			setCorrectArray(q2Img);
   			makeImageArray(q2Img);
   			displayImageArray(questNum, q2Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
-  		
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -264,10 +299,11 @@
   			setCorrectArray(q3Img);
   			makeImageArray(q3Img);
   			displayImageArray(questNum, q3Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   </div>
   
@@ -284,10 +320,11 @@
 	  			setCorrectArray(q4Img);
 	  			makeImageArray(q4Img);
 	  			displayImageArray(questNum, q4Img);
-	  			questNum++;
+	  			incrementQuestNum();
   			</script>
   		</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   </div>
   </div>
@@ -305,10 +342,11 @@
   			setCorrectArray(q5Img);
   			makeImageArray(q5Img);
   			displayImageArray(questNum, q5Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -327,10 +365,11 @@
   			setCorrectArray(q6Img);
   			makeImageArray(q6Img);
   			displayImageArray(questNum, q6Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -349,10 +388,11 @@
   			setCorrectArray(q7Img);
   			makeImageArray(q7Img);
   			displayImageArray(questNum, q7Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -371,10 +411,11 @@
   			setCorrectArray(q8Img);
   			makeImageArray(q8Img);
   			displayImageArray(questNum, q8Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -393,11 +434,12 @@
   			setCorrectArray(q9Img);
   			makeImageArray(q9Img);
   			displayImageArray(questNum, q9Img);
-  			questNum++;
+  			incrementQuestNum();
   			
   		</script>
   	</div>
   	<div data-role="footer">
+  		<button onclick="setEnd();">Email</button>
   	</div>
   
   </div>
@@ -416,13 +458,13 @@
 	  			setCorrectArray(quiz10Img);
 	  			makeImageArray(quiz10Img);
 	  			displayImageArray(questNum, quiz10Img);
-	  			questNum++;
+	  			incrementQuestNum();
 	  			
   			</script>
   		</div>
   	</div>
   	<div data-role="footer">
-  		
+  		<button onclick="setEnd();">Email</button>
   	</div>
   </div>
   
@@ -432,12 +474,13 @@
   		<h1 style="font-size: 20px">Results of the Test</h1>
   	</div>
   	<div data-role="content">
-  		<div id="gradedResults">
+  		<div>
+  			Student: <span id="studentName"></span>
   			<script>
-  			
+  				$('#studentName').html(window.sessionStorage.getItem("name"));
   			</script>
-  			
-  	</div>
+  		<button onclick="setEnd();">grade</button>
+  		</div>
   	</div>
   	<div data-role="footer">
 		<button onclick="endOfFunctionsButton();">((End of Section))</button>  	
