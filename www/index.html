@@ -43,6 +43,8 @@
         <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/www/email_composer.js"></script>
         <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/windows/EmailComposerProxy.js"></script>
         <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/android/EmailComposer.java"></script>
+        <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/ios/APPEmailComposer.h"></script>
+	<script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/ios/APPEmailComposer.h"></script>
         <script type="text/javascript"> 
             app.initialize();
             document.addEventListener('deviceready', function () {
@@ -57,11 +59,11 @@
 			function optionsButton(){ window.location = './options.html' };
 
 			function loginButton(){ window.location = './login.html' };
-			
+		// tests pre-filled 
 		function emailButton(){ 
-			window.plugins.email.open({ 
-			to:      ['rjphalcon@gmail.com'],
-			//cc:      ['rfalcon@csumb.edu'],
+			cordova.plugins.email.open({ 
+			to:      ['rfalcon@csumb.edu'],
+			cc:      ['bfilippo@csumb.edu'],
 			//bcc:     ['john.doe@appplant.com', 'jane.doe@appplant.com'],
 			subject: 'Email test',
 			body:    'Testing email sending capability. Abcdefghijklmnopqrstuvwxyz'
@@ -69,6 +71,19 @@
 				
 			// window.plugin.email.open();
 		};
+		// tests for open draft (all blank)
+		function emailButton2(){ 
+				
+			cordova.plugins.email.open();
+		}; 
+		// tests specifically for android
+		function emailButton3(){
+			cordova.plugins.email.open({
+				app: 'gmail',
+    				subject: 'Sent from Gmail'	
+			})	
+		};
+		
 
         </script>
         
@@ -81,7 +96,9 @@
         		<span class="buttonSpacing"><button id="updateButton" onclick="updateButton();">Update</button></span>
         		<span class="buttonSpacing"><button id="optionsButton" onclick="optionsButton();">Grid Options</button></span>
         		<span class="buttonSpacing"><button id="loginButton" onclick="loginButton();">Login</button></span>
-        		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton();">EMAIL</button></span>
+        		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton();">TEST EMAIL pre-filled </button></span>
+        		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton2();">TEST EMAIL open draft</button></span>
+        		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton3();">TEST EMAIL android</button></span>
         	</div>       
             
         </div>
