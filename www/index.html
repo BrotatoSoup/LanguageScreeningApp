@@ -57,7 +57,6 @@
 		function loginButton(){ window.location = './login.html' };
 		// tests pre-filled 
 		function emailButton(){ 
-			alert('first email button works');
 			cordova.plugins.email.open({ 
 			to:      ['rfalcon@csumb.edu'],
 			//cc:      ['bfilippo@csumb.edu'],
@@ -68,12 +67,10 @@
 		};
 		// tests for open draft (all blank)
 		function emailButton2(){ 
-			alert('second email button works');
 			cordova.plugins.email.open();
 		}; 
 		// tests specifically for android
 		function emailButton3(){
-			alert('third email button works');
 			cordova.plugins.email.open({
 				app: 'gmail',
     				subject: 'Sent from Gmail'	
