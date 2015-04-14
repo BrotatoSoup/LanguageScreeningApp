@@ -43,15 +43,20 @@
         <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/android/EmailComposer.java"></script>
         <script type="text/javascript"> 
 		app.initialize();
-		function onLoad() {
+		
+		var callback = function () {
+			alert('finished or canceled');
+		};
+		
 		document.addEventListener("deviceready", function () {
 			// cordova.plugins.email is now available
-			}, false); 
+			}, false);
+			
 		cordova.plugins.email.isAvailable(
 			function (isAvailable) {
 			// alert('Service is not available') unless isAvailable;
 			});
-		};
+			
 		function updateButton(){};
             
         	function startButton(){ window.location = './chooseTest.html' };
@@ -61,30 +66,25 @@
 		function loginButton(){ window.location = './login.html' };
 		// tests pre-filled 
 		function emailButton(){ 
-			cordova.plugins.email.open({ 
-			to:      ['rfalcon@csumb.edu'],
-			//cc:      ['bfilippo@csumb.edu'],
-			//bcc:     ['john.doe@appplant.com', 'jane.doe@appplant.com'],
-			subject: 'Email test',
-			body:    'Testing email sending capability. Abcdefghijklmnopqrstuvwxyz'
-			}); 
+			cordova.plugins.email.open({
+			to: 'to@email.de',
+			cc: ['cc1@email.de', 'cc2@email.de'],
+			bcc: ['bcc1@email.de', 'bcc2@email.de'],
+			subject: isHtml ? 'Body with HTML and CSS3' : 'Body with plain text',
+			body: "\nHello,\n\nthis is just a plain text email body!",
+			isHTML: false
+			}, callback);
 		};
 		// tests for open draft (all blank)
 		function emailButton2(){ 
-			cordova.plugins.email.open();
+			cordova.plugins.email.open({}, callback);
 		}; 
-		// tests specifically for android
-		function emailButton3(){
-			cordova.plugins.email.open({
-				app: 'gmail',
-    				subject: 'Sent from Gmail'	
-			});	
-		};
+		
 		
         </script>
         
     </head>
-    <body onload="onLoad()">
+    <body>
         <div class="app">
         	<div id="mainMenu">
         		<h1>Welcome</h1>
@@ -94,7 +94,6 @@
         		<span class="buttonSpacing"><button id="loginButton" onclick="loginButton();">Login</button></span>
         		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton();">TEST EMAIL pre-filled </button></span>
         		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton2();">TEST EMAIL open draft</button></span>
-        		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton3();">TEST EMAIL android</button></span>
         	</div>       
             
         </div>
