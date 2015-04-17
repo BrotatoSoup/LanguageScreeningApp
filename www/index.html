@@ -49,8 +49,9 @@
 			alert('finished or canceled');
 		};
 		
-		function ready (){document.addEventListener("deviceready", function () {
+		function ready (){
 			alert('Manually triggered');
+			document.addEventListener("deviceready", function () {
 			// cordova.plugins.email is now available
 			}, false);
 		};	
