@@ -36,6 +36,7 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css" />
         <title>Personal Info</title>
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="cordova_plugins.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
@@ -71,7 +72,7 @@
 	  			}
 	  			function onNameFail(message)
 	  			{
-	  				alert('Failed because: ' + message);
+	  				navigator.notification.alert('Failed because: ' + message);
 	  			}
 	  			function getNamePhotoFromLibrary(source)
 	  			{
