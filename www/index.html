@@ -61,42 +61,14 @@
             
              
                         
-            function startButton(){ window.location = './chooseTest.html' };
+            	function startButton(){ window.location = './chooseTest.html' };
 
-			function loginButton(){ window.location = './login.html' };
+		function loginButton(){ window.location = './login.html' };
 			
-			function testOptionsButton(){ window.location = './testOptions.html' };
+		function testOptionsButton(){ window.location = './testOptions.html' };
+				
+		function adminButton(){ window.location = './adminPage.html'};
 			
-			function adminButton(){ window.location = './adminPage.html'};
-			
-			cordova.plugins.email.isAvailable(
-				function (isAvailable) {
-					// alert('Service is not available');
-				}
-			);
-			
-			//testing pre-field
-			function emailButton(){ 
-				
-				//alert('it works');
-				
-				cordova.plugins.email.open({ 
-				to:      ['rjphalcon@gmail.com'],
-				//cc:      ['rfalcon@csumb.edu'],
-				//bcc:     ['john.doe@appplant.com', 'jane.doe@appplant.com'],
-				subject: 'Email test',
-				body:    'Testing email sending capability. Abcdefghijklmnopqrstuvwxyz'
-				}); 
-				
-			}; 
-			
-			//draft email (all fields blank)
-			function emailButton2(){ 
-				
-				//alert('it works');
-				
-				cordova.plugins.email.open();
-			};
         </script>
         
     </head>
@@ -109,7 +81,7 @@
         	<span class="buttonSpacing"><a data-role="button" id="startButton" onclick="startButton();">Start</a></span><br /><br />
 	        <span class="buttonSpacing"><a data-role="button" id="loginButton" onclick="loginButton();">Login</a></span>
 	        <span class="buttonSpacing"><a data-role="button" id="testOptionsButton" onclick="testOptionsButton();">Test Options</a></span>
-        	<span class="buttonSpacing"><button id="emailButton" onclick="emailButton();"><a href="mailto:someone@example.com?Subject=" target="_top">TEST Mailto function</a></button></span>
+        	<span class="buttonSpacing"><button id="emailButton"><a href="mailto:?Subject=" target="_top">TEST EMAIL</a></button></span>
         	<span class="buttonSpacing" id="hideaway" style="display: none;"><a data-role="button" onclick="adminButton();">Admin Page</a></span>
         	<script>
         		if(window.sessionStorage.getItem("name") == "admin")
@@ -119,8 +91,7 @@
         	</script>
         	
         	<br /><br />
-        	<span class="buttonSpacing"><button id="emailButton" onclick="emailButton();">TEST EMAIL Pre-filled Draft</button></span>
-        	<span class="buttonSpacing"><button id="emailButton2" onclick="emailButton2();">TEST EMAIL Open Draft</button></span>
+        	
         </div>       
         	
         	
