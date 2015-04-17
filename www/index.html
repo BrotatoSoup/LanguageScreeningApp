@@ -49,11 +49,11 @@
 			alert('finished or canceled');
 		};
 		
-		function ready (document.addEventListener("deviceready", function () {
+		function ready (){document.addEventListener("deviceready", function () {
 			alert('Manually triggered');
 			// cordova.plugins.email is now available
 			}, false);
-		);	
+		};	
 		cordova.plugins.email.isAvailable(
 			function (isAvailable) {
 			// alert('Service is not available') unless isAvailable;
