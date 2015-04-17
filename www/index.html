@@ -40,7 +40,8 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-        <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/android/EmailComposer.java"></script>
+        <!-- <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/www/email_composer.js"></script> --> 
+        <!-- <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/android/EmailComposer.java"></script> -->
         <script type="text/javascript"> 
 		app.initialize();
 		
@@ -66,7 +67,7 @@
 		function loginButton(){ window.location = './login.html' };
 		// tests pre-filled 
 		function emailButton(){ 
-			cordova.plugins.open({
+			cordova.plugins.email.open({
 			to: 'to@email.de',
 			cc: ['cc1@email.de', 'cc2@email.de'],
 			bcc: ['bcc1@email.de', 'bcc2@email.de'],
@@ -77,7 +78,7 @@
 		};
 		// tests for open draft (all blank)
 		function emailButton2(){ 
-			cordova.plugins.open({}, callback);
+			cordova.plugins.email.open({}, callback);
 		}; 
 		
 		
@@ -93,7 +94,7 @@
         		<span class="buttonSpacing"><button id="optionsButton" onclick="optionsButton();">Grid Options</button></span>
         		<span class="buttonSpacing"><button id="loginButton" onclick="loginButton();">Login</button></span>
         		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton();">TEST EMAIL pre-filled </button></span>
-        		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton2();">TEST EMAIL open draft</button></span>
+        		<span class="buttonSpacing"><button id="emailButton2" onclick="emailButton2();">TEST EMAIL open draft</button></span>
         	</div>       
             
         </div>
