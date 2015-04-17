@@ -66,7 +66,7 @@
 		function loginButton(){ window.location = './login.html' };
 		// tests pre-filled 
 		function emailButton(){ 
-			cordova.plugins.email.open({
+			cordova.plugins.open({
 			to: 'to@email.de',
 			cc: ['cc1@email.de', 'cc2@email.de'],
 			bcc: ['bcc1@email.de', 'bcc2@email.de'],
@@ -77,7 +77,7 @@
 		};
 		// tests for open draft (all blank)
 		function emailButton2(){ 
-			cordova.plugins.email.open({}, callback);
+			cordova.plugins.open({}, callback);
 		}; 
 		
 		
