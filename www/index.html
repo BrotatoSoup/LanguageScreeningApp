@@ -49,10 +49,11 @@
 			alert('finished or canceled');
 		};
 		
-		document.addEventListener("deviceready", function () {
+		function ready (document.addEventListener("deviceready", function () {
+			alert('Manually triggered');
 			// cordova.plugins.email is now available
 			}, false);
-			
+		);	
 		cordova.plugins.email.isAvailable(
 			function (isAvailable) {
 			// alert('Service is not available') unless isAvailable;
@@ -93,6 +94,7 @@
         		<span class="buttonSpacing"><button id="updateButton" onclick="updateButton();">Update</button></span>
         		<span class="buttonSpacing"><button id="optionsButton" onclick="optionsButton();">Grid Options</button></span>
         		<span class="buttonSpacing"><button id="loginButton" onclick="loginButton();">Login</button></span>
+        		<span class="buttonSpacing"><button id="readyCheck" onclick="ready();">Ready Listener</button></span>
         		<span class="buttonSpacing"><button id="emailButton" onclick="emailButton();">TEST EMAIL pre-filled </button></span>
         		<span class="buttonSpacing"><button id="emailButton2" onclick="emailButton2();">TEST EMAIL open draft</button></span>
         	</div>       
