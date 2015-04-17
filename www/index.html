@@ -48,6 +48,12 @@
         <script type="text/javascript" src="../plugins/de.appplant.cordova.plugin.email-composer/src/android/EmailComposer.java"></script>
        
         <script type="text/javascript"> 
+        
+        	document.addEventListener('deviceready', function () {
+    				// window.plugin.email is now available
+    			alert('plugin.email available');
+			}, false);
+
             
             app.initialize(); 
                         
@@ -55,12 +61,9 @@
 
 			function loginButton(){ window.location = './login.html' };
 			
+			function testOptionsButton(){ window.location = './testOptions.html' };
+			
 			function adminButton(){ window.location = './adminPage.html'};
-
-			document.addEventListener('deviceready', function () {
-    				// window.plugin.email is now available
-    			alert('plugin.email available');
-			}, false);
 			
 			cordova.plugins.email.isAvailable(
 				function (isAvailable) {
@@ -88,19 +91,22 @@
 				
 				//alert('it works');
 				
-				window.plugin.email.open();
+				cordova.plugins.email.open();
 			};
         </script>
         
     </head>
     <body>
-        <div >
+        <div align="center">
         	<h1>Welcome <span id="output"><script>$('#output').html(window.sessionStorage.getItem("name"));</script></span></h1>
+        	<script>console.log(window.sessionStorage.getItem("numOfDisplayImg"));</script>
+        	<script>console.log(window.sessionStorage.getItem("typeOfImgUsed"));</script>
+        	<script>console.log(window.sessionStorage.getItem("startFromQuestion"));</script>
+        	<span class="buttonSpacing"><a data-role="button" id="startButton" onclick="startButton();">Start</a></span><br /><br />
+	        <span class="buttonSpacing"><a data-role="button" id="loginButton" onclick="loginButton();">Login</a></span>
+	        <span class="buttonSpacing"><a data-role="button" id="testOptionsButton" onclick="testOptionsButton();">Test Options</a></span>
         	
-        	<span class="buttonSpacing"><button id="startButton" onclick="startButton();">Start</button></span><br /><br />
-	        <span class="buttonSpacing"><button id="loginButton" onclick="loginButton();">Login</button></span>
-        	
-        	<span class="buttonSpacing" id="hideaway" style="display: none;"><button onclick="adminButton();">Admin Page</button></span>
+        	<span class="buttonSpacing" id="hideaway" style="display: none;"><a data-role="button" onclick="adminButton();">Admin Page</a></span>
         	<script>
         		if(window.sessionStorage.getItem("name") == "admin")
         		{

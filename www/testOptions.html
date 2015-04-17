@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements. See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership. The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License. You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied. See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.external-png-1.4.5.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons-1.4.5.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.inline-png-1.4.5.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.inline-svg-1.4.5.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.structure-1.4.5.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile.theme-1.4.5.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css" />
+		<title>TestOptions</title>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="phonegap.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+		<script type="text/javascript">
+		
+		function goToChooseTest() { window.location = './chooseTest.html' };
+		
+		function setValsToStorage()
+        {
+						
+	    				var displayButtonVal = $("#imgDisplaySize option:selected").val();
+	    				var typeButtonVal = $("#typeOfImg option:selected").val();
+	    				var questionButtonVal = $("#questionStartFrom option:selected").val();
+	    				
+	    				console.log("val from numOfImages: " + displayButtonVal);
+	    				console.log("val from typeOfImg: " + typeButtonVal);
+	    				console.log("val from startOn: " + questionButtonVal);
+	    				
+	    				window.sessionStorage.setItem("numOfDisplayImg", displayButtonVal);
+	    				window.sessionStorage.setItem("typeOfImgUsed", typeButtonVal);
+	    				window.sessionStorage.setItem("startFromQuestion", questionButtonVal);
+	    				
+	    				goToChooseTest();
+	    }
+		
+		</script>
+	</head>
+	
+	
+	<body>	
+		
+		<div data-role="page" align="center" id="testOptions">
+			<div data-role="content">
+				<div data-role="fieldcontain">
+					<label>Choose how many images to choose from:</label>
+					<select id="imgDisplaySize">
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+					</select>
+					
+				</div>
+				
+				
+				<div data-role="fieldcontain">
+					<label>Choose realistic or symbolic pictures to display:</label>
+					<select id="typeOfImg" >
+						<option value="realistic">Realistic</option>
+						<option value="symbols">Symbols</option>
+					</select>
+					
+				</div>
+				
+				<div data-role="fieldcontain">
+					<label>Start from question (NOTE: Categorizing test only has 5 questions):</label>
+					<select id="questionStartFrom">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+					</select>
+					
+				</div>
+				<a data-role="button" onclick="setValsToStorage();">Submit Values</a>
+			</div>
+		</div>
+	</body>
+</html>

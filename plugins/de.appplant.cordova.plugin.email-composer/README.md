@@ -8,13 +8,20 @@ Cordova Email Plugin
 
 <img width="260px" align="right" hspace="7" vspace="5" src="http://flashsimulations.com/wp-content/uploads/2011/12/air-ios-in-app-mail-app.png">
 
-The plugin provides access to the standard interface that manages the editing and sending an email message. You can use this view controller to display a standard email view inside your application and populate the fields of that view with initial values, such as the subject, email recipients, body text, and attachments. The user can edit the initial contents you specify and choose to send the email or cancel the operation.
+The plugin provides access to the standard interface that manages the editing and sending an email message. 
+You can use this view controller to display a standard email view inside your application and populate the fields 
+of that view with initial values, such as the subject, email recipients, body text, and attachments. The user can 
+edit the initial contents you specify and choose to send the email or cancel the operation.
 
-Using this interface does not guarantee immediate delivery of the corresponding email message. The user may cancel the creation of the message, and if the user does choose to send the message, the message is only queued in the Mail application outbox. This allows you to generate emails even in situations where the user does not have network access, such as in airplane mode. This interface does not provide a way for you to verify whether emails were actually sent.
+Using this interface does not guarantee immediate delivery of the corresponding email message. The user may cancel 
+the creation of the message, and if the user does choose to send the message, the message is only queued in the Mail 
+application outbox. This allows you to generate emails even in situations where the user does not have network access, 
+such as in airplane mode. This interface does not provide a way for you to verify whether emails were actually sent.
 
 
 ### Plugin's Purpose
-The purpose of the plugin is to create an platform independent javascript interface for [Cordova][cordova] based mobile applications to access the specific email composition API on each platform.
+The purpose of the plugin is to create an platform independent javascript interface for [Cordova][cordova] based 
+mobile applications to access the specific email composition API on each platform.
 
 
 ## Overview
@@ -34,7 +41,8 @@ The purpose of the plugin is to create an platform independent javascript interf
 
 
 ## Installation
-The plugin can either be installed from git repository, from local file system through the [Command-line Interface][CLI]. Or cloud based through [PhoneGap Build][PGB].
+The plugin can either be installed from git repository, from local file system through 
+the [Command-line Interface][CLI]. Or cloud based through [PhoneGap Build][PGB].
 
 ### Local development environment
 From master:
@@ -101,9 +109,13 @@ document.addEventListener('deviceready', function () {
 ```
 
 ### Determine if the device is capable to send emails
-The ability to send emails can be revised through the `email.isAvailable` interface. The method takes a callback function, passed to which is a boolean property. Optionally the callback scope can be assigned as a second parameter.
+The ability to send emails can be revised through the `email.isAvailable` interface. The method takes 
+a callback function, passed to which is a boolean property. Optionally the callback scope can be assigned as 
+a second parameter.
 
-The Email service is only available on devices capable which are able to send emails. E.g. which have configured an email account and have installed an email app. You can use this function to hide email functionality from users who will be unable to use it.
+The Email service is only available on devices capable which are able to send emails. E.g. which have configured an 
+email account and have installed an email app. You can use this function to hide email functionality from users 
+who will be unable to use it.
 
 ```javascript
 cordova.plugins.email.isAvailable(
