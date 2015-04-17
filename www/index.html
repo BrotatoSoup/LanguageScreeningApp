@@ -35,8 +35,8 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile.theme-1.4.5.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css" />
         <title>Main Menu</title>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="phonegap.js"></script>
+        <script src="cordova.js"></script>
+        <script src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
@@ -70,9 +70,9 @@
 			to: 'to@email.de',
 			cc: ['cc1@email.de', 'cc2@email.de'],
 			bcc: ['bcc1@email.de', 'bcc2@email.de'],
-			subject: isHtml ? 'Body with HTML and CSS3' : 'Body with plain text',
+			subject:'Body with plain text',
 			body: "\nHello,\n\nthis is just a plain text email body!",
-			isHTML: false
+			isHTML: false,
 			}, callback);
 		};
 		// tests for open draft (all blank)
