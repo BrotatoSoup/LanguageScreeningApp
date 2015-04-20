@@ -57,27 +57,35 @@
   		<textarea></textarea>
   		
   		<button onclick="takeNamePicture()">Take a Picture</button>
-  		<button onclick="getNamePhotoFromLibrary(pictureSource.PHOTOLIBRARY);">Get a Picture From Library</button>
-  		<img id="personalNameImage" width="200" height="300" style="display: none" src=""/>
+  		<button id="namePhotoLib">Get a Picture From Library</button>
+  		<img id="personalNameImage" width="200" height="300" style="display: block" src=""/>
   		<script>
-	  		function takeNamePicture()
+  		$("#namePhotoLib").click(function(){
+  			navigator.camera.getPicture(onNameSuccess, onNameFail, 
+  				{quality: 50, 
+  				destinationType: Camera.DestinationType.FILE_URI, 
+  				sourceType: navigator.camera.getPictureSourceType.PHOTOLIBRARY
+  				});	
+  		});	
+  			/*function takeNamePicture()
 	  			{
 	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50}))
 	  			}
+	  			*/
 	  			function onNameSuccess(imageData)
 	  			{
-	  				var image = document.getElementById('personalNameImage');
-	  				image.src = "data:image/jpg;base64, " + imageData;
-	  				image.style.display = 'block';
+	  				var image = $('#personalNameImage');
+	  				image.attr('src', imageData);
+	  				//image.style.display = 'block';
 	  			}
 	  			function onNameFail(message)
 	  			{
 	  				navigator.notification.alert('Failed because: ' + message);
 	  			}
-	  			function getNamePhotoFromLibrary(source)
+	  			/*function getNamePhotoFromLibrary(source)
 	  			{
 	  				navigator.camera.getPicture(onNameSuccess, onNameFail, {quality: 50, sourceType: source});
-	  			}
+	  			}*/
   		</script>
   	</div>
   	<div data-role="footer">
