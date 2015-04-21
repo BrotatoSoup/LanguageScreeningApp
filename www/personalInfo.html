@@ -54,17 +54,17 @@
   	<div data-role="content">	
   		<textarea></textarea>
   		
-  		<span class="buttonSpacing"><a data-role="button" id="testBtn" onclick="photoLib();">alert</a></span><br /><br />
-        	<span class="buttonSpacing"><a data-role="button" id="testBtn2" onclick="takePhoto();">alert</a></span><br /><br />
-        	<img id="myimage" width="200px" height="250px" src="">
+  			<span class="buttonSpacing"><a data-role="button" id="nameTakePhoto" onclick="takeNamePicture();">Take a Picture</a></span><br /><br />
+        	<span class="buttonSpacing"><a data-role="button" id="namePhotoLib" onclick="getNamePhotoFromLibrary();">Get a Picture From Library</a></span><br /><br />
+        	<img id="personalNameImage" width="200px" height="250px" src="">
         	<script>
-        		function photoLib(){
+        		function getNamePhotoFromLibrary(){
         			navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         				});
         		}
-        		function takePhoto(){
+        		function takeNamePicture(){
         			navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				});
