@@ -47,28 +47,18 @@
         	function loadUp(){
         		document.addEventListener("deviceready", function () {
     				// window.plugin.email is now available
-    			navigator.notification.alert("loadup on body works");
+    			alert("device is ready");
 				}, false);
-        	}
-        	
-        	function loadUp2(){
-        		document.addEventListener("deviceready", function () {
-    				// window.plugin.email is now available
-    			alert("alert button work");
-				}, false);
-        	}
-        	
-
-            
+        	}            
              
                         
-            	function startButton(){ window.location = './chooseTest.html' };
+            function startButton(){ window.location = './chooseTest.html' };
 
-		function loginButton(){ window.location = './login.html' };
-			
-		function testOptionsButton(){ window.location = './testOptions.html' };
+			function loginButton(){ window.location = './login.html' };
 				
-		function adminButton(){ window.location = './adminPage.html'};
+			function testOptionsButton(){ window.location = './testOptions.html' };
+					
+			function adminButton(){ window.location = './adminPage.html'};
 			
         </script>
         
@@ -92,8 +82,22 @@
         	</script>
         	
         	<br /><br />
-        	<span class="buttonSpacing"><a data-role="button" id="testBtn" onclick="loadUp2();">alert</a></span><br /><br />
-        	
+        	<span class="buttonSpacing"><a data-role="button" id="testBtn" onclick="photoLib();">alert</a></span><br /><br />
+        	<img id="myimage" src="">
+        	<script>
+        		function photoLib(){
+        			navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL
+        				});
+        		}
+        		function onSuccess(imageData){
+        			var image = document.getElementById("myimage");
+        			image.src = "data:image/jpeg;base64," + imageData;
+        		}
+        		function onFail(message){
+        			alert("failed because: " + message);
+        		}
+        	</script>
         </div>       
         	
         	
