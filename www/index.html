@@ -88,7 +88,7 @@
         		function photoLib(){
         			navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
-        				sourceType: navigator.camera.getPictureSourceType.PHOTOLIBRARY
+        				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         				});
         		}
         		function onSuccess(imageData){
