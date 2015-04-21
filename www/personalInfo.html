@@ -40,7 +40,10 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-        <script type="text/javascript" src="../plugins/org.apache.cordova.camera"</script>
+        <script type="text/javascript" src="../plugins/org.apache.cordova.camera/www/ios/Camera.js"</script>
+        <script type="text/javascript" src="../plugins/org.apache.cordova.camera/www/ios/CameraConstants.js"</script>
+        <script type="text/javascript" src="../plugins/org.apache.cordova.camera/www/ios/CameraPopoverHandle.js"</script>
+        <script type="text/javascript" src="../plugins/org.apache.cordova.camera/www/ios/CameraPopoverOptions.js"</script>
         <script type="text/javascript">             
             function endOfPersonalInfoButton(){ window.location = './index.html' };
 
@@ -63,7 +66,7 @@
   		$("#namePhotoLib").click(function(){
   			navigator.camera.getPicture(onNameSuccess, onNameFail, 
   				{quality: 50, 
-  				destinationType: Camera.DestinationType.FILE_URI, 
+  				destinationType: Camera.DestinationType.DATA_URL, 
   				sourceType: navigator.camera.getPictureSourceType.PHOTOLIBRARY
   				});	
   		});	
@@ -75,7 +78,7 @@
 	  			function onNameSuccess(imageData)
 	  			{
 	  				var image = $('#personalNameImage');
-	  				image.attr('src', imageData);
+	  				image.attr('src', "data:image/jpeg;base64," + imageData);
 	  				//image.style.display = 'block';
 	  			}
 	  			function onNameFail(message)
