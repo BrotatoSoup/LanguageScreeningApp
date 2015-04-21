@@ -134,32 +134,32 @@
 	
   <div data-role="page" id="personalQ1" align="center">
     <div data-role="header">
-  		<h1 style="font-size: 20px">What is your name?</h1>
+  		<h1 id="header1" style="font-size: 20px">What is your name?</h1>
   	</div>
   	<div data-role="content">	
   		<textarea id="answer1"></textarea>
   		
-  			<a data-role="button" onclick="takeNamePicture();">Take a Picture</a>
-        	<a data-role="button" onclick="getNamePhotoFromLibrary();">Get a Picture From Library</a></span><br />
+  			<a data-role="button" onclick="take1Picture();">Take a Picture</a>
+        	<a data-role="button" onclick="get1PhotoFromLibrary();">Get a Picture From Library</a></span><br />
         	<img id="Q1Image" width="200px" height="250px" style="display: none" src="">
         	<script>
-        		function getNamePhotoFromLibrary(){
-        			navigator.camera.getPicture(onNameSuccess, onNameFail, {quality: 50,
+        		function get1PhotoFromLibrary(){
+        			navigator.camera.getPicture(on1Success, on1Fail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         				});
         		}
-        		function takeNamePicture(){
-        			navigator.camera.getPicture(onNameSuccess, onNameFail, {quality: 50,
+        		function take1Picture(){
+        			navigator.camera.getPicture(on1Success, on1Fail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				});
         		}
-        		function onNameSuccess(imageData){
+        		function on1Success(imageData){
         			var image = document.getElementById("Q1Image");
         			image.src = "data:image/jpeg;base64," + imageData;
         			image.style.display = 'block';
         		}
-        		function onNameFail(message){
+        		function on1Fail(message){
         			alert("failed because: " + message);
         		}
         	</script>
@@ -177,32 +177,32 @@
   
   <div data-role="page" id="personalQ2" align="center">
     <div data-role="header">
-  		<h1 style="font-size: 20px">How old are you?</h1>
+  		<h1 id="header2" style="font-size: 20px">How old are you?</h1>
   	</div>
   	<div data-role="content">	  		
   		<textarea id="answer2"></textarea>
   		
-  			<a data-role="button" onclick="takeAgePicture();">Take a Picture</a>
-        	<a data-role="button" onclick="getAgePhotoFromLibrary();">Get a Picture From Library</a></span><br />
+  			<a data-role="button" onclick="take2Picture();">Take a Picture</a>
+        	<a data-role="button" onclick="get2PhotoFromLibrary();">Get a Picture From Library</a></span><br />
         	<img id="Q2Image" width="200px" height="250px" style="display: none" src="">
         	<script>
-        		function getAgePhotoFromLibrary(){
-        			navigator.camera.getPicture(onAgeSuccess, onAgeFail, {quality: 50,
+        		function get2PhotoFromLibrary(){
+        			navigator.camera.getPicture(on2Success, on2Fail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         				});
         		}
-        		function takeAgePicture(){
-        			navigator.camera.getPicture(onAgeSuccess, onAgeFail, {quality: 50,
+        		function take2Picture(){
+        			navigator.camera.getPicture(on2Success, on2Fail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				});
         		}
-        		function onAgeSuccess(imageData){
+        		function on2Success(imageData){
         			var image = document.getElementById("Q2Image");
         			image.src = "data:image/jpeg;base64," + imageData;
         			image.style.display = 'block';
         		}
-        		function onAgeFail(message){
+        		function on2Fail(message){
         			alert("failed because: " + message);
         		}
         	</script>
@@ -220,32 +220,32 @@
   
   <div data-role="page" id="personalQ3" align="center">
     <div data-role="header">
-  		<h1 style="font-size: 20px">Where do you go to school?</h1>
+  		<h1 id="header3" style="font-size: 20px">Where do you go to school?</h1>
   	</div>
   	<div data-role="content">	
   		<textarea id="answer3"></textarea>
   		
-  			<a data-role="button" onclick="takeSchoolPicture();">Take a Picture</a>
-        	<a data-role="button" onclick="getSchoolPhotoFromLibrary();">Get a Picture From Library</a></span><br />
+  			<a data-role="button" onclick="take3Picture();">Take a Picture</a>
+        	<a data-role="button" onclick="get3PhotoFromLibrary();">Get a Picture From Library</a></span><br />
         	<img id="Q3Image" width="200px" height="250px" style="display: none" src="">
         	<script>
-        		function getSchoolPhotoFromLibrary(){
-        			navigator.camera.getPicture(onSchoolSuccess, onSchoolFail, {quality: 50,
+        		function get3PhotoFromLibrary(){
+        			navigator.camera.getPicture(on3Success, on3Fail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         				});
         		}
-        		function takeSchoolPicture(){
-        			navigator.camera.getPicture(onSchoolSuccess, onSchoolFail, {quality: 50,
+        		function take3Picture(){
+        			navigator.camera.getPicture(on3Success, on3Fail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				});
         		}
-        		function onSchoolSuccess(imageData){
+        		function on3Success(imageData){
         			var image = document.getElementById("Q3Image");
         			image.src = "data:image/jpeg;base64," + imageData;
         			image.style.display = 'block';
         		}
-        		function onSchoolFail(message){
+        		function on3Fail(message){
         			alert("failed because: " + message);
         		}
         	</script>
@@ -263,32 +263,32 @@
   
   <div data-role="page" id="personalQ4" align="center">
     <div data-role="header">
-  		<h1 style="font-size: 20px">Where do you live?</h1>
+  		<h1 id="header4" style="font-size: 20px">Where do you live?</h1>
   	</div>
   	<div data-role="content">	
   		<textarea id="answer4"></textarea>
   		
-  			<a data-role="button" onclick="takeLivePicture();">Take a Picture</a>
-        	<a data-role="button" onclick="getLivePhotoFromLibrary();">Get a Picture From Library</a></span><br />
+  			<a data-role="button" onclick="take4Picture();">Take a Picture</a>
+        	<a data-role="button" onclick="get4PhotoFromLibrary();">Get a Picture From Library</a></span><br />
         	<img id="Q4Image" width="200px" height="250px" style="display: none" src="">
         	<script>
-        		function getLivePhotoFromLibrary(){
-        			navigator.camera.getPicture(onLiveSuccess, onLiveFail, {quality: 50,
+        		function get4PhotoFromLibrary(){
+        			navigator.camera.getPicture(on4Success, on4Fail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         				});
         		}
         		function takeLivePicture(){
-        			navigator.camera.getPicture(onLiveSuccess, onLiveFail, {quality: 50,
+        			navigator.camera.getPicture(on4Success, on4Fail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				});
         		}
-        		function onLiveSuccess(imageData){
+        		function on4Success(imageData){
         			var image = document.getElementById("Q4Image");
         			image.src = "data:image/jpeg;base64," + imageData;
         			image.style.display = 'block';
         		}
-        		function onLiveFail(message){
+        		function on4Fail(message){
         			alert("failed because: " + message);
         		}
         	</script>
@@ -306,32 +306,32 @@
   
   <div data-role="page" id="personalQ5" align="center">
     <div data-role="header">
-  		<h1 style="font-size: 20px">When is your birthday?</h1>
+  		<h1 id="header5" style="font-size: 20px">When is your birthday?</h1>
   	</div>
   	<div data-role="content">	
   		<textarea id="answer5"></textarea>
   		
-  			<a data-role="button" onclick="takeBirthdayPicture();">Take a Picture</a>
-        	<a data-role="button" onclick="getBirthdayPhotoFromLibrary();">Get a Picture From Library</a></span><br />
+  			<a data-role="button" onclick="take5Picture();">Take a Picture</a>
+        	<a data-role="button" onclick="get5PhotoFromLibrary();">Get a Picture From Library</a></span><br />
         	<img id="Q5Image" width="200px" height="250px" style="display: none" src="">
         	<script>
-        		function getBirthdayPhotoFromLibrary(){
-        			navigator.camera.getPicture(onBirthdaySuccess, onBirthdayFail, {quality: 50,
+        		function get5PhotoFromLibrary(){
+        			navigator.camera.getPicture(on5Success, on5Fail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         				});
         		}
-        		function takeBirthdayPicture(){
-        			navigator.camera.getPicture(onBirthdaySuccess, onBirthdayFail, {quality: 50,
+        		function take5Picture(){
+        			navigator.camera.getPicture(on5Success, on5Fail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				});
         		}
-        		function onBirthdaySuccess(imageData){
-        			var image = document.getElementById("Q4Image");
+        		function on5Success(imageData){
+        			var image = document.getElementById("Q5Image");
         			image.src = "data:image/jpeg;base64," + imageData;
         			image.style.display = 'block';
         		}
-        		function onBirthdayFail(message){
+        		function on5Fail(message){
         			alert("failed because: " + message);
         		}
         	</script>
@@ -349,10 +349,35 @@
   
   <div data-role="page" id="personalQ6" align="center">
   	<div data-role="header">
-  		<h1 style="font-size: 20px">Are you a boy?</h1>
+  		<h1 id="header6" style="font-size: 20px">Are you a boy?</h1>
   	</div>
   	<div data-role="content">
   		<textarea id="answer6"></textarea>
+  		
+  		<a data-role="button" onclick="take6Picture();">Take a Picture</a>
+        <a data-role="button" onclick="get6PhotoFromLibrary();">Get a Picture From Library</a></span><br />
+        <img id="Q6Image" width="200px" height="250px" style="display: none" src="">
+        <script>
+        	function get6PhotoFromLibrary(){
+        		navigator.camera.getPicture(on6Success, on6Fail, {quality: 50,
+        			destinationType: Camera.DestinationType.DATA_URL,
+        			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        			});
+        	}
+        	function take6Picture(){
+        		navigator.camera.getPicture(on6Success, on6Fail, {quality: 50,
+        			destinationType: Camera.DestinationType.DATA_URL,
+        			});
+        	}
+        	function on6Success(imageData){
+        		var image = document.getElementById("Q6Image");
+        		image.src = "data:image/jpeg;base64," + imageData;
+        		image.style.display = 'block';
+        	}
+        	function on6Fail(message){
+        		alert("failed because: " + message);
+        	}
+        </script>
   	</div>
   	<div data-role="footer">
   		<button onclick="setEnd();">
@@ -367,10 +392,35 @@
   
   <div data-role="page" id="personalQ7" align="center">
   	<div data-role="header">
-  		<h1 style="font-size: 20px">What month is it?</h1>
+  		<h1 id="header7" style="font-size: 20px">What month is it?</h1>
   	</div>
   	<div data-role="content">
   		<textarea id="answer7"></textarea>
+  		
+  		<a data-role="button" onclick="take7Picture();">Take a Picture</a>
+        <a data-role="button" onclick="get7PhotoFromLibrary();">Get a Picture From Library</a></span><br />
+        <img id="Q7Image" width="200px" height="250px" style="display: none" src="">
+  		<script>
+        	function get7PhotoFromLibrary(){
+        		navigator.camera.getPicture(on7Success, on7Fail, {quality: 50,
+        			destinationType: Camera.DestinationType.DATA_URL,
+        			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        			});
+        	}
+        	function take7Picture(){
+        		navigator.camera.getPicture(on7Success, on7Fail, {quality: 50,
+        			destinationType: Camera.DestinationType.DATA_URL,
+        			});
+        	}
+        	function on7Success(imageData){
+        		var image = document.getElementById("Q7Image");
+        		image.src = "data:image/jpeg;base64," + imageData;
+        		image.style.display = 'block';
+        	}
+        	function on7Fail(message){
+        		alert("failed because: " + message);
+        	}
+        </script>
   	</div>
   	<div data-role="footer">
   		<button onclick="setEnd();">
@@ -385,10 +435,35 @@
   
   <div data-role="page" id="personalQ8" align="center">
   	<div data-role="header">
-  		<h1 style="font-size: 20px">What day is it?</h1>
+  		<h1 id="header8" style="font-size: 20px">What day is it?</h1>
   	</div>
   	<div data-role="content">
   		<textarea id="answer8"></textarea>
+  		
+  		<a data-role="button" onclick="take8Picture();">Take a Picture</a>
+        <a data-role="button" onclick="get8PhotoFromLibrary();">Get a Picture From Library</a></span><br />
+        <img id="Q8Image" width="200px" height="250px" style="display: none" src="">
+  		<script>
+        	function get8PhotoFromLibrary(){
+        		navigator.camera.getPicture(on8Success, on8Fail, {quality: 50,
+        			destinationType: Camera.DestinationType.DATA_URL,
+        			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        			});
+        	}
+        	function take8Picture(){
+        		navigator.camera.getPicture(on8Success, on8Fail, {quality: 50,
+        			destinationType: Camera.DestinationType.DATA_URL,
+        			});
+        	}
+        	function on8Success(imageData){
+        		var image = document.getElementById("Q8Image");
+        		image.src = "data:image/jpeg;base64," + imageData;
+        		image.style.display = 'block';
+        	}
+        	function on8Fail(message){
+        		alert("failed because: " + message);
+        	}
+        </script>
   	</div>
   	<div data-role="footer">
   		<button onclick="setEnd();">
@@ -403,10 +478,35 @@
   
   <div data-role="page" id="personalQ9" align="center">
   	<div data-role="header">
-  		<h1 style="font-size: 20px">What year is it?</h1>
+  		<h1 id="header9" style="font-size: 20px">What year is it?</h1>
   	</div>
   	<div data-role="content">
   		<textarea id="answer9"></textarea>
+  		
+  		<a data-role="button" onclick="take9Picture();">Take a Picture</a>
+        <a data-role="button" onclick="get9PhotoFromLibrary();">Get a Picture From Library</a></span><br />
+        <img id="Q9Image" width="200px" height="250px" style="display: none" src="">
+  		<script>
+        	function get9PhotoFromLibrary(){
+        		navigator.camera.getPicture(on9Success, on9Fail, {quality: 50,
+        			destinationType: Camera.DestinationType.DATA_URL,
+        			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        			});
+        	}
+        	function take9Picture(){
+        		navigator.camera.getPicture(on9Success, on9Fail, {quality: 50,
+        			destinationType: Camera.DestinationType.DATA_URL,
+        			});
+        	}
+        	function on9Success(imageData){
+        		var image = document.getElementById("Q9Image");
+        		image.src = "data:image/jpeg;base64," + imageData;
+        		image.style.display = 'block';
+        	}
+        	function on9Fail(message){
+        		alert("failed because: " + message);
+        	}
+        </script>
   	</div>
   	<div data-role="footer">
   		<button onclick="setEnd();">
@@ -421,10 +521,35 @@
   
   <div data-role="page" id="personalQ10" align="center">
   	<div data-role="header">
-  		<h1 style="font-size: 20px">Where are you?</h1>
+  		<h1 id="header10" style="font-size: 20px">Where are you?</h1>
   	</div>
   	<div data-role="content">
   		<textarea id="answer10"></textarea>
+  		
+  		<a data-role="button" onclick="take10Picture();">Take a Picture</a>
+        <a data-role="button" onclick="get10PhotoFromLibrary();">Get a Picture From Library</a></span><br />
+        <img id="Q10Image" width="200px" height="250px" style="display: none" src="">
+  		<script>
+        	function get10PhotoFromLibrary(){
+        		navigator.camera.getPicture(on10Success, on10Fail, {quality: 50,
+        			destinationType: Camera.DestinationType.DATA_URL,
+        			sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        			});
+        	}
+        	function take10Picture(){
+        		navigator.camera.getPicture(on10Success, on10Fail, {quality: 50,
+        			destinationType: Camera.DestinationType.DATA_URL,
+        			});
+        	}
+        	function on10Success(imageData){
+        		var image = document.getElementById("Q10Image");
+        		image.src = "data:image/jpeg;base64," + imageData;
+        		image.style.display = 'block';
+        	}
+        	function on10Fail(message){
+        		alert("failed because: " + message);
+        	}
+        </script>
   	</div>
   	<div data-role="footer">
   		<button onclick="setEnd();">
