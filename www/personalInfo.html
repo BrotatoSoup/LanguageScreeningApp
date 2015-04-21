@@ -39,300 +39,423 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-        <script type="text/javascript">             
-            function endOfPersonalInfoButton(){ window.location = './index.html' };
+        <script type="text/javascript"> 
+        	var startingFrom;
+        	var counter;  
+        	var answerCounter;  
+        	//test notes variables and counter
+			var testNotes = "";
+			var finalTestNotes = "";
+			var noteCount;
+			//answers stored in array
+			var answerArray = [];
+                
+            function endOfPersonalInfoButton(){ 
+            	sessionStorage.clear();
+            	window.location = './index.html' 
+            };
+            function backToIndex(){
+            	window.location = './index.html'
+            };
 
+			function setEnd() {
+				var end = true;
+				updateValues(end);
+			}
+			
+			function updateValues(endTest) {
+				//update notes
+				testNotes = $("#testNotes"+noteCount).val();
+				finalTestNotes += testNotes + "<br>";
+				console.log("noteCount: "+ noteCount);
+				noteCount++;
+				console.log("finalTestNotes so far: "+finalTestNotes);
+				console.log("noteCount: "+noteCount);
+				if (endTest == true) {
+					//create a text file with grades
+					//store text file to a folder to be ready to be emailed
+					//just to show grading works, print the grades (refresh to end the section)
+					printGrades();
+					//endOfFunctionsButton();
+				} else{
+					answerArray[counter] = $("#answer" + answerCounter).val();
+				} 
+				counter++;
+				answerCounter++;
+				console.log("counter in updateValues: " + counter)
+				console.log("answerCounter: "+ answerCounter);
+			}
+			
+			function printGrades() {
+				var z;
+				document.write("Scores: <br>");
+				for ( z = 0; z < answerArray.length; z++) {
+					if(answerArray[z] != "")
+					{
+						document.write("Question " + (z + 1) + ": " + answerArray[z] + "<br>");
+					}
+					else{
+						document.write("Question " + (z + 1) + ": Image was taken/chosen <br>");
+					}
+				}
+				document.write("<br>NOTES: <br>" + finalTestNotes);
+			}
         </script>
         
     </head>
 
 <body>
-  <div data-role="page" id="personalName" align="center">
+	<div data-role="page" align="center" id="start">
+			<div data-role="content">
+				<a href="" id="startTheTest" data-role="button">Start</a>
+				<span class="buttonSpacing"><a data-role="button" id="backToIndex" onclick="backToIndex();">Back To Start</a></span>
+				<script>
+					
+					//get starting from
+					startingFrom = window.sessionStorage.getItem("startFromQuestion");
+					//set lengths of arrays
+					answerArray.length = 10;
+					//set which question to start on
+					var start = "#personalQ" + startingFrom;
+					console.log("start: " + start);
+					document.getElementById("startTheTest").setAttribute("href", start);
+					counter = (startingFrom - 1);
+					answerCounter = startingFrom;
+					noteCount = startingFrom;
+					console.log("counter: " + counter);
+					console.log("answer count: "+answerCounter);
+					console.log("noteCount: "+noteCount);
+				</script>
+			</div>
+		</div>
+	
+	
+	
+	
+  <div data-role="page" id="personalQ1" align="center">
     <div data-role="header">
   		<h1 style="font-size: 20px">What is your name?</h1>
   	</div>
   	<div data-role="content">	
-  		<textarea></textarea>
+  		<textarea id="answer1"></textarea>
   		
-  			<span class="buttonSpacing"><a data-role="button" id="nameTakePhoto" onclick="takeNamePicture();">Take a Picture</a></span><br /><br />
-        	<span class="buttonSpacing"><a data-role="button" id="namePhotoLib" onclick="getNamePhotoFromLibrary();">Get a Picture From Library</a></span><br /><br />
-        	<img id="personalNameImage" width="200px" height="250px" src="">
+  			<a data-role="button" onclick="takeNamePicture();">Take a Picture</a>
+        	<a data-role="button" onclick="getNamePhotoFromLibrary();">Get a Picture From Library</a></span><br />
+        	<img id="Q1Image" width="200px" height="250px" style="display: none" src="">
         	<script>
         		function getNamePhotoFromLibrary(){
-        			navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+        			navigator.camera.getPicture(onNameSuccess, onNameFail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         				});
         		}
         		function takeNamePicture(){
-        			navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+        			navigator.camera.getPicture(onNameSuccess, onNameFail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				});
         		}
-        		function onSuccess(imageData){
-        			var image = document.getElementById("myimage");
+        		function onNameSuccess(imageData){
+        			var image = document.getElementById("Q1Image");
         			image.src = "data:image/jpeg;base64," + imageData;
+        			image.style.display = 'block';
         		}
-        		function onFail(message){
+        		function onNameFail(message){
         			alert("failed because: " + message);
         		}
         	</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#personalAge" data-role="button">go to age question</a>
+  		<button onclick="setEnd();">
+			Email
+		</button>
+		<textarea id="testNotes1" placeholder="Enter notes here"></textarea>
+  		<a href="#personalQ2" data-role="button" onclick="updateValues();">next question</a>
   	</div>
 
   </div>
   
   
-  <div data-role="page" id="personalAge" align="center">
+  <div data-role="page" id="personalQ2" align="center">
     <div data-role="header">
   		<h1 style="font-size: 20px">How old are you?</h1>
   	</div>
-  	<div data-role="content">	
-  		<textarea></textarea>
+  	<div data-role="content">	  		
+  		<textarea id="answer2"></textarea>
   		
-  		<button id="ageTakePhoto" onclick="takeAgePicture()">Take a Picture</button>
-  		<button id="agePhotoLib" onclick="getAgePhotoFromLibrary();">Get a Picture From Library</button>
-  		<img id="personalAgeImage" width="200" height="300" style="display: none" src=""/>
-  		<script>
-	  		function takeAgePicture()
-	  			{
-	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
-        				destinationType: Camera.DestinationType.DATA_URL
-        				});
-	  			}
-	  			function onAgeSuccess(imageData)
-	  			{
-	  				var image = document.getElementById('personalAgeImage');
-	  				image.src = "data:image/jpg;base64, " + imageData;
-	  				image.style.display = 'block';
-	  			}
-	  			function onAgeFail(message)
-	  			{
-	  				alert('Failed because: ' + message);
-	  			}
-	  			function getAgePhotoFromLibrary()
-	  			{
-	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+  			<a data-role="button" onclick="takeAgePicture();">Take a Picture</a>
+        	<a data-role="button" onclick="getAgePhotoFromLibrary();">Get a Picture From Library</a></span><br />
+        	<img id="Q2Image" width="200px" height="250px" style="display: none" src="">
+        	<script>
+        		function getAgePhotoFromLibrary(){
+        			navigator.camera.getPicture(onAgeSuccess, onAgeFail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         				});
-	  			}
-  		</script>
+        		}
+        		function takeAgePicture(){
+        			navigator.camera.getPicture(onAgeSuccess, onAgeFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
+        				});
+        		}
+        		function onAgeSuccess(imageData){
+        			var image = document.getElementById("Q2Image");
+        			image.src = "data:image/jpeg;base64," + imageData;
+        			image.style.display = 'block';
+        		}
+        		function onAgeFail(message){
+        			alert("failed because: " + message);
+        		}
+        	</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#personalSchool" data-role="button">go to school question</a>
+  		<button onclick="setEnd();">
+			Email
+		</button>
+		<textarea id="testNotes2" placeholder="Enter notes here"></textarea>
+  		<a href="#personalQ3" data-role="button" onclick="updateValues();">next question</a>
   	</div>
 
   </div>
   
   
-  <div data-role="page" id="personalSchool" align="center">
+  <div data-role="page" id="personalQ3" align="center">
     <div data-role="header">
   		<h1 style="font-size: 20px">Where do you go to school?</h1>
   	</div>
   	<div data-role="content">	
-  		<textarea></textarea>
+  		<textarea id="answer3"></textarea>
   		
-  		<a data-role="button" id="schoolTakePhoto" onclick="takeSchoolPicture();">Take a Picture</a>
-  		<a data-role="button" id="schoolPhotoLib" onclick="getSchoolPhotoFromLibrary();">Get a Picture From Library</a>
-  		<img id="personalSchoolImage" width="200" height="300" style="display: none" src="">
-  		<script>
-	  		function takeSchoolPicture()
-	  			{
-	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
-        				destinationType: Camera.DestinationType.DATA_URL
-        				});
-	  			}
-	  			function onSchoolSuccess(imageData)
-	  			{
-	  				var image = document.getElementById('personalSchoolImage');
-	  				image.src = "data:image/jpg;base64, " + imageData;
-	  				image.style.display = 'block';
-	  				alert(image.src);
-	  			}
-	  			function onSchoolFail(message)
-	  			{
-	  				alert('Failed because: ' + message);
-	  			}
-	  			function getSchoolPhotoFromLibrary()
-	  			{
-	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+  			<a data-role="button" onclick="takeSchoolPicture();">Take a Picture</a>
+        	<a data-role="button" onclick="getSchoolPhotoFromLibrary();">Get a Picture From Library</a></span><br />
+        	<img id="Q3Image" width="200px" height="250px" style="display: none" src="">
+        	<script>
+        		function getSchoolPhotoFromLibrary(){
+        			navigator.camera.getPicture(onSchoolSuccess, onSchoolFail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         				});
-	  			}
-  		</script>
+        		}
+        		function takeSchoolPicture(){
+        			navigator.camera.getPicture(onSchoolSuccess, onSchoolFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
+        				});
+        		}
+        		function onSchoolSuccess(imageData){
+        			var image = document.getElementById("Q3Image");
+        			image.src = "data:image/jpeg;base64," + imageData;
+        			image.style.display = 'block';
+        		}
+        		function onSchoolFail(message){
+        			alert("failed because: " + message);
+        		}
+        	</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#personalLive" data-role="button">go to live question</a>
+  		<button onclick="setEnd();">
+			Email
+		</button>
+		<textarea id="testNotes3" placeholder="Enter notes here"></textarea>
+  		<a href="#personalQ4" data-role="button" onclick="updateValues();">next question</a>
   	</div>
 
   </div>
   
   
-  <div data-role="page" id="personalLive" align="center">
+  <div data-role="page" id="personalQ4" align="center">
     <div data-role="header">
   		<h1 style="font-size: 20px">Where do you live?</h1>
   	</div>
   	<div data-role="content">	
-  		<textarea></textarea>
+  		<textarea id="answer4"></textarea>
   		
-  		<button onclick="takeLivePicture()">Take a Picture</button>
-  		<button onclick="getLivePhotoFromLibrary(pictureSource.PHOTOLIBRARY);">Get a Picture From Library</button>
-  		<img id="personalLiveImage" width="200" height="300" style="display: none" src=""/>
-  		<script>
-	  		function takeLivePicture()
-	  			{
-	  				navigator.camera.getPicture(onLiveSuccess, onLiveFail, {quality: 50}))
-	  			}
-	  			function onLiveSuccess(imageData)
-	  			{
-	  				var image = document.getElementById('personalLiveImage');
-	  				image.src = "data:image/jpg;base64, " + imageData;
-	  				image.style.display = 'block';
-	  			}
-	  			function onLiveFail(message)
-	  			{
-	  				alert('Failed because: ' + message);
-	  			}
-	  			function getLivePhotoFromLibrary(source)
-	  			{
-	  				navigator.camera.getPicture(onLiveSuccess, onLiveFail, {quality: 50, sourceType: source});
-	  			}
-  		</script>
+  			<a data-role="button" onclick="takeLivePicture();">Take a Picture</a>
+        	<a data-role="button" onclick="getLivePhotoFromLibrary();">Get a Picture From Library</a></span><br />
+        	<img id="Q4Image" width="200px" height="250px" style="display: none" src="">
+        	<script>
+        		function getLivePhotoFromLibrary(){
+        			navigator.camera.getPicture(onLiveSuccess, onLiveFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
+        				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        				});
+        		}
+        		function takeLivePicture(){
+        			navigator.camera.getPicture(onLiveSuccess, onLiveFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
+        				});
+        		}
+        		function onLiveSuccess(imageData){
+        			var image = document.getElementById("Q4Image");
+        			image.src = "data:image/jpeg;base64," + imageData;
+        			image.style.display = 'block';
+        		}
+        		function onLiveFail(message){
+        			alert("failed because: " + message);
+        		}
+        	</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#personalBirthday" data-role="button">go to birthday question</a>
+  		<button onclick="setEnd();">
+			Email
+		</button>
+		<textarea id="testNotes4" placeholder="Enter notes here"></textarea>
+  		<a href="#personalQ5" data-role="button" onclick="updateValues();">next question</a>
   	</div>
 
   </div>
   
   
-  <div data-role="page" id="personalBirthday" align="center">
+  <div data-role="page" id="personalQ5" align="center">
     <div data-role="header">
   		<h1 style="font-size: 20px">When is your birthday?</h1>
   	</div>
   	<div data-role="content">	
-  		<textarea></textarea>
-  		<button onclick="takeBirthdayPicture()">Take a Picture</button>
-  		<button onclick="getBirthdayPhotoFromLibrary(pictureSource.PHOTOLIBRARY);">Get a Picture From Library</button>
-  		<img id="personalBirthdayImage" width="200" height="300" style="display: none" src=""/>
-  		<script>
-	  		function takeBirthdayPicture()
-	  			{
-	  				navigator.camera.getPicture(onBirthdaySuccess, onBirthdayFail, {quality: 50}))
-	  			}
-	  			function onBirthdaySuccess(imageData)
-	  			{
-	  				var image = document.getElementById('personalBirthdayImage');
-	  				image.src = "data:image/jpg;base64, " + imageData;
-	  				image.style.display = 'block';
-	  			}
-	  			function onBirthdayFail(message)
-	  			{
-	  				alert('Failed because: ' + message);
-	  			}
-	  			function getBirthdayPhotoFromLibrary(source)
-	  			{
-	  				navigator.camera.getPicture(onBirthdaySuccess, onBirthdayFail, {quality: 50, sourceType: source});
-	  			}
-  		</script>
+  		<textarea id="answer5"></textarea>
+  		
+  			<a data-role="button" onclick="takeBirthdayPicture();">Take a Picture</a>
+        	<a data-role="button" onclick="getBirthdayPhotoFromLibrary();">Get a Picture From Library</a></span><br />
+        	<img id="Q5Image" width="200px" height="250px" style="display: none" src="">
+        	<script>
+        		function getBirthdayPhotoFromLibrary(){
+        			navigator.camera.getPicture(onBirthdaySuccess, onBirthdayFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
+        				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        				});
+        		}
+        		function takeBirthdayPicture(){
+        			navigator.camera.getPicture(onBirthdaySuccess, onBirthdayFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
+        				});
+        		}
+        		function onBirthdaySuccess(imageData){
+        			var image = document.getElementById("Q4Image");
+        			image.src = "data:image/jpeg;base64," + imageData;
+        			image.style.display = 'block';
+        		}
+        		function onBirthdayFail(message){
+        			alert("failed because: " + message);
+        		}
+        	</script>
   	</div>
   	<div data-role="footer">
-  		<a href="#personalGender" data-role="button">go to gender question</a>
+  		<button onclick="setEnd();">
+			Email
+		</button>
+		<textarea id="testNotes5" placeholder="Enter notes here"></textarea>
+  		<a href="#personalQ6" data-role="button" onclick="updateValues();">next question</a>
   	</div>
 
   </div>
   
   
-  <div data-role="page" id="personalGender" align="center">
+  <div data-role="page" id="personalQ6" align="center">
   	<div data-role="header">
   		<h1 style="font-size: 20px">Are you a boy?</h1>
   	</div>
   	<div data-role="content">
-  		<a href="#personalMonth" data-role="button" data-inline="true">Yes</a>
-  		<a href="#personalMonth" data-role="button" data-inline="true">No</a>
+  		<textarea id="answer6"></textarea>
   	</div>
   	<div data-role="footer">
-  		
+  		<button onclick="setEnd();">
+			Email
+		</button>
+		<textarea id="testNotes6" placeholder="Enter notes here"></textarea>
+		<a href="#personalQ7" data-role="button" onclick="updateValues();">next question</a>
   	</div>
   	
   </div>
   
   
-  <div data-role="page" id="personalMonth" align="center">
+  <div data-role="page" id="personalQ7" align="center">
   	<div data-role="header">
   		<h1 style="font-size: 20px">What month is it?</h1>
   	</div>
   	<div data-role="content">
-  		<a href="#personalDay" data-role="button" data-inline="true">January</a>
-  		<a href="#personalDay" data-role="button" data-inline="true">February</a>
-  		<a href="#personalDay" data-role="button" data-inline="true">March</a>
-  		<a href="#personalDay" data-role="button" data-inline="true">April</a>
-  		<a href="#personalDay" data-role="button" data-inline="true">May</a>
-  		<a href="#personalDay" data-role="button" data-inline="true">June</a>
-  		<a href="#personalDay" data-role="button" data-inline="true">July</a>
-  		<a href="#personalDay" data-role="button" data-inline="true">August</a>
-  		<a href="#personalDay" data-role="button" data-inline="true">September</a>
-  		<a href="#personalDay" data-role="button" data-inline="true">October</a>
-  		<a href="#personalDay" data-role="button" data-inline="true">November</a>
-  		<a href="#personalDay" data-role="button" data-inline="true">December</a>
+  		<textarea id="answer7"></textarea>
   	</div>
   	<div data-role="footer">
-  		
+  		<button onclick="setEnd();">
+			Email
+		</button>
+		<textarea id="testNotes7" placeholder="Enter notes here"></textarea>
+		<a href="#personalQ8" data-role="button" onclick="updateValues();">next question</a>
   	</div>
   	
   </div>
   
   
-  <div data-role="page" id="personalDay" align="center">
+  <div data-role="page" id="personalQ8" align="center">
   	<div data-role="header">
   		<h1 style="font-size: 20px">What day is it?</h1>
   	</div>
   	<div data-role="content">
-  		<a href="#personalYear" data-role="button" data-inline="true">Sunday</a>
-  		<a href="#personalYear" data-role="button" data-inline="true">Monday</a>
-  		<a href="#personalYear" data-role="button" data-inline="true">Tuesday</a>
-  		<a href="#personalYear" data-role="button" data-inline="true">Wednesday</a>
-  		<a href="#personalYear" data-role="button" data-inline="true">Thursday</a>
-  		<a href="#personalYear" data-role="button" data-inline="true">Friday</a>
-  		<a href="#personalYear" data-role="button" data-inline="true">Saturday</a>
+  		<textarea id="answer8"></textarea>
   	</div>
   	<div data-role="footer">
-  		
+  		<button onclick="setEnd();">
+			Email
+		</button>
+		<textarea id="testNotes8" placeholder="Enter notes here"></textarea>
+  		<a href="#personalQ9" data-role="button" onclick="updateValues();">next question</a>
   	</div>
   	
   </div>
   
   
-  <div data-role="page" id="personalYear" align="center">
+  <div data-role="page" id="personalQ9" align="center">
   	<div data-role="header">
   		<h1 style="font-size: 20px">What year is it?</h1>
   	</div>
   	<div data-role="content">
-  		<textarea></textarea>
+  		<textarea id="answer9"></textarea>
   	</div>
   	<div data-role="footer">
-  		<a href="#personalLocation" data-role="button">go to location question</a>
+  		<button onclick="setEnd();">
+			Email
+		</button>
+		<textarea id="testNotes9" placeholder="Enter notes here"></textarea>
+  		<a href="#personalQ10" data-role="button" onclick="updateValues();">next question</a>
   	</div>
   	
   </div>
   
   
-  <div data-role="page" id="personalLocation" align="center">
+  <div data-role="page" id="personalQ10" align="center">
   	<div data-role="header">
   		<h1 style="font-size: 20px">Where are you?</h1>
   	</div>
   	<div data-role="content">
-  		<a href="#personalEnd" data-role="button" data-inline="true">Home</a>
-  		<a href="#personalEnd" data-role="button" data-inline="true">School</a>
+  		<textarea id="answer10"></textarea>
   	</div>
   	<div data-role="footer">
-  		<button onclick="endOfPersonalInfoButton();">((End of Section))</button>
+  		<button onclick="setEnd();">
+			Email
+		</button>
+		<textarea id="testNotes10" placeholder="Enter notes here"></textarea>
+		<a href="#personalQ11" data-role="button" onclick="updateValues();">End results </a>
   	</div>
   	
   </div>
+  
+  
+  <div data-role="page" align="center" id="personalQ11">
+			<div data-role="header">
+				<h1 style="font-size: 20px">Results of the Test</h1>
+			</div>
+			<div data-role="content">
+				<div>
+					Student: <span id="studentName"></span>
+					<script>
+						$('#studentName').html(window.sessionStorage.getItem("name"));
+					</script>
+				</div>
+			</div>
+			<div data-role="footer">
+				<button onclick="setEnd();">
+					Email
+				</button>
+				<textarea id="testNotes11" placeholder="Any final notes?"></textarea>
+				<button onclick="endOfPersonalInfoButton();">((End of Section))</button>
+			</div>
+		</div>
 </body>
 </html>

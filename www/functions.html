@@ -97,7 +97,7 @@ under the License.
 			function gradeQuestion(imgVal, endTest) {
 				//update notes
 				testNotes = $("#testNotes"+noteCount).val();
-				finalTestNotes += testNotes;
+				finalTestNotes += testNotes + "<br>";
 				noteCount++;
 				console.log("test: "+finalTestNotes);
 				console.log("noteCount: "+noteCount);
@@ -132,7 +132,7 @@ under the License.
 				for ( y = 0; y < gradingImgArray.length; y++) {
 					document.write("Question " + (y + 1) + " image selected: " + "<img src='" + gradingImgArray[y] + "' width='150' height='100' class='imgSpacing'/> <br>");
 				}
-				document.write("<br>notes: " + finalTestNotes);
+				document.write("<br>NOTES: <br>" + finalTestNotes);
 			}
 
 			function setEnd() {
@@ -203,6 +203,8 @@ under the License.
 				<textarea id="testNotes1" placeholder="Enter notes here"></textarea>
 			</div>
 		</div>
+		
+		
 		<div data-role="page" align="center" id="functionsQ2">
 			<div data-role="header">
 				<h1 style="font-size: 20px">Point to the one you ride</h1>
@@ -224,6 +226,8 @@ under the License.
 				<textarea id="testNotes2" placeholder="Enter notes here"></textarea>
 			</div>
 		</div>
+		
+		
 		<div data-role="page" align="center" id="functionsQ3">
 			<div data-role="header">
 				<h1 style="font-size: 20px">Point to the one you write with</h1>
@@ -245,6 +249,8 @@ under the License.
 				<textarea id="testNotes3" placeholder="Enter notes here"></textarea>
 			</div>
 		</div>
+		
+		
 		<div data-role="page" align="center" id="functionsQ4">
 			<div data-role="header">
 				<h1 style="font-size: 20px">Point to the one you kick</h1>
@@ -268,6 +274,8 @@ under the License.
 				</div>
 			</div>
 		</div>
+		
+		
 		<div data-role="page" align="center" id="functionsQ5">
 			<div data-role="header">
 				<h1 style="font-size: 20px">Point to the one you read</h1>
@@ -291,6 +299,8 @@ under the License.
 				</div>
 			</div>
 		</div>
+		
+		
 		<div data-role="page" align="center" id="functionsQ6">
 			<div data-role="header">
 				<h1 style="font-size: 20px">Point to the one you eat</h1>
@@ -314,6 +324,8 @@ under the License.
 				</div>
 			</div>
 		</div>
+		
+		
 		<div data-role="page" align="center" id="functionsQ7">
 			<div data-role="header">
 				<h1 style="font-size: 20px">Point to the one you watch</h1>
@@ -337,6 +349,8 @@ under the License.
 				</div>
 			</div>
 		</div>
+		
+		
 		<div data-role="page" align="center" id="functionsQ8">
 			<div data-role="header">
 				<h1 style="font-size: 20px">Point to the one you wear</h1>
@@ -360,6 +374,8 @@ under the License.
 				</div>
 			</div>
 		</div>
+		
+		
 		<div data-role="page" align="center" id="functionsQ9">
 			<div data-role="header">
 				<h1 style="font-size: 20px">Point to the one you drink</h1>
@@ -383,6 +399,8 @@ under the License.
 				</div>
 			</div>
 		</div>
+		
+		
 		<div data-role="page" align="center" id="functionsQ10">
 			<div data-role="header">
 				<h1 style="font-size: 20px">Point to the one you sleep on</h1>
@@ -406,6 +424,8 @@ under the License.
 				<textarea id="testNotes10" placeholder="Enter notes here"></textarea>
 			</div>
 		</div>
+		
+		
 		<div data-role="page" align="center" id="functionsQ11">
 			<div data-role="header">
 				<h1 style="font-size: 20px">Results of the Test</h1>
@@ -416,12 +436,10 @@ under the License.
 					<script>
 						$('#studentName').html(window.sessionStorage.getItem("name"));
 					</script>
-					<a data-role="button" onclick="setEnd();">
-						grade
-					</a>
 				</div>
 			</div>
 			<div data-role="footer">
+				<textarea id="testNotes11" placeholder="Any final notes?"></textarea>
 				<button onclick="endOfFunctionsButton();">
 					((End of Section))
 				</button>
