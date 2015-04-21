@@ -83,12 +83,18 @@
         	
         	<br /><br />
         	<span class="buttonSpacing"><a data-role="button" id="testBtn" onclick="photoLib();">alert</a></span><br /><br />
+        	<span class="buttonSpacing"><a data-role="button" id="testBtn2" onclick="takePhoto();">alert</a></span><br /><br />
         	<img id="myimage" src="">
         	<script>
         		function photoLib(){
         			navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        				});
+        		}
+        		function takePhoto(){
+        			navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
         				});
         		}
         		function onSuccess(imageData){
