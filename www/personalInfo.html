@@ -39,7 +39,6 @@
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-        
         <script type="text/javascript">             
             function endOfPersonalInfoButton(){ window.location = './index.html' };
 
@@ -55,36 +54,34 @@
   	<div data-role="content">	
   		<textarea></textarea>
   		
-  		<button onclick="takeNamePicture()">Take a Picture</button>
-  		<button id="namePhotoLib">Get a Picture From Library</button>
-  		<img id="personalNameImage" width="200" height="300" style="display: block" src=""/>
+  		<button id="nameTakePhoto" onclick="takeNamePicture()">Take a Picture</button>
+  		<button id="namePhotoLib" onclick="getNamePhotoFromLibrary()">Get a Picture From Library</button>
+  		<img id="personalNameImage" width="200" height="300" style="display: none" src=""/>
   		<script>
-  		$("#namePhotoLib").click(function(){
-  			navigator.camera.getPicture(onNameSuccess, onNameFail, 
-  				{quality: 50, 
-  				destinationType: Camera.DestinationType.DATA_URL, 
-  				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-  				});	
-  		});	
-  			/*function takeNamePicture()
+  			function takeNamePicture()
 	  			{
-	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50}))
+	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL
+        				});
 	  			}
-	  			*/
+	  			
 	  			function onNameSuccess(imageData)
 	  			{
-	  				var image = $('#personalNameImage');
-	  				image.attr('src', "data:image/jpeg;base64," + imageData);
-	  				//image.style.display = 'block';
+	  				var image = document.getElementById("personalNameImage");
+        			image.src = "data:image/jpeg;base64," + imageData;
+	  				image.style.display = 'block';
 	  			}
 	  			function onNameFail(message)
 	  			{
 	  				navigator.notification.alert('Failed because: ' + message);
 	  			}
-	  			/*function getNamePhotoFromLibrary(source)
+	  			function getNamePhotoFromLibrary()
 	  			{
-	  				navigator.camera.getPicture(onNameSuccess, onNameFail, {quality: 50, sourceType: source});
-	  			}*/
+	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
+        				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        				});
+	  			}
   		</script>
   	</div>
   	<div data-role="footer">
@@ -101,13 +98,15 @@
   	<div data-role="content">	
   		<textarea></textarea>
   		
-  		<button onclick="takeAgePicture()">Take a Picture</button>
-  		<button onclick="getAgePhotoFromLibrary(pictureSource.PHOTOLIBRARY);">Get a Picture From Library</button>
+  		<button id="ageTakePhoto" onclick="takeAgePicture()">Take a Picture</button>
+  		<button id="agePhotoLib" onclick="getAgePhotoFromLibrary();">Get a Picture From Library</button>
   		<img id="personalAgeImage" width="200" height="300" style="display: none" src=""/>
   		<script>
 	  		function takeAgePicture()
 	  			{
-	  				navigator.camera.getPicture(onAgeSuccess, onAgeFail, {quality: 50}))
+	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL
+        				});
 	  			}
 	  			function onAgeSuccess(imageData)
 	  			{
@@ -119,9 +118,12 @@
 	  			{
 	  				alert('Failed because: ' + message);
 	  			}
-	  			function getAgePhotoFromLibrary(source)
+	  			function getAgePhotoFromLibrary()
 	  			{
-	  				navigator.camera.getPicture(onAgeSuccess, onAgeFail, {quality: 50, sourceType: source});
+	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
+        				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        				});
 	  			}
   		</script>
   	</div>
@@ -139,27 +141,33 @@
   	<div data-role="content">	
   		<textarea></textarea>
   		
-  		<button onclick="takeSchoolPicture()">Take a Picture</button>
-  		<button onclick="getSchoolPhotoFromLibrary(pictureSource.PHOTOLIBRARY);">Get a Picture From Library</button>
+  		<button id="schoolTakePhoto" onclick="takeSchoolPicture()">Take a Picture</button>
+  		<button id="schoolPhotoLib" onclick="getSchoolPhotoFromLibrary();">Get a Picture From Library</button>
   		<img id="personalSchoolImage" width="200" height="300" style="display: none" src=""/>
   		<script>
 	  		function takeSchoolPicture()
 	  			{
-	  				navigator.camera.getPicture(onSchoolSuccess, onSchoolFail, {quality: 50}))
+	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL
+        				});
 	  			}
 	  			function onSchoolSuccess(imageData)
 	  			{
 	  				var image = document.getElementById('personalSchoolImage');
 	  				image.src = "data:image/jpg;base64, " + imageData;
 	  				image.style.display = 'block';
+	  				alert(image.src);
 	  			}
 	  			function onSchoolFail(message)
 	  			{
 	  				alert('Failed because: ' + message);
 	  			}
-	  			function getSchoolPhotoFromLibrary(source)
+	  			function getSchoolPhotoFromLibrary()
 	  			{
-	  				navigator.camera.getPicture(onSchoolSuccess, onSchoolFail, {quality: 50, sourceType: source});
+	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
+        				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        				});
 	  			}
   		</script>
   	</div>
