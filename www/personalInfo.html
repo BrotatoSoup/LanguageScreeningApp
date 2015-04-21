@@ -54,35 +54,29 @@
   	<div data-role="content">	
   		<textarea></textarea>
   		
-  		<button id="nameTakePhoto" onclick="takeNamePicture()">Take a Picture</button>
-  		<button id="namePhotoLib" onclick="getNamePhotoFromLibrary()">Get a Picture From Library</button>
-  		<img id="personalNameImage" width="200" height="300" style="display: none" src=""/>
-  		<script>
-  			function takeNamePicture()
-	  			{
-	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
-        				destinationType: Camera.DestinationType.DATA_URL
-        				});
-	  			}
-	  			
-	  			function onNameSuccess(imageData)
-	  			{
-	  				var image = document.getElementById("personalNameImage");
-        			image.src = "data:image/jpeg;base64," + imageData;
-	  				image.style.display = 'block';
-	  			}
-	  			function onNameFail(message)
-	  			{
-	  				navigator.notification.alert('Failed because: ' + message);
-	  			}
-	  			function getNamePhotoFromLibrary()
-	  			{
-	  				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+  		<span class="buttonSpacing"><a data-role="button" id="testBtn" onclick="photoLib();">alert</a></span><br /><br />
+        	<span class="buttonSpacing"><a data-role="button" id="testBtn2" onclick="takePhoto();">alert</a></span><br /><br />
+        	<img id="myimage" width="200px" height="250px" src="">
+        	<script>
+        		function photoLib(){
+        			navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
         				destinationType: Camera.DestinationType.DATA_URL,
         				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         				});
-	  			}
-  		</script>
+        		}
+        		function takePhoto(){
+        			navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
+        				});
+        		}
+        		function onSuccess(imageData){
+        			var image = document.getElementById("myimage");
+        			image.src = "data:image/jpeg;base64," + imageData;
+        		}
+        		function onFail(message){
+        			alert("failed because: " + message);
+        		}
+        	</script>
   	</div>
   	<div data-role="footer">
   		<a href="#personalAge" data-role="button">go to age question</a>
