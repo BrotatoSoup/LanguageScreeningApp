@@ -40,14 +40,7 @@
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
         <script type="text/javascript"> 
-        	app.initialize();
-        	
-        	function loadUp(){
-        		document.addEventListener("deviceready", function () {
-    				// window.plugin.email is now available
-    			alert("device is ready");
-				}, false);
-        	}            
+        	app.initialize();            
              
                         
             function startButton(){ window.location = './chooseTest.html' };
@@ -61,7 +54,7 @@
         </script>
         
     </head>
-    <body onload="loadUp()">
+    <body>
         <div align="center">
         	<h1>Welcome <span id="output"><script>$('#output').html(window.sessionStorage.getItem("name"));</script></span></h1>
         	<script>console.log(window.sessionStorage.getItem("numOfDisplayImg"));</script>
@@ -70,7 +63,7 @@
         	<span class="buttonSpacing"><a data-role="button" id="startButton" onclick="startButton();">Start</a></span><br /><br />
 	        <span class="buttonSpacing"><a data-role="button" id="loginButton" onclick="loginButton();">Login</a></span>
 	        <span class="buttonSpacing"><a data-role="button" id="testOptionsButton" onclick="testOptionsButton();">Test Options</a></span>
-        	<span class="buttonSpacing"><button id="emailButton"><a href="mailto:?Subject=" target="_top">TEST EMAIL</a></button></span>
+        	<span class="buttonSpacing"><a data-role="button" id="emailButton" href="mailto:?Subject=" target="_top">TEST EMAIL</a></span>
         	<span class="buttonSpacing" id="hideaway" style="display: none;"><a data-role="button" onclick="adminButton();">Admin Page</a></span>
         	<script>
         		if(window.sessionStorage.getItem("name") == "admin")

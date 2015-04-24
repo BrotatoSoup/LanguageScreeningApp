@@ -49,6 +49,7 @@
 			var noteCount;
 			//answers stored in array
 			var answerArray = [];
+			var headerArray = [];
                 
             function endOfPersonalInfoButton(){ 
             	sessionStorage.clear();
@@ -66,7 +67,10 @@
 			function updateValues(endTest) {
 				//update notes
 				testNotes = $("#testNotes"+noteCount).val();
-				finalTestNotes += testNotes + "<br>";
+				finalTestNotes += " " + testNotes;
+				//set question in header to array
+				headerArray[counter] = $("#header" + (counter+1)).text();
+				console.log("headerArray" + counter + ": " +headerArray[counter]);
 				console.log("noteCount: "+ noteCount);
 				noteCount++;
 				console.log("finalTestNotes so far: "+finalTestNotes);
@@ -88,14 +92,19 @@
 			
 			function printGrades() {
 				var z;
-				document.write("Scores: <br>");
+				document.write("Scores for student: "+ window.sessionStorage.getItem("name") + " <br>");
 				for ( z = 0; z < answerArray.length; z++) {
 					if(answerArray[z] != "")
 					{
-						document.write("Question " + (z + 1) + ": " + answerArray[z] + "<br>");
+						if(headerArray[z] != null){
+							document.write("Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: " + answerArray[z] + "<br><br>");
+						}
 					}
-					else{
-						document.write("Question " + (z + 1) + ": Image was taken/chosen <br>");
+					else
+					{
+						if(headerArray[z] != null){
+							document.write("Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: Image was taken/chosen <br><br>	");
+						}
 					}
 				}
 				document.write("<br>NOTES: <br>" + finalTestNotes);
@@ -115,6 +124,7 @@
 					startingFrom = window.sessionStorage.getItem("startFromQuestion");
 					//set lengths of arrays
 					answerArray.length = 10;
+					headerArray.length = 10;
 					//set which question to start on
 					var start = "#personalQ" + startingFrom;
 					console.log("start: " + start);
@@ -128,7 +138,6 @@
 				</script>
 			</div>
 		</div>
-	
 	
 	
 	

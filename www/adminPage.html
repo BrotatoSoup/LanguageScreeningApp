@@ -48,6 +48,8 @@ under the License.
 				var image = document.getElementById('realisticImage');
 				image.src = "data:image/jpg;base64, " + imageData;
 				image.style.display = 'block';
+				alert("img: " + image)
+				window.sessionStorage.setItem("newRealisticImage", image);
 			}
 
 			function onFail(message) 
@@ -55,9 +57,12 @@ under the License.
 				alert('Failed because: ' + message);
 			}
 
-			function getPhotoFromLibrary(source) 
+			function getPhotoFromLibrary() 
 			{
-				navigator.camera.getPicture(onSuccess, onFail, {quality : 50, sourceType : source});
+				navigator.camera.getPicture(onSuccess, onFail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
+        				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        				});
 			}
 
 			//symbol photo functions
@@ -66,6 +71,8 @@ under the License.
 				var image2 = document.getElementById('symbolImage');
 				image2.src = "data:image/jpg;base64, " + imageData;
 				image2.style.display = 'block';
+				alert("img2: " + image2)
+				window.sessionStorage.setItem("newSymbolImage", image2);
 			}
 
 			function onSymbolFail(message) 
@@ -73,9 +80,12 @@ under the License.
 				alert('Failed because: ' + message);
 			}
 
-			function getSymbolPhotoFromLibrary(source) 
+			function getSymbolPhotoFromLibrary() 
 			{
-				navigator.camera.getPicture(onSymbolSuccess, onSymbolFail, {quality : 50, sourceType : source});
+				navigator.camera.getPicture(on1Success, on1Fail, {quality: 50,
+        				destinationType: Camera.DestinationType.DATA_URL,
+        				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+        				});
 			}
 
 			function testSelected() {
@@ -107,6 +117,12 @@ under the License.
 
 				}
 			}
+			
+			function setQuestionValue(){
+				var newQuestion = $("[newQuestion='newQuestion']").val();
+        		console.log("name: " + nameOfTester)
+        		window.sessionStorage.setItem("name", nameOfTester);
+			}
 		</script>
 
 	</head>
@@ -124,9 +140,7 @@ under the License.
 						<option value="association">Association</option>
 						<option value="basicConcepts">Basic Concepts</option>
 					</select>
-					<button onclick="testSelected();">
-						Submit
-					</button>
+					<span class="buttonSpacing"><a data-role="button" id="adminTestOptionsButton" onclick="testSelected();">Submit</a></span>
 				</div>
 			</div>
 		</div>
@@ -137,16 +151,18 @@ under the License.
 				<div data-role="fieldcontain">
 					<label>Which question would you like to modify:</label>
 					<select id="testDisplayOptions">
-						<option value="personalInfo">Personal Info</option>
-						<option value="functions">Funcitons</option>
-						<option value="categorizing">Categorizing</option>
-						<option value="receptive">Receptive</option>
-						<option value="association">Association</option>
-						<option value="basicConcepts">Basic Concepts</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
 					</select>
-					<button onclick="goToTest();">
-						Submit
-					</button>
+					<span class="buttonSpacing"><a data-role="button" id="admin10TestOptionsButton" onclick="goToTest();">Submit</a></span>
 				</div>
 			</div>
 		</div>
@@ -157,17 +173,17 @@ under the License.
 				<div data-role="fieldcontain">
 					<label>Which question would you like to modify:</label>
 					<select id="testDisplayOptions">
-						<option value="personalInfo">Personal Info</option>
-						<option value="functions">Funcitons</option>
-						<option value="categorizing">Categorizing</option>
-						<option value="receptive">Receptive</option>
-						<option value="association">Association</option>
-						<option value="basicConcepts">Basic Concepts</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
 					</select>
-					<script></script>
-					<button onclick="goToTest();">
-						Submit
-					</button>
+					<span class="buttonSpacing"><a data-role="button" id="admin9TestOptionsButton" onclick="goToTest();">Submit</a></span>
 				</div>
 			</div>
 		</div>
@@ -178,17 +194,13 @@ under the License.
 				<div data-role="fieldcontain">
 					<label>Which question would you like to modify:</label>
 					<select id="testDisplayOptions">
-						<option value="personalInfo">Personal Info</option>
-						<option value="functions">Funcitons</option>
-						<option value="categorizing">Categorizing</option>
-						<option value="receptive">Receptive</option>
-						<option value="association">Association</option>
-						<option value="basicConcepts">Basic Concepts</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
 					</select>
-					<script></script>
-					<button onclick="goToTest();">
-						Submit
-					</button>
+					<span class="buttonSpacing"><a data-role="button" id="admin5TestOptionsButton" onclick="goToTest();">Submit</a></span>
 				</div>
 			</div>
 		</div>
@@ -197,26 +209,27 @@ under the License.
 			<div data-role="content">
 				<div>
 					<label>Write the new question</label>
-					<textarea id="newQuestion"></textarea>
+					<textarea id="newQuestion" placeholder="New Question..."></textarea>
 				</div>
 				<br />
 				<div>
 					<label>Choose realistic picture</label>
-					<button onclick="getPhotoFromLibrary(pictureSource.PHOTOLIBRARY);">
+					<a data-role="button" onclick="getPhotoFromLibrary();">
 						Realistic Picture
-					</button>
+					</a>
 					<img id="realisticImage" width="200" height="300" style="display: none" src=""/>
 
 				</div>
 				<br />
 				<div>
 					<label>Choose symbol picture</label>
-					<button onclick="getSymbolPhotoFromLibrary(pictureSource.PHOTOLIBRARY);">
+					<a data-role="button" onclick="getSymbolPhotoFromLibrary();">
 						Symbol Picture
-					</button>
+					</a>
 					<img id="symbolImage" width="200" height="300" style="display: none" src=""/>
 
 				</div>
+				<span class="buttonSpacing"><a data-role="button" id="setModifyQuestion" onclick="setQuestionValue();">Submit</a></span>
 			</div>
 		</div>
 

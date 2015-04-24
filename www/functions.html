@@ -45,6 +45,7 @@ under the License.
 			var gradingArray = [];
 			var gradingImgArray = [];
 			var correct = [];
+			var headerArray = [];
 			var choice, startingFrom;
 			//used for going to the different questions
 			var questNum = 2;
@@ -95,9 +96,11 @@ under the License.
 			}
 
 			function gradeQuestion(imgVal, endTest) {
-				//update notes
+				//update notes and header
 				testNotes = $("#testNotes"+noteCount).val();
-				finalTestNotes += testNotes + "<br>";
+				finalTestNotes += " " + testNotes;
+				headerArray[counter] = $("#header" + (counter+1)).text();
+				console.log("headerArray" + counter + ": " +headerArray[counter]);
 				noteCount++;
 				console.log("test: "+finalTestNotes);
 				console.log("noteCount: "+noteCount);
@@ -126,13 +129,18 @@ under the License.
 
 			function printGrades() {
 				var z, y;
-				document.write("Scores: <br>");
+				document.write("Scores for student: " + window.sessionStorage.getItem("name") + " <br>");
 				for ( z = 0; z < gradingArray.length; z++) {
-					document.write("Question " + (z + 1) + ": " + gradingArray[z] + "<br>");
+					if(headerArray[z] != null){
+						document.write("Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br><br>");
+					}
+					
 				}
-				document.write("<br>grading image array content: <br>");
+				document.write("<br>Images Selected: <br>");
 				for ( y = 0; y < gradingImgArray.length; y++) {
-					document.write("Question " + (y + 1) + " image selected: " + "<img src='" + gradingImgArray[y] + "' width='150' height='100' class='imgSpacing'/> <br>");
+					if(headerArray[y] != null){
+						document.write("Question " + (y + 1) +": " + headerArray[y] + " <br>Image selected: " + "<img src='" + gradingImgArray[y] + "' width='150' height='100' class='imgSpacing'/> <br><br>");
+					}
 				}
 				document.write("<br>NOTES: <br>" + finalTestNotes);
 			}
@@ -156,7 +164,6 @@ under the License.
 				<a href="" id="startTheTest" data-role="button">Start</a>
 				<span class="buttonSpacing"><a data-role="button" id="backToIndex" onclick="backToIndex();">Back To Start</a></span>
 				<script>
-					
 					//set lengths for arrays
 					quiz1.length = window.sessionStorage.getItem("numOfDisplayImg");
 					numAlreadyPicked.length = window.sessionStorage.getItem("numOfDisplayImg");
@@ -167,6 +174,7 @@ under the License.
 					gradingArray.length = 10;
 					gradingImgArray.length = 10;
 					correct.length = 10;
+					headerArray.length = 10;
 					//set filepath used for pictures
 					var functionsFilePath = 'img/testImages/functionsTestImg/' + choice + '/';
 					console.log("funcFilePath: " + functionsFilePath);
@@ -184,7 +192,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ1">
 			<div data-role="header">
-				<h1 style="font-size: 20px" style="overflow: visible !important;" style="white-space: visible !important;">Point to the one that cuts</h1>
+				<h1 id="header1" style="font-size: 20px" style="overflow: visible !important;" style="white-space: visible !important;">Point to the one that cuts</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -209,7 +217,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ2">
 			<div data-role="header">
-				<h1 style="font-size: 20px">Point to the one you ride</h1>
+				<h1 id="header2" style="font-size: 20px">Point to the one you ride</h1>
 			</div>
 			<div data-role="content">
 				<script>
@@ -232,7 +240,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ3">
 			<div data-role="header">
-				<h1 style="font-size: 20px">Point to the one you write with</h1>
+				<h1 id="header3" style="font-size: 20px">Point to the one you write with</h1>
 			</div>
 			<div data-role="content">
 				<script>
@@ -255,7 +263,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ4">
 			<div data-role="header">
-				<h1 style="font-size: 20px">Point to the one you kick</h1>
+				<h1 id="header4" style="font-size: 20px">Point to the one you kick</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -280,7 +288,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ5">
 			<div data-role="header">
-				<h1 style="font-size: 20px">Point to the one you read</h1>
+				<h1 id="header5" style="font-size: 20px">Point to the one you read</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -305,7 +313,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ6">
 			<div data-role="header">
-				<h1 style="font-size: 20px">Point to the one you eat</h1>
+				<h1 id="header6" style="font-size: 20px">Point to the one you eat</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -330,7 +338,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ7">
 			<div data-role="header">
-				<h1 style="font-size: 20px">Point to the one you watch</h1>
+				<h1 id="header7" style="font-size: 20px">Point to the one you watch</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -355,7 +363,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ8">
 			<div data-role="header">
-				<h1 style="font-size: 20px">Point to the one you wear</h1>
+				<h1 id="header8" style="font-size: 20px">Point to the one you wear</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -380,7 +388,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ9">
 			<div data-role="header">
-				<h1 style="font-size: 20px">Point to the one you drink</h1>
+				<h1 id="header9" style="font-size: 20px">Point to the one you drink</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -405,7 +413,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ10">
 			<div data-role="header">
-				<h1 style="font-size: 20px">Point to the one you sleep on</h1>
+				<h1 id="header10" style="font-size: 20px">Point to the one you sleep on</h1>
 			</div>
 			<div data-role="content">
 				<div>
