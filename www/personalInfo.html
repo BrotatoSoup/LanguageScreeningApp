@@ -50,6 +50,8 @@
 			//answers stored in array
 			var answerArray = [];
 			var headerArray = [];
+			//email string
+			var emailString = "Scores for student: " + window.sessionStorage.getItem("name") + " --> ";
                 
             function endOfPersonalInfoButton(){ 
             	sessionStorage.clear();
@@ -76,11 +78,8 @@
 				console.log("finalTestNotes so far: "+finalTestNotes);
 				console.log("noteCount: "+noteCount);
 				if (endTest == true) {
-					//create a text file with grades
-					//store text file to a folder to be ready to be emailed
-					//just to show grading works, print the grades (refresh to end the section)
-					printGrades();
-					//endOfFunctionsButton();
+					window.location.href = "mailto:?Subject&body="+ printGrades();
+					endOfPersonalInfoButton();
 				} else{
 					answerArray[counter] = $("#answer" + answerCounter).val();
 				} 
@@ -92,22 +91,14 @@
 			
 			function printGrades() {
 				var z;
-				document.write("Scores for student: "+ window.sessionStorage.getItem("name") + " <br>");
 				for ( z = 0; z < answerArray.length; z++) {
-					if(answerArray[z] != "")
-					{
-						if(headerArray[z] != null){
-							document.write("Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: " + answerArray[z] + "<br><br>");
-						}
-					}
-					else
-					{
-						if(headerArray[z] != null){
-							document.write("Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: Image was taken/chosen <br><br>	");
-						}
+					if(headerArray[z] != null){
+						emailString += "Question " + (z + 1) + ": " + headerArray[z] + " Answer: "+ gradingArray[z] + " ";
 					}
 				}
-				document.write("<br>NOTES: <br>" + finalTestNotes);
+				emailString += " NOTES: " + finalTestNotes;
+				console.log("emailString: " + emailString);
+				return emailString;
 			}
         </script>
         
@@ -588,7 +579,6 @@
 					Email
 				</button>
 				<textarea id="testNotes11" placeholder="Any final notes?"></textarea>
-				<button onclick="endOfPersonalInfoButton();">((End of Section))</button>
 			</div>
 		</div>
 </body>

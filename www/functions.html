@@ -107,11 +107,8 @@ under the License.
 				console.log("test: "+finalTestNotes);
 				console.log("noteCount: "+noteCount);
 				if (endTest == true) {
-					//create a text file with grades
-					//store text file to a folder to be ready to be emailed
-					//just to show grading works, print the grades (refresh to end the section)
-					window.location.href = "mailto:?Subject&body="+ printGrades() +" target='_top'";
-					//endOfFunctionsButton();
+					window.location.href = "mailto:?Subject&body="+ printGrades();
+					endOfFunctionsButton();
 				} else if (imgVal == correct[counter]) {
 					gradingArray[counter] = "Correct";
 					gradingImgArray[counter] = functionsFilePath + imgVal + '.jpg';
@@ -131,21 +128,11 @@ under the License.
 
 			function printGrades() {
 				var z;
-				//document.write("Scores for student: " + window.sessionStorage.getItem("name") + " <br>");
 				for ( z = 0; z < gradingArray.length; z++) {
 					if(headerArray[z] != null){
 						emailString += "Question " + (z + 1) + ": " + headerArray[z] + " Answer: "+ gradingArray[z] + " ";
 					}
-					
 				}
-				/*
-				document.write("<br>Images Selected: <br>");
-				for ( y = 0; y < gradingImgArray.length; y++) {
-					if(headerArray[y] != null){
-						document.write("Question " + (y + 1) +": " + headerArray[y] + " <br>Image selected: " + "<img src='" + gradingImgArray[y] + "' width='150' height='100' class='imgSpacing'/> <br><br>");
-					}
-				}
-				*/
 				emailString += " NOTES: " + finalTestNotes;
 				console.log("emailString: " + emailString);
 				return emailString;
@@ -459,9 +446,6 @@ under the License.
 					Email
 				</button>
 				<textarea id="testNotes11" placeholder="Any final notes?"></textarea>
-				<button onclick="endOfFunctionsButton();">
-					((End of Section))
-				</button>
 			</div>
 		</div>
 		
