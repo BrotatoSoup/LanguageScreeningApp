@@ -21,30 +21,31 @@
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
     <script type="text/javascript"> 
          
-       function personalInfoButton(){ window.location = './personalInfo.html' };
-         
-       function functionsButton(){ window.location = './functions.html' };
-		
-	   function categorizingButton(){ window.location = './categorizing.html' };
-	   
-	   function receptiveButton(){ window.location = './receptive.html' };
-	   
-	   function associationsButton(){ window.location = './associations.html' };
-	   
-	   function basicConceptsButton(){ window.location = './basicConcepts.html' };
+       function testSelected(){ 
+       	var test = $("#testChoices option:selected").val();
+       	window.location = './' + test + '.html' 
+       	};
 	   
 	   function backToIndex() { window.location = './index.html' };
 	</script>
         
 </head>
 <body>
-    <div align="center">
-    			<span class="buttonSpacing"><a data-role="button" id="personalInfo" onclick="personalInfoButton();">Personal Info Testing</a></span>
-    			<span class="buttonSpacing"><a data-role="button" id="functions" onclick="functionsButton();">Functions Testing</a></span>
-    			<span class="buttonSpacing"><a data-role="button" id="categorizing" onclick="categorizingButton();">Categorizing Testing</a></span>
-    			<span class="buttonSpacing"><a data-role="button" id="receptive" onclick="receptiveButton();">Receptive Testing</a></span>
-    			<span class="buttonSpacing"><a data-role="button" id="associations" onclick="associationsButton();">Association Testing</a></span>
-    			<span class="buttonSpacing"><a data-role="button" id="basicConcepts" onclick="basicConceptsButton();">Basic Concepts Testing</a></span><br />
+    <div align="center">    			
+    			<div data-role="fieldcontain">
+					<label>Which test would you like to take:</label>
+					<select id="testChoices">
+						<option value="personalInfo">Personal Information</option>
+						<option value="functions">Functions</option>
+						<option value="categorizing">Categorizing</option>
+						<option value="receptive">Receptive</option>
+						<option value="associations">Associations</option>
+						<option value="colors">Colors</option>
+						<option value="numbers">Numbers</option>
+					</select>
+					
+				</div>
+    			<span class="buttonSpacing"><a data-role="button" id="submit" onclick="testSelected();">Submit</a></span>
     			<span class="buttonSpacing"><a data-role="button" id="backToIndex" onclick="backToIndex();">Back To Start</a></span>
     </div>
 </body>

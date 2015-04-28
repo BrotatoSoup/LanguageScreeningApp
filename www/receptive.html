@@ -36,7 +36,6 @@
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css" />
         <title>Receptive</title>
         <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
@@ -70,8 +69,6 @@
 			
 			//randomNum must be hard coded to a number as there is no way for JScript to count the number of pictures in a folder
             //setting a limit of 15 pictures
-            //10 of the pictures will be a correct image for one of the questions
-            //the last 5 pictures will always be wrong
             //all picutures must not be related in any way (ex. knife and sword could both cut you---> not good)
             function makeImageArray(correctImg)
   			{
@@ -188,7 +185,7 @@
 				<span class="buttonSpacing"><a data-role="button" id="backToIndex" onclick="backToIndex();">Back To Start</a></span>
 				<script>
 					//set lengths for arrays
-					quiz1.length = window.sessionStorage.getItem("numOfDisplayImg");
+					quiz3.length = window.sessionStorage.getItem("numOfDisplayImg");
 					numAlreadyPicked.length = window.sessionStorage.getItem("numOfDisplayImg");
 					//get value for symbols or realistic images
 					choice = window.sessionStorage.getItem("typeOfImgUsed");
@@ -199,10 +196,10 @@
 					correct.length = 10;
 					headerArray.length = 10;
 					//set filepath used for pictures
-					var functionsFilePath = 'img/testImages/receptiveTestImg/' + choice + '/';
-					console.log("funcFilePath: " + functionsFilePath);
+					var receptiveFilePath = 'img/testImages/receptiveTestImg/' + choice + '/';
+					console.log("recepFilePath: " + receptiveFilePath);
 					//set which question to start on
-					var start = "#functionsQ" + startingFrom;
+					var start = "#receptiveQ" + startingFrom;
 					console.log("start: " + start);
 					document.getElementById("startTheTest").setAttribute("href", start);
 					counter = (startingFrom - 1);
@@ -225,7 +222,7 @@
   			setCorrectArray(q1Img);
   			makeImageArray(q1Img);
   			displayImageArray(questNum, q1Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
@@ -247,7 +244,7 @@
   			setCorrectArray(q2Img);
   			makeImageArray(q2Img);
   			displayImageArray(questNum, q2Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
@@ -269,7 +266,7 @@
   			setCorrectArray(q3Img);
   			makeImageArray(q3Img);
   			displayImageArray(questNum, q3Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
@@ -291,7 +288,7 @@
   			setCorrectArray(q4Img);
   			makeImageArray(q4Img);
   			displayImageArray(questNum, q4Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
@@ -311,7 +308,7 @@
   			setCorrectArray(q5Img);
   			makeImageArray(q5Img);
   			displayImageArray(questNum, q5Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
@@ -324,20 +321,21 @@
   
   </div><div data-role="page" align="center" id="receptiveQ6">
   	<div data-role="header">
-  		<h1 style="font-size: 24px">Point to eating</h1>
+  		<h1 id="header6" style="font-size: 24px">Point to eating</h1>
   	</div>
   	<div data-role="content">
   		<script>
   			//send number for right image
-  			var q6Img = 2;
+  			var q6Img = 5;
   			setCorrectArray(q6Img);
   			makeImageArray(q6Img);
   			displayImageArray(questNum, q6Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
   		<button onclick="setEnd();">Email</button>
+  		<textarea id="testNotes6" placeholder="Enter notes here"></textarea>
   	</div>
   
   </div>
@@ -345,20 +343,21 @@
   
   </div><div data-role="page" align="center" id="receptiveQ7">
   	<div data-role="header">
-  		<h1 style="font-size: 24px">Point to playing</h1>
+  		<h1 id="header7" style="font-size: 24px">Point to playing</h1>
   	</div>
   	<div data-role="content">
   		<script>
   			//send number for right image
-  			var q7Img = 5;
+  			var q7Img = 6;
   			setCorrectArray(q7Img);
   			makeImageArray(q7Img);
   			displayImageArray(questNum, q7Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
   		<button onclick="setEnd();">Email</button>
+  		<textarea id="testNotes7" placeholder="Enter notes here"></textarea>
   	</div>
   
   </div>
@@ -366,20 +365,21 @@
   
   </div><div data-role="page" align="center" id="receptiveQ8">
   	<div data-role="header">
-  		<h1 style="font-size: 24px">Point to swimming</h1>
+  		<h1 id="header8" style="font-size: 24px">Point to swimming</h1>
   	</div>
   	<div data-role="content">
   		<script>
   			//send number for right image
-  			var q8Img = 8;
+  			var q8Img = 7;
   			setCorrectArray(q8Img);
   			makeImageArray(q8Img);
   			displayImageArray(questNum, q8Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
   		<button onclick="setEnd();">Email</button>
+  		<textarea id="testNotes8" placeholder="Enter notes here"></textarea>
   	</div>
   
   </div>
@@ -387,16 +387,16 @@
   
   </div><div data-role="page" align="center" id="receptiveQ9">
   	<div data-role="header">
-  		<h1 style="font-size: 24px">Point to nose</h1>
+  		<h1 id="header9" style="font-size: 24px">Point to nose</h1>
   	</div>
   	<div data-role="content">
   		<script>
   			//send number for right image
-  			var q9Img = 3;
+  			var q9Img = 8;
   			setCorrectArray(q9Img);
   			makeImageArray(q9Img);
   			displayImageArray(questNum, q9Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
@@ -418,7 +418,7 @@
   			setCorrectArray(q10Img);
   			makeImageArray(q10Img);
   			displayImageArray(questNum, q10Img);
-  			questNum++;
+  			incrementQuestNum();
   		</script>
   	</div>
   	<div data-role="footer">
