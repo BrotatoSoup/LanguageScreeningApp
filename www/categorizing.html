@@ -123,7 +123,6 @@
 				console.log("noteCount: "+noteCount);
 				if (endTest == true) {
 					window.location.href = "mailto:?Subject&body="+ printGrades();
-					endOfCategorizingButton();
 				} else if (imgVal == correct[counter]) {
 					gradingArray[counter] = "Correct";
 					gradingImgArray[counter] = categorizingFilePath + imgVal + '.jpg';
@@ -326,6 +325,7 @@
   	<div data-role="footer">
   		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes6" placeholder="Any final notes?"></textarea>
+		<button onclick="endOfCategorizingButton();">((End of Section))</button>  	
 	</div>
   </div>
 </body>

@@ -108,7 +108,6 @@ under the License.
 				console.log("noteCount: "+noteCount);
 				if (endTest == true) {
 					window.location.href = "mailto:?Subject&body="+ printGrades();
-					endOfFunctionsButton();
 				} else if (imgVal == correct[counter]) {
 					gradingArray[counter] = "Correct";
 					gradingImgArray[counter] = functionsFilePath + imgVal + '.jpg';
@@ -446,6 +445,9 @@ under the License.
 					Email
 				</button>
 				<textarea id="testNotes11" placeholder="Any final notes?"></textarea>
+				<button onclick="endOfFunctionsButton();">
+					((End of Section))
+				</button>
 			</div>
 		</div>
 		
