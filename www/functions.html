@@ -56,6 +56,8 @@ under the License.
 			var testNotes = "";
 			var finalTestNotes = "";
 			var noteCount;
+			//email string
+			var emailString = "Scores for student: " + window.sessionStorage.getItem("name") + " --> ";
 			
 			function endOfFunctionsButton() 
 			{
@@ -108,7 +110,7 @@ under the License.
 					//create a text file with grades
 					//store text file to a folder to be ready to be emailed
 					//just to show grading works, print the grades (refresh to end the section)
-					printGrades();
+					window.location.href = "mailto:?Subject&body="+ printGrades() +" target='_top'";
 					//endOfFunctionsButton();
 				} else if (imgVal == correct[counter]) {
 					gradingArray[counter] = "Correct";
@@ -128,21 +130,25 @@ under the License.
 			}
 
 			function printGrades() {
-				var z, y;
-				document.write("Scores for student: " + window.sessionStorage.getItem("name") + " <br>");
+				var z;
+				//document.write("Scores for student: " + window.sessionStorage.getItem("name") + " <br>");
 				for ( z = 0; z < gradingArray.length; z++) {
 					if(headerArray[z] != null){
-						document.write("Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br><br>");
+						emailString += "Question " + (z + 1) + ": " + headerArray[z] + " Answer: "+ gradingArray[z] + " ";
 					}
 					
 				}
+				/*
 				document.write("<br>Images Selected: <br>");
 				for ( y = 0; y < gradingImgArray.length; y++) {
 					if(headerArray[y] != null){
 						document.write("Question " + (y + 1) +": " + headerArray[y] + " <br>Image selected: " + "<img src='" + gradingImgArray[y] + "' width='150' height='100' class='imgSpacing'/> <br><br>");
 					}
 				}
-				document.write("<br>NOTES: <br>" + finalTestNotes);
+				*/
+				emailString += " NOTES: " + finalTestNotes;
+				console.log("emailString: " + emailString);
+				return emailString;
 			}
 
 			function setEnd() {
