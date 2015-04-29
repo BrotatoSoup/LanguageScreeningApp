@@ -106,11 +106,13 @@
 				finalTestNotes += " " + testNotes;
 				headerArray[counter] = $("#header" + (counter+1)).text();
 				console.log("headerArray" + counter + ": " +headerArray[counter]);
-				noteCount++;
 				console.log("test: "+finalTestNotes);
 				console.log("noteCount: "+noteCount);
 				if (endTest == true) {
 					window.location.href = "mailto:?Subject&body="+ printGrades();
+					//reveal endtest button and hide email and next question buttons
+					document.getElementById("hideaway"+noteCount).style.display='block';
+					document.getElementById("emailBtn"+noteCount).style.display='none';
 				} else if (imgVal == correct[counter]) {
 					gradingArray[counter] = "Correct";
 					gradingImgArray[counter] = colorsFilePath + imgVal + '.jpg';
@@ -118,6 +120,7 @@
 					gradingArray[counter] = "Incorrect";
 					gradingImgArray[counter] = colorsFilePath + imgVal + '.jpg';
 				}
+				noteCount++;
 				counter++;
 		  	}
   			
@@ -165,11 +168,13 @@
 				finalTestNotes += " " + testNotes;
 				headerArray[counter] = $("#header" + (counter+1)).text();
 				console.log("headerArray" + counter + ": " +headerArray[counter]);
-				noteCount++;
 				console.log("test: "+finalTestNotes);
 				console.log("noteCount: "+noteCount);
 				if (endTest == true) {
 					window.location.href = "mailto:?Subject&body="+ printGrades();
+					//reveal endtest button and hide email and next question buttons
+					document.getElementById("hideaway"+noteCount).style.display='block';
+					document.getElementById("emailBtn"+noteCount).style.display='none';
 				} else if (imgVal == correct[counter]) {
 					gradingArray[counter] = "Correct";
 					gradingImgArray[counter] = colorsDifferencesFilePath + imgVal + '.jpg';
@@ -177,6 +182,7 @@
 					gradingArray[counter] = "Incorrect";
 					gradingImgArray[counter] = colorsDifferencesFilePath + imgVal + '.jpg';
 				}
+				noteCount++;
 				counter++;
 		  	}
   			
@@ -278,8 +284,9 @@
   		
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes1" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn1" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway1" style="display: none;"><a data-role="button" onclick="endOfColorsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -300,8 +307,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes2" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn2" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway2" style="display: none;"><a data-role="button" onclick="endOfColorsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -322,8 +330,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes3" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn3" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway3" style="display: none;"><a data-role="button" onclick="endOfColorsButton();">End Test</a></span>
   	</div>
   </div>
   
@@ -344,8 +353,9 @@
   			</script>
   		</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes4" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn4" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway4" style="display: none;"><a data-role="button" onclick="endOfColorsButton();">End Test</a></span>
   	</div>
   </div>
   </div>
@@ -367,8 +377,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes5" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn5" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway5" style="display: none;"><a data-role="button" onclick="endOfColorsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -393,8 +404,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd2();">Email</button>
   		<textarea id="testNotes6" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn6" style="display: block;"><button onclick="setEnd2();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway6" style="display: none;"><a data-role="button" onclick="endOfColorsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -419,8 +431,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd2();">Email</button>
   		<textarea id="testNotes7" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn7" style="display: block;"><button onclick="setEnd2();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway7" style="display: none;"><a data-role="button" onclick="endOfColorsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -445,8 +458,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd2();">Email</button>
   		<textarea id="testNotes8" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn8" style="display: block;"><button onclick="setEnd2();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway8" style="display: none;"><a data-role="button" onclick="endOfColorsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -472,8 +486,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd2();">Email</button>
   		<textarea id="testNotes9" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn9" style="display: block;"><button onclick="setEn2();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway9" style="display: none;"><a data-role="button" onclick="endOfColorsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -499,8 +514,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd2();">Email</button>
   		<textarea id="testNotes10" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn10" style="display: block;"><button onclick="setEnd2();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway10" style="display: none;"><a data-role="button" onclick="endOfColorsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -509,21 +525,22 @@
   
   <div data-role="page" align="center" id="colorsQ11">
   	<div data-role="header">
-  		<h1 style="font-size: 20px">Results of the Test</h1>
-  	</div>
-  	<div data-role="content">
-  		<div>
-  			Student: <span id="studentName"></span>
-  			<script>
-  				$('#studentName').html(window.sessionStorage.getItem("name"));
-  			</script>
-  		</div>
-  	</div>
-  	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
-  		<textarea id="testNotes11" placeholder="Any final notes?"></textarea>
-		<button onclick="endOfColorsButton();">((End of Section))</button>  	
+		<h1 style="font-size: 20px">Congratulations <span id="studentName"></span>!<</h1>
 	</div>
-  </div>
+	<div data-role="content">
+		<div>
+			The test is over.<br />
+			Be sure to email the results before exiting the app!!!
+			<script>
+				$('#studentName').html(window.sessionStorage.getItem("name"));
+			</script>
+		</div>
+	</div>
+	<div data-role="footer">
+		<textarea id="testNotes11" placeholder="Any final notes?"></textarea>
+		<span id="emailBtn11" style="display: block;"><button onclick="setEnd2();">Email</button></span>
+		<span class="buttonSpacing" id="hideaway11" style="display: none;"><a data-role="button" onclick="endOfColorsButton();">End Test</a></span>
+	</div>
+   </div>
 </body>
 </html>

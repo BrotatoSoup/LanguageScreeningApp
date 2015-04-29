@@ -73,15 +73,17 @@
 				//set question in header to array
 				headerArray[counter] = $("#header" + (counter+1)).text();
 				console.log("headerArray" + counter + ": " +headerArray[counter]);
-				console.log("noteCount: "+ noteCount);
-				noteCount++;
 				console.log("finalTestNotes so far: "+finalTestNotes);
-				console.log("noteCount: "+noteCount);
 				if (endTest == true) {
 					window.location.href = "mailto:?Subject&body="+ printGrades();
+					//reveal endtest button and hide email and next question buttons
+					document.getElementById("hideaway"+noteCount).style.display='block';
+					document.getElementById("emailBtn"+noteCount).style.display='none';
+					document.getElementById("nxtQuestionBtn"+noteCount).style.display='none';
 				} else{
 					answerArray[counter] = $("#answer" + answerCounter).val();
 				} 
+				noteCount++;
 				counter++;
 				answerCounter++;
 				console.log("counter in updateValues: " + counter)
@@ -92,7 +94,7 @@
 				var z;
 				for ( z = 0; z < answerArray.length; z++) {
 					if(headerArray[z] != null){
-						emailString += "Question " + (z + 1) + ": " + headerArray[z] + " Answer: "+ gradingArray[z] + " ";
+						emailString += "Question " + (z + 1) + ": " + headerArray[z] + " Answer: "+ answerArray[z] + " ";
 					}
 				}
 				emailString += " NOTES: " + finalTestNotes;
@@ -161,14 +163,14 @@
         		function on1Fail(message){
         			alert("failed because: " + message);
         		}
+        		
         	</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">
-			Email
-		</button>
+  		<span class="buttonSpacing" id="nxtQuestionBtn1" style="display: block;"><a href="#personalQ2" data-role="button" onclick="updateValues();">next question</a></span>
 		<textarea id="testNotes1" placeholder="Enter notes here"></textarea>
-  		<a href="#personalQ2" data-role="button" onclick="updateValues();">next question</a>
+  		<span id="emailBtn1" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway1" style="display: none;"><a data-role="button" onclick="endOfPersonalInfoButton();">End Test</a></span>
   	</div>
 
   </div>
@@ -207,11 +209,10 @@
         	</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">
-			Email
-		</button>
+  		<span class="buttonSpacing" id="nxtQuestionBtn2" style="display: block;"><a href="#personalQ3" data-role="button" onclick="updateValues();">next question</a></span>
 		<textarea id="testNotes2" placeholder="Enter notes here"></textarea>
-  		<a href="#personalQ3" data-role="button" onclick="updateValues();">next question</a>
+  		<span id="emailBtn2" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway2" style="display: none;"><a data-role="button" onclick="endOfPersonalInfoButton();">End Test</a></span>
   	</div>
 
   </div>
@@ -250,11 +251,10 @@
         	</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">
-			Email
-		</button>
+  		<span class="buttonSpacing" id="nxtQuestionBtn3" style="display: block;"><a href="#personalQ4" data-role="button" onclick="updateValues();">next question</a></span>
 		<textarea id="testNotes3" placeholder="Enter notes here"></textarea>
-  		<a href="#personalQ4" data-role="button" onclick="updateValues();">next question</a>
+  		<span id="emailBtn3" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway3" style="display: none;"><a data-role="button" onclick="endOfPersonalInfoButton();">End Test</a></span>
   	</div>
 
   </div>
@@ -293,11 +293,10 @@
         	</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">
-			Email
-		</button>
+  		<span class="buttonSpacing" id="nxtQuestionBtn4" style="display: block;"><a href="#personalQ5" data-role="button" onclick="updateValues();">next question</a></span>
 		<textarea id="testNotes4" placeholder="Enter notes here"></textarea>
-  		<a href="#personalQ5" data-role="button" onclick="updateValues();">next question</a>
+  		<span id="emailBtn4" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway4" style="display: none;"><a data-role="button" onclick="endOfPersonalInfoButton();">End Test</a></span>
   	</div>
 
   </div>
@@ -336,11 +335,10 @@
         	</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">
-			Email
-		</button>
+  		<span class="buttonSpacing" id="nxtQuestionBtn5" style="display: block;"><a href="#personalQ6" data-role="button" onclick="updateValues();">next question</a></span>
 		<textarea id="testNotes5" placeholder="Enter notes here"></textarea>
-  		<a href="#personalQ6" data-role="button" onclick="updateValues();">next question</a>
+  		<span id="emailBtn5" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway5" style="display: none;"><a data-role="button" onclick="endOfPersonalInfoButton();">End Test</a></span>
   	</div>
 
   </div>
@@ -379,11 +377,10 @@
         </script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">
-			Email
-		</button>
+  		<span class="buttonSpacing" id="nxtQuestionBtn6" style="display: block;"><a href="#personalQ7" data-role="button" onclick="updateValues();">next question</a></span>
 		<textarea id="testNotes6" placeholder="Enter notes here"></textarea>
-		<a href="#personalQ7" data-role="button" onclick="updateValues();">next question</a>
+  		<span id="emailBtn6" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway6" style="display: none;"><a data-role="button" onclick="endOfPersonalInfoButton();">End Test</a></span>
   	</div>
   	
   </div>
@@ -422,11 +419,10 @@
         </script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">
-			Email
-		</button>
+  		<span class="buttonSpacing" id="nxtQuestionBtn7" style="display: block;"><a href="#personalQ8" data-role="button" onclick="updateValues();">next question</a></span>
 		<textarea id="testNotes7" placeholder="Enter notes here"></textarea>
-		<a href="#personalQ8" data-role="button" onclick="updateValues();">next question</a>
+  		<span id="emailBtn7" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway7" style="display: none;"><a data-role="button" onclick="endOfPersonalInfoButton();">End Test</a></span>
   	</div>
   	
   </div>
@@ -465,11 +461,10 @@
         </script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">
-			Email
-		</button>
+  		<span class="buttonSpacing" id="nxtQuestionBtn8" style="display: block;"><a href="#personalQ9" data-role="button" onclick="updateValues();">next question</a></span>
 		<textarea id="testNotes8" placeholder="Enter notes here"></textarea>
-  		<a href="#personalQ9" data-role="button" onclick="updateValues();">next question</a>
+  		<span id="emailBtn8" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway8" style="display: none;"><a data-role="button" onclick="endOfPersonalInfoButton();">End Test</a></span>
   	</div>
   	
   </div>
@@ -508,11 +503,10 @@
         </script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">
-			Email
-		</button>
+  		<span class="buttonSpacing" id="nxtQuestionBtn9" style="display: block;"><a href="#personalQ10" data-role="button" onclick="updateValues();">next question</a></span>
 		<textarea id="testNotes9" placeholder="Enter notes here"></textarea>
-  		<a href="#personalQ10" data-role="button" onclick="updateValues();">next question</a>
+  		<span id="emailBtn9" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway9" style="display: none;"><a data-role="button" onclick="endOfPersonalInfoButton();">End Test</a></span>
   	</div>
   	
   </div>
@@ -551,11 +545,10 @@
         </script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">
-			Email
-		</button>
+  		<span class="buttonSpacing" id="nxtQuestionBtn10" style="display: block;"><a href="#personalQ11" data-role="button" onclick="updateValues();">next question</a></span>
 		<textarea id="testNotes10" placeholder="Enter notes here"></textarea>
-		<a href="#personalQ11" data-role="button" onclick="updateValues();">End results </a>
+  		<span id="emailBtn10" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway10" style="display: none;"><a data-role="button" onclick="endOfPersonalInfoButton();">End Test</a></span>
   	</div>
   	
   </div>
@@ -563,22 +556,21 @@
   
   <div data-role="page" align="center" id="personalQ11">
 			<div data-role="header">
-				<h1 style="font-size: 20px">Results of the Test</h1>
+				<h1 style="font-size: 20px">Congratulations <span id="studentName"></span>!</h1>
 			</div>
 			<div data-role="content">
 				<div>
-					Student: <span id="studentName"></span>
+					The test is over.<br />
+					Be sure to email the results before exiting the app!!!
 					<script>
 						$('#studentName').html(window.sessionStorage.getItem("name"));
 					</script>
 				</div>
 			</div>
 			<div data-role="footer">
-				<button onclick="setEnd();">
-					Email
-				</button>
 				<textarea id="testNotes11" placeholder="Any final notes?"></textarea>
-				<button onclick="endOfPersonalInfoButton();">((End of Section))</button>
+  				<span id="emailBtn11" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  				<span class="buttonSpacing" id="hideaway11" style="display: none;"><a data-role="button" onclick="endOfPersonalInfoButton();">End Test</a></span>
 			</div>
 		</div>
 </body>
