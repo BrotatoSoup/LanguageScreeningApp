@@ -81,6 +81,10 @@ h1 {
 	white-space: visible !important;
 	word-wrap: break-word;	
 }
+label {
+	overflow: visible !important;
+	white-space: visible !important;
+}
 
 .event {
     border-radius:4px;
