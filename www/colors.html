@@ -80,6 +80,7 @@
 				{
 					//pick random number
 					randomNum = Math.floor(Math.random() * 5)
+					console.log("random num first picked: " + randomNum);
 					//for loop used to iterate through number tracking array to find duplicates
 					for(j = 0; j < numAlreadyPicked.length; j++)
 					{
@@ -87,6 +88,8 @@
 						{
 								randomNum = Math.floor(Math.random() * 5)
 								j = 0;
+								console.log("random num picked when looking for dups: " + randomNum);
+								console.log("numAlreadyPicked array: " + numAlreadyPicked);
 						}
 					}
 					
@@ -235,9 +238,16 @@
   		<a href="" id="startTheTest" data-role="button">Start</a>
   		<span class="buttonSpacing"><a data-role="button" id="backToIndex" onclick="backToIndex();">Back To Start</a></span>
   		<script>
-  			//set lengths for arrays
-					quiz5FirstHalf.length = window.sessionStorage.getItem("numOfDisplayImg");
-					numAlreadyPicked.length = window.sessionStorage.getItem("numOfDisplayImg");
+  					//set lengths for arrays
+  					//if the number of images to display is too big for this test, set the lengths to 4 so the app doesn't crash
+		  			if(window.sessionStorage.getItem("numOfDisplayImg") < 5){
+		  				quiz5FirstHalf.length = window.sessionStorage.getItem("numOfDisplayImg");
+						numAlreadyPicked.length = window.sessionStorage.getItem("numOfDisplayImg");
+					//the number of images to display was too high
+		  			}else{
+		  				quiz5FirstHalf.length = 4;
+						numAlreadyPicked.length = 4;
+		  			}
 					quiz5SecondHalf.length = 3;
 					//get value for symbols or realistic images
 					choice = window.sessionStorage.getItem("typeOfImgUsed");
