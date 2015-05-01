@@ -1303,7 +1303,7 @@ button[disabled],
 }
 .ui-mobile a img,
 .ui-mobile fieldset {
-	border-width: 0;
+	border-width: 5px;
 }
 /* Fixes for fieldset issues on IE10 and FF (see #6077) */
 .ui-mobile fieldset {
