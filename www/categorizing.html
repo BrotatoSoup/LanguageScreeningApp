@@ -151,7 +151,7 @@
 				var z;
 				for ( z = 0; z < gradingArray.length; z++) {
 					if(headerArray[z] != null){
-						emailString += "Question " + (z + 1) + ": " + headerArray[z] + " Answer: "+ gradingArray[z] + " ";
+						emailString += "Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br>";
 					}
 				}
 				emailString += " NOTES: " + finalTestNotes;
