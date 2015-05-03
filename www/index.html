@@ -50,9 +50,7 @@
 			function loginButton(){ window.location = './login.html' };
 				
 			function testOptionsButton(){ window.location = './testOptions.html' };
-					
-			function adminButton(){ window.location = './adminPage.html'};
-			
+								
         </script>
         
     </head>
@@ -61,18 +59,10 @@
         	<span id="indexImage">
         		<img src="img/app name final.png" />
         	</span>
-        	<h1>Welcome <span id="output"><script>$('#output').html(window.sessionStorage.getItem("name"));</script></span></h1>
-        	<script>console.log(window.sessionStorage.getItem("numOfDisplayImg"));</script>
-        	<script>console.log(window.sessionStorage.getItem("typeOfImgUsed"));</script>
-        	<script>console.log(window.sessionStorage.getItem("startFromQuestion"));</script>
+        	<h1>Welcome <span id="output"><script>$('#output').html(window.sessionStorage.getItem("name"));</script></span>!</h1>
 	        <span class="buttonSpacing"><a data-role="button" id="loginButton" onclick="loginButton();">Login</a></span>
 	        <span class="buttonSpacing" id="hideawayTestOptions" style="display: none;"><a data-role="button" id="testOptionsButton" onclick="testOptionsButton();">Start</a></span>
-        	<span class="buttonSpacing" id="hideaway" style="display: none;"><a data-role="button" onclick="adminButton();">Admin Page</a></span>
         	<script>
-        		if(window.sessionStorage.getItem("name") == "admin")
-        		{
-        			document.getElementById("hideaway").style.display='block';
-        		}
         		if(window.sessionStorage.getItem("name") != null)
         		{
         			document.getElementById("hideawayTestOptions").style.display="block";

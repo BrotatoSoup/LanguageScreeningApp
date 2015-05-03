@@ -59,7 +59,9 @@ under the License.
 			var finalTestNotes = "";
 			var noteCount;
 			//email string
-			var emailString = "Scores for student: " + window.sessionStorage.getItem("name") + "<br>";
+			var emailString = "Student: " + window.sessionStorage.getItem("name") + ", ";
+			//test score counter
+			var testScoreCounter = 0;
 			
 			function endOfFunctionsButton() 
 			{
@@ -115,6 +117,7 @@ under the License.
 				} else if (imgVal == correct[counter]) {
 					gradingArray[counter] = "Correct";
 					gradingImgArray[counter] = functionsFilePath + imgVal + '.jpg';
+					testScoreCounter++;
 				} else {
 					gradingArray[counter] = "Incorrect";
 					gradingImgArray[counter] = functionsFilePath + imgVal + '.jpg';
@@ -132,6 +135,7 @@ under the License.
 
 			function printGrades() {
 				var z;
+				emailString += "Score: " + testScoreCounter + "/10<br>";
 				for ( z = 0; z < gradingArray.length; z++) {
 					if(headerArray[z] != null){
 						emailString += "Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br>";
