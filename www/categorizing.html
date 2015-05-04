@@ -65,6 +65,7 @@
 			var emailString = "Student: " + window.sessionStorage.getItem("name") + ", ";
 			//test score counter
 			var testScoreCounter = 0;
+			var amountOfQuestionsAnswered = 0;
         	
         	
         	function endOfCategorizingButton(){ 
@@ -133,9 +134,11 @@
 					gradingArray[counter] = "Correct";
 					gradingImgArray[counter] = categorizingFilePath + imgVal + '.jpg';
 					testScoreCounter++;
+					amountOfQuestionsAnswered++;
 				} else {
 					gradingArray[counter] = "Incorrect";
 					gradingImgArray[counter] = categorizingFilePath + imgVal + '.jpg';
+					amountOfQuestionsAnswered++;
 				}
 				noteCount++;
 				counter++;
@@ -152,7 +155,7 @@
   			
   			function printGrades() {
 				var z;
-				emailString += "Score: " + testScoreCounter + "/5<br>";
+				emailString += "Score: " + testScoreCounter + "/" + amountOfQuestionsAnswered + "<br>";
 				for ( z = 0; z < gradingArray.length; z++) {
 					if(headerArray[z] != null){
 						emailString += "Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br>";
