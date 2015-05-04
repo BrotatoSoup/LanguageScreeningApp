@@ -59,13 +59,14 @@
         	<span id="indexImage">
         		<img src="img/app name final.png" />
         	</span>
-        	<h1>Welcome <span id="output"><script>$('#output').html(window.sessionStorage.getItem("name"));</script></span>!</h1>
+        	<h1 id="welcomeHeader" style="display: none;">Welcome <br /><span id="output"><script>$('#output').html(window.sessionStorage.getItem("name"));</script></span>!</h1>
 	        <span class="buttonSpacing"><a data-role="button" id="loginButton" onclick="loginButton();">Login</a></span>
 	        <span class="buttonSpacing" id="hideawayTestOptions" style="display: none;"><a data-role="button" id="testOptionsButton" onclick="testOptionsButton();">Start</a></span>
         	<script>
         		if(window.sessionStorage.getItem("name") != null)
         		{
         			document.getElementById("hideawayTestOptions").style.display="block";
+        			document.getElementById("welcomeHeader").style.display="block";
         		}
         	</script>
         </div>       
