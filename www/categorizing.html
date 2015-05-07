@@ -62,7 +62,7 @@
 			var finalTestNotes = "";
 			var noteCount;
 			//email string
-			var emailString = "Student: " + window.sessionStorage.getItem("name") + ", ";
+			var emailString = "Categorizing Test<br>Student: " + window.sessionStorage.getItem("name") + ", ";
 			//test score counter
 			var testScoreCounter = 0;
 			var amountOfQuestionsAnswered = 0;
@@ -161,7 +161,7 @@
 						emailString += "Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br>";
 					}
 				}
-				emailString += " NOTES: " + finalTestNotes;
+				emailString += "<br>NOTES: " + finalTestNotes;
 				console.log("emailString: " + emailString);
 				return emailString;
 			}
@@ -214,7 +214,7 @@
 	
   <div data-role="page" align="center" id="categorizingQ1">
   	<div data-role="header">
-  		<h1 id="header1" style="font-size: 20px">Point to the food</h1>
+  		<h1 id="header1" style="font-size: 20px">1. Point to the food</h1>
   	</div>
   		<div data-role="content">	
 			<script>
@@ -237,7 +237,7 @@
   
   <div data-role="page" align="center" id="categorizingQ2">
   	<div data-role="header">
-  		<h1 id="header2" style="font-size: 20px">Point to the animal</h1>
+  		<h1 id="header2" style="font-size: 20px">2. Point to the animal</h1>
   	</div>
   	<div data-role="content">	
   		<script>
@@ -260,7 +260,7 @@
   
   <div data-role="page" align="center" id="categorizingQ3">
   	<div data-role="header">
-  		<h1 id="header3" style="font-size: 20px">Point to the color</h1>
+  		<h1 id="header3" style="font-size: 20px">3. Point to the color</h1>
   	</div>
   	<div data-role="content">	
   		<script>
@@ -283,7 +283,7 @@
   
   <div data-role="page" align="center" id="categorizingQ4">
   	<div data-role="header">
-  		<h1 id="header4" style="font-size: 20px">Point to the number</h1>
+  		<h1 id="header4" style="font-size: 20px">4. Point to the number</h1>
   	</div>
   	<div data-role="content">	
   		<script>
@@ -306,7 +306,7 @@
   
   <div data-role="page" align="center" id="categorizingQ5">
   	<div data-role="header">
-  		<h1 id="header5" style="font-size: 20px">Point to the toy</h1>
+  		<h1 id="header5" style="font-size: 20px">5. Point to the toy</h1>
   	</div>
   	<div data-role="content">	
   		<script>
@@ -334,7 +334,7 @@
 	<div data-role="content">
 		<div>
 			The test is over.<br />
-			Be sure to email the results before exiting the app!!!
+			Be sure to email the results before exiting the app.
 			<script>
 				$('#studentName').html(window.sessionStorage.getItem("name"));
 			</script>

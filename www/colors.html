@@ -63,7 +63,7 @@
 			var finalTestNotes = "";
 			var noteCount;
 			//email string
-			var emailString = "Student: " + window.sessionStorage.getItem("name") + ", ";
+			var emailString = "Colors Test<br>Student: " + window.sessionStorage.getItem("name") + ", ";
 			//test score counter
 			var testScoreCounter = 0;
 			var amountOfQuestionsAnswered = 0;
@@ -216,7 +216,7 @@
 						emailString += "Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br>";
 					}
 				}
-				emailString += " NOTES: " + finalTestNotes;
+				emailString += "<br>NOTES: " + finalTestNotes;
 				console.log("emailString: " + emailString);
 				return emailString;
 			}
@@ -290,7 +290,7 @@
 	
   <div data-role="page" align="center" id="colorsQ1">
   	<div data-role="header">
-  		<h1 id="header1" style="font-size: 20px">Show me red</h1>
+  		<h1 id="header1" style="font-size: 20px">1. Show me red</h1>
   	</div>
   	<div data-role="content">	
   		<div>
@@ -316,7 +316,7 @@
   
   <div data-role="page" align="center" id="colorsQ2">
   	<div data-role="header">
-  		<h1 id="header2" style="font-size: 20px">Show me blue</h1>
+  		<h1 id="header2" style="font-size: 20px">2. Show me blue</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -339,7 +339,7 @@
   
   <div data-role="page" align="center" id="colorsQ3">
   	<div data-role="header">
-		<h1 id="header3" style="font-size: 20px">Show me yellow</h1>
+		<h1 id="header3" style="font-size: 20px">3. Show me yellow</h1>
 	</div>
   	<div data-role="content">
   		<script>
@@ -361,7 +361,7 @@
   
   <div data-role="page" align="center" id="colorsQ4">
   	<div data-role="header">
-  		<h1 id="header4" style="font-size: 20px">Show me green</h1>
+  		<h1 id="header4" style="font-size: 20px">4. Show me green</h1>
   	</div>
   	<div data-role="content">
   		<div>
@@ -385,7 +385,7 @@
   
   <div data-role="page" align="center" id="colorsQ5">
   	<div data-role="header">
-  		<h1 id="header5" style="font-size: 20px">Show me purple</h1>
+  		<h1 id="header5" style="font-size: 20px">5. Show me purple</h1>
   	</div>
   	<div data-role="content">
   		<div>
@@ -410,7 +410,7 @@
   
   <div data-role="page" align="center" id="colorsQ6">
   	<div data-role="header">
-  		<h1 id="header6" style="font-size: 20px">Show me the red ball</h1>
+  		<h1 id="header6" style="font-size: 20px">6. Show me the red ball</h1>
   	</div>
   	<div data-role="content">
   		<div>
@@ -437,7 +437,7 @@
   
   <div data-role="page" align="center" id="colorsQ7">
   	<div data-role="header">
-  		<h1 id="header7" style="font-size: 20px">Show me the green crayon</h1>
+  		<h1 id="header7" style="font-size: 20px">7. Show me the green crayon</h1>
   	</div>
   	<div data-role="content">
   		<div>
@@ -464,7 +464,7 @@
   
   <div data-role="page" align="center" id="colorsQ8">
   	<div data-role="header">
-  		<h1 id="header8" style="font-size: 20px">Show me the blue hat</h1>
+  		<h1 id="header8" style="font-size: 20px">8. Show me the blue hat</h1>
   	</div>
   	<div data-role="content">
   		<div>
@@ -491,7 +491,7 @@
   
   <div data-role="page" align="center" id="colorsQ9">
   	<div data-role="header">
-  		<h1 id="header9" style="font-size: 20px">Show me the yellow cup</h1>
+  		<h1 id="header9" style="font-size: 20px">9. Show me the yellow cup</h1>
   	</div>
   	<div data-role="content">
   		<div>
@@ -519,7 +519,7 @@
   
   <div data-role="page" align="center" id="colorsQ10">
   	<div data-role="header">
-  		<h1 id="header10" style="font-size: 20px">Show me the purple car</h1>
+  		<h1 id="header10" style="font-size: 20px">10. Show me the purple car</h1>
   	</div>
   	<div data-role="content">
   		<div>
@@ -552,7 +552,7 @@
 	<div data-role="content">
 		<div>
 			The test is over.<br />
-			Be sure to email the results before exiting the app!!!
+			Be sure to email the results before exiting the app.
 			<script>
 				$('#studentName').html(window.sessionStorage.getItem("name"));
 			</script>

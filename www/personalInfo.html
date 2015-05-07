@@ -53,7 +53,7 @@
 			var answerArray = [];
 			var headerArray = [];
 			//email string
-			var emailString = "Scores for student: " + window.sessionStorage.getItem("name") + "<br>";
+			var emailString = "Personal Info Test<br>Student: " + window.sessionStorage.getItem("name") + "<br>";
                 
             function endOfPersonalInfoButton(){ 
             	sessionStorage.clear();
@@ -99,7 +99,7 @@
 						emailString += "Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ answerArray[z] + "<br>";
 					}
 				}
-				emailString += " NOTES: " + finalTestNotes;
+				emailString += "<br>NOTES: " + finalTestNotes;
 				console.log("emailString: " + emailString);
 				return emailString;
 			}
@@ -137,7 +137,7 @@
 	
   <div data-role="page" id="personalQ1" align="center">
     <div data-role="header">
-  		<h1 id="header1" style="font-size: 20px">What is your name?</h1>
+  		<h1 id="header1" style="font-size: 20px">1. What is your name?</h1>
   	</div>
   	<div data-role="content">	
   		<textarea id="answer1"></textarea>
@@ -180,7 +180,7 @@
   
   <div data-role="page" id="personalQ2" align="center">
     <div data-role="header">
-  		<h1 id="header2" style="font-size: 20px">How old are you?</h1>
+  		<h1 id="header2" style="font-size: 20px">2. How old are you?</h1>
   	</div>
   	<div data-role="content">	  		
   		<textarea id="answer2"></textarea>
@@ -222,7 +222,7 @@
   
   <div data-role="page" id="personalQ3" align="center">
     <div data-role="header">
-  		<h1 id="header3" style="font-size: 20px">Where do you go to school?</h1>
+  		<h1 id="header3" style="font-size: 20px">3. Where do you go to school?</h1>
   	</div>
   	<div data-role="content">	
   		<textarea id="answer3"></textarea>
@@ -264,7 +264,7 @@
   
   <div data-role="page" id="personalQ4" align="center">
     <div data-role="header">
-  		<h1 id="header4" style="font-size: 20px">Where do you live?</h1>
+  		<h1 id="header4" style="font-size: 20px">4. Where do you live?</h1>
   	</div>
   	<div data-role="content">	
   		<textarea id="answer4"></textarea>
@@ -306,7 +306,7 @@
   
   <div data-role="page" id="personalQ5" align="center">
     <div data-role="header">
-  		<h1 id="header5" style="font-size: 20px">When is your birthday?</h1>
+  		<h1 id="header5" style="font-size: 20px">5. When is your birthday?</h1>
   	</div>
   	<div data-role="content">	
   		<textarea id="answer5"></textarea>
@@ -348,7 +348,7 @@
   
   <div data-role="page" id="personalQ6" align="center">
   	<div data-role="header">
-  		<h1 id="header6" style="font-size: 20px">Are you a boy?</h1>
+  		<h1 id="header6" style="font-size: 20px">6. Are you a boy?</h1>
   	</div>
   	<div data-role="content">
   		<textarea id="answer6"></textarea>
@@ -390,7 +390,7 @@
   
   <div data-role="page" id="personalQ7" align="center">
   	<div data-role="header">
-  		<h1 id="header7" style="font-size: 20px">What month is it?</h1>
+  		<h1 id="header7" style="font-size: 20px">7. What month is it?</h1>
   	</div>
   	<div data-role="content">
   		<textarea id="answer7"></textarea>
@@ -432,7 +432,7 @@
   
   <div data-role="page" id="personalQ8" align="center">
   	<div data-role="header">
-  		<h1 id="header8" style="font-size: 20px">What day is it?</h1>
+  		<h1 id="header8" style="font-size: 20px">8. What day is it?</h1>
   	</div>
   	<div data-role="content">
   		<textarea id="answer8"></textarea>
@@ -474,7 +474,7 @@
   
   <div data-role="page" id="personalQ9" align="center">
   	<div data-role="header">
-  		<h1 id="header9" style="font-size: 20px">What year is it?</h1>
+  		<h1 id="header9" style="font-size: 20px">9. What year is it?</h1>
   	</div>
   	<div data-role="content">
   		<textarea id="answer9"></textarea>
@@ -516,7 +516,7 @@
   
   <div data-role="page" id="personalQ10" align="center">
   	<div data-role="header">
-  		<h1 id="header10" style="font-size: 20px">Where are you?</h1>
+  		<h1 id="header10" style="font-size: 20px">10. Where are you?</h1>
   	</div>
   	<div data-role="content">
   		<textarea id="answer10"></textarea>
@@ -563,7 +563,7 @@
 			<div data-role="content">
 				<div>
 					The test is over.<br />
-					Be sure to email the results before exiting the app!!!
+					Be sure to email the results before exiting the app.
 					<script>
 						$('#studentName').html(window.sessionStorage.getItem("name"));
 					</script>

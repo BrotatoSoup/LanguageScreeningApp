@@ -59,7 +59,7 @@ under the License.
 			var finalTestNotes = "";
 			var noteCount;
 			//email string
-			var emailString = "Student: " + window.sessionStorage.getItem("name") + ", ";
+			var emailString = "Functions Test<br>Student: " + window.sessionStorage.getItem("name") + ", ";
 			//test score counter
 			var testScoreCounter = 0;
 			var amountOfQuestionsAnswered = 0;
@@ -144,7 +144,7 @@ under the License.
 						emailString += "Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br>";
 					}
 				}
-				emailString += " NOTES: " + finalTestNotes;
+				emailString += "<br>NOTES: " + finalTestNotes;
 				console.log("emailString: " + emailString);
 				return emailString;
 			}
@@ -196,7 +196,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ1">
 			<div data-role="header">
-				<h1 id="header1" style="font-size: 20px">Point to the one that cuts</h1>
+				<h1 id="header1" style="font-size: 20px">1. Point to the one that cuts</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -220,7 +220,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ2">
 			<div data-role="header">
-				<h1 id="header2" style="font-size: 20px">Point to the one you ride</h1>
+				<h1 id="header2" style="font-size: 20px">2. Point to the one you ride</h1>
 			</div>
 			<div data-role="content">
 				<script>
@@ -242,7 +242,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ3">
 			<div data-role="header">
-				<h1 id="header3" style="font-size: 20px">Point to the one you write with</h1>
+				<h1 id="header3" style="font-size: 20px">3. Point to the one you write with</h1>
 			</div>
 			<div data-role="content">
 				<script>
@@ -264,7 +264,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ4">
 			<div data-role="header">
-				<h1 id="header4" style="font-size: 20px">Point to the one you kick</h1>
+				<h1 id="header4" style="font-size: 20px">4. Point to the one you kick</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -288,7 +288,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ5">
 			<div data-role="header">
-				<h1 id="header5" style="font-size: 20px">Point to the one you read</h1>
+				<h1 id="header5" style="font-size: 20px">5. Point to the one you read</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -312,7 +312,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ6">
 			<div data-role="header">
-				<h1 id="header6" style="font-size: 20px">Point to the one you eat</h1>
+				<h1 id="header6" style="font-size: 20px">6. Point to the one you eat</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -336,7 +336,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ7">
 			<div data-role="header">
-				<h1 id="header7" style="font-size: 20px">Point to the one you watch</h1>
+				<h1 id="header7" style="font-size: 20px">7. Point to the one you watch</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -360,7 +360,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ8">
 			<div data-role="header">
-				<h1 id="header8" style="font-size: 20px">Point to the one you wear</h1>
+				<h1 id="header8" style="font-size: 20px">8. Point to the one you wear</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -384,7 +384,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ9">
 			<div data-role="header">
-				<h1 id="header9" style="font-size: 20px">Point to the one you drink</h1>
+				<h1 id="header9" style="font-size: 20px">9. Point to the one you drink</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -408,7 +408,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="functionsQ10">
 			<div data-role="header">
-				<h1 id="header10" style="font-size: 20px">Point to the one you sleep on</h1>
+				<h1 id="header10" style="font-size: 20px">10. Point to the one you sleep on</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -437,7 +437,7 @@ under the License.
 			<div data-role="content">
 				<div>
 					The test is over.<br />
-					Be sure to email the results before exiting the app!!!
+					Be sure to email the results before exiting the app.
 					<script>
 						$('#studentName').html(window.sessionStorage.getItem("name"));
 					</script>

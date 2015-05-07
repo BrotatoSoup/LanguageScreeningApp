@@ -59,7 +59,7 @@ under the License.
 			var finalTestNotes = "";
 			var noteCount;
 			//email string
-			var emailString = "Student: " + window.sessionStorage.getItem("name") + ", ";
+			var emailString = "Numbers Test<br>Student: " + window.sessionStorage.getItem("name") + ", ";
 			//test score counter
 			var testScoreCounter = 0;
 			var amountOfQuestionsAnswered = 0;
@@ -144,7 +144,7 @@ under the License.
 						emailString += "Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br>";
 					}
 				}
-				emailString += " NOTES: " + finalTestNotes;
+				emailString += "<br>NOTES: " + finalTestNotes;
 				console.log("emailString: " + emailString);
 				return emailString;
 			}
@@ -196,7 +196,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="numbersQ1">
 			<div data-role="header">
-				<h1 id="header1" style="font-size: 20px">Show me 3</h1>
+				<h1 id="header1" style="font-size: 20px">1. Show me 3</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -220,7 +220,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="numbersQ2">
 			<div data-role="header">
-				<h1 id="header2" style="font-size: 20px">Show me 8</h1>
+				<h1 id="header2" style="font-size: 20px">2. Show me 8</h1>
 			</div>
 			<div data-role="content">
 				<script>
@@ -242,7 +242,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="numbersQ3">
 			<div data-role="header">
-				<h1 id="header3" style="font-size: 20px">Show me 5</h1>
+				<h1 id="header3" style="font-size: 20px">3. Show me 5</h1>
 			</div>
 			<div data-role="content">
 				<script>
@@ -264,7 +264,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="numbersQ4">
 			<div data-role="header">
-				<h1 id="header4" style="font-size: 20px">Show me 7</h1>
+				<h1 id="header4" style="font-size: 20px">4. Show me 7</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -288,7 +288,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="numbersQ5">
 			<div data-role="header">
-				<h1 id="header5" style="font-size: 20px">Show me 10</h1>
+				<h1 id="header5" style="font-size: 20px">5. Show me 10</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -312,7 +312,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="numbersQ6">
 			<div data-role="header">
-				<h1 id="header6" style="font-size: 20px">Show me 1</h1>
+				<h1 id="header6" style="font-size: 20px">6. Show me 1</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -336,7 +336,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="numbersQ7">
 			<div data-role="header">
-				<h1 id="header7" style="font-size: 20px">Show me 12</h1>
+				<h1 id="header7" style="font-size: 20px">7. Show me 12</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -360,7 +360,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="numbersQ8">
 			<div data-role="header">
-				<h1 id="header8" style="font-size: 20px">Show me 15</h1>
+				<h1 id="header8" style="font-size: 20px">8. Show me 15</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -387,7 +387,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="numbersQ9">
 			<div data-role="header">
-				<h1 id="header9" style="font-size: 20px">Show me 20</h1>
+				<h1 id="header9" style="font-size: 20px">9. Show me 20</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -411,7 +411,7 @@ under the License.
 		
 		<div data-role="page" align="center" id="numbersQ10">
 			<div data-role="header">
-				<h1 id="header10" style="font-size: 20px">Show me 17</h1>
+				<h1 id="header10" style="font-size: 20px">10. Show me 17</h1>
 			</div>
 			<div data-role="content">
 				<div>
@@ -440,7 +440,7 @@ under the License.
 			<div data-role="content">
 				<div>
 					The test is over.<br />
-					Be sure to email the results before exiting the app!!!
+					Be sure to email the results before exiting the app.
 					<script>
 						$('#studentName').html(window.sessionStorage.getItem("name"));
 					</script>

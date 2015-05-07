@@ -62,7 +62,7 @@
 			var finalTestNotes = "";
 			var noteCount;
 			//email string
-			var emailString = "Student: " + window.sessionStorage.getItem("name") + ", ";
+			var emailString = "Receptive Test<br>Student: " + window.sessionStorage.getItem("name") + ", ";
 			//test score counter
 			var testScoreCounter = 0;
 			var amountOfQuestionsAnswered = 0;
@@ -160,7 +160,7 @@
 						emailString += "Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br>";
 					}
 				}
-				emailString += " NOTES: " + finalTestNotes;
+				emailString += "<br>NOTES: " + finalTestNotes;
 				console.log("emailString: " + emailString);
 				return emailString;
 			}
@@ -216,7 +216,7 @@
 	
   <div data-role="page" align="center" id="receptiveQ1">
   	<div data-role="header">
-  		<h1 id="header1" style="font-size: 24px">Point to ball</h1>
+  		<h1 id="header1" style="font-size: 24px">1. Point to ball</h1>
   	</div>
   	<div data-role="content">	
   		<script>
@@ -239,7 +239,7 @@
   
   <div data-role="page" align="center" id="receptiveQ2">
   	<div data-role="header">
-  		<h1 id="header2" style="font-size: 24px">Point to cat</h1>
+  		<h1 id="header2" style="font-size: 24px">2. Point to cat</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -262,7 +262,7 @@
   
   <div data-role="page" align="center" id="receptiveQ3">
   	<div data-role="header">
-		<h1 id="header3" style="font-size: 24px">Point to shoe</h1>  	
+		<h1 id="header3" style="font-size: 24px">3. Point to shoe</h1>  	
 	</div>
   	<div data-role="content">
   		<script>
@@ -285,7 +285,7 @@
   
   <div data-role="page" align="center" id="receptiveQ4">
   	<div data-role="header">
-  		<h1 id="header4" style="font-size: 24px">Point to toothbrush</h1>
+  		<h1 id="header4" style="font-size: 24px">4. Point to toothbrush</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -306,7 +306,7 @@
   
   </div><div data-role="page" align="center" id="receptiveQ5">
   	<div data-role="header">
-  		<h1 id="header5" style="font-size: 24px">Point to spoon</h1>
+  		<h1 id="header5" style="font-size: 24px">5. Point to spoon</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -329,7 +329,7 @@
   
   </div><div data-role="page" align="center" id="receptiveQ6">
   	<div data-role="header">
-  		<h1 id="header6" style="font-size: 24px">Point to eating</h1>
+  		<h1 id="header6" style="font-size: 24px">6. Point to eating</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -352,7 +352,7 @@
   
   </div><div data-role="page" align="center" id="receptiveQ7">
   	<div data-role="header">
-  		<h1 id="header7" style="font-size: 24px">Point to playing</h1>
+  		<h1 id="header7" style="font-size: 24px">7. Point to playing</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -375,7 +375,7 @@
   
   </div><div data-role="page" align="center" id="receptiveQ8">
   	<div data-role="header">
-  		<h1 id="header8" style="font-size: 24px">Point to swimming</h1>
+  		<h1 id="header8" style="font-size: 24px">8. Point to swimming</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -398,7 +398,7 @@
   
   </div><div data-role="page" align="center" id="receptiveQ9">
   	<div data-role="header">
-  		<h1 id="header9" style="font-size: 24px">Point to nose</h1>
+  		<h1 id="header9" style="font-size: 24px">9. Point to nose</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -421,7 +421,7 @@
   
   </div><div data-role="page" align="center" id="receptiveQ10">
   	<div data-role="header">
-  		<h1 id="header10" style="font-size: 24px">Point to car</h1>
+  		<h1 id="header10" style="font-size: 24px">10. Point to car</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -449,7 +449,7 @@
 	<div data-role="content">
 		<div>
 			The test is over.<br />
-			Be sure to email the results before exiting the app!!!
+			Be sure to email the results before exiting the app.
 			<script>
 				$('#studentName').html(window.sessionStorage.getItem("name"));
 			</script>

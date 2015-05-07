@@ -62,7 +62,7 @@
 			var finalTestNotes = "";
 			var noteCount;
 			//email string
-			var emailString = "Student: " + window.sessionStorage.getItem("name") + ", ";
+			var emailString = "Associations Test<br>Student: " + window.sessionStorage.getItem("name") + ", ";
 			//test score counter
 			var testScoreCounter = 0;
 			var amountOfQuestionsAnswered = 0;
@@ -123,11 +123,12 @@
 				finalTestNotes += " " + testNotes;
 				headerArray[counter] = $("#header" + (counter+1)).text();
 				console.log("headerArray" + counter + ": " +headerArray[counter]);
-				noteCount++;
 				console.log("test: "+finalTestNotes);
 				console.log("noteCount: "+noteCount);
 				if (endTest == true) {
 					window.location.href = "mailto:?Subject&body="+ printGrades();
+					document.getElementById("hideaway"+noteCount).style.display='block';
+					document.getElementById("emailBtn"+noteCount).style.display='none';
 				} else if (imgVal == correct[counter]) {
 					gradingArray[counter] = "Correct";
 					gradingImgArray[counter] = associationsFilePath + imgVal + '.jpg';
@@ -138,6 +139,7 @@
 					gradingImgArray[counter] = associationsFilePath + imgVal + '.jpg';
 					amountOfQuestionsAnswered++;
 				}
+				noteCount++;
 				counter++;
 		  	}
   			
@@ -157,7 +159,7 @@
 						emailString += "Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br>";
 					}
 				}
-				emailString += " NOTES: " + finalTestNotes;
+				emailString += "<br>NOTES: " + finalTestNotes;
 				console.log("emailString: " + emailString);
 				return emailString;
 			}
@@ -213,7 +215,7 @@
 	
   <div data-role="page" align="center" id="associationsQ1">
   	<div data-role="header">
-  		<h1 id="header1" style="font-size: 24px">Which goes with paper?</h1>
+  		<h1 id="header1" style="font-size: 24px">1. Which goes with paper?</h1>
   	</div>
   	<div data-role="content">	
   		<script>
@@ -226,8 +228,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes1" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn1" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway1" style="display: none;"><a data-role="button" onclick="endOfAssociationsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -235,7 +238,7 @@
   
   <div data-role="page" align="center" id="associationsQ2">
   	<div data-role="header">
-  		<h1 id="header2" style="font-size: 24px">Which goes with chicken?</h1>
+  		<h1 id="header2" style="font-size: 24px">2. Which goes with chicken?</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -248,8 +251,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes2" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn2" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway2" style="display: none;"><a data-role="button" onclick="endOfAssociationsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -257,7 +261,7 @@
   
   <div data-role="page" align="center" id="associationsQ3">
   	<div data-role="header">
-		<h1 id="header3" style="font-size: 24px">Which goes with fork?</h1>  	
+		<h1 id="header3" style="font-size: 24px">3. Which goes with fork?</h1>  	
 	</div>
   	<div data-role="content">
   		<script>
@@ -270,8 +274,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes3" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn3" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway3" style="display: none;"><a data-role="button" onclick="endOfAssociationsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -279,7 +284,7 @@
   
   <div data-role="page" align="center" id="associationsQ4">
   	<div data-role="header">
-  		<h1 id="header4" style="font-size: 24px">Which goes with baby?</h1>
+  		<h1 id="header4" style="font-size: 24px">4. Which goes with baby?</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -292,14 +297,15 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes4" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn4" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway4" style="display: none;"><a data-role="button" onclick="endOfAssociationsButton();">End Test</a></span>
   	</div>
   
   
   </div><div data-role="page" align="center" id="associationsQ5">
   	<div data-role="header">
-  		<h1 id="header5" style="font-size: 24px">Which goes with toothbrush?</h1>
+  		<h1 id="header5" style="font-size: 24px">5. Which goes with toothbrush?</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -312,8 +318,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes5" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn5" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway5" style="display: none;"><a data-role="button" onclick="endOfAssociationsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -321,7 +328,7 @@
   
   </div><div data-role="page" align="center" id="associationsQ6">
   	<div data-role="header">
-  		<h1 id="header6" style="font-size: 24px">Which goes with sock?</h1>
+  		<h1 id="header6" style="font-size: 24px">6. Which goes with sock?</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -334,8 +341,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes6" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn6" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway6" style="display: none;"><a data-role="button" onclick="endOfAssociationsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -343,7 +351,7 @@
   
   </div><div data-role="page" align="center" id="associationsQ7">
   	<div data-role="header">
-  		<h1 id="header7" style="font-size: 24px">Which goes with soap?</h1>
+  		<h1 id="header7" style="font-size: 24px">7. Which goes with soap?</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -356,8 +364,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes7" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn7" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway7" style="display: none;"><a data-role="button" onclick="endOfAssociationsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -365,7 +374,7 @@
   
   </div><div data-role="page" align="center" id="associationsQ8">
   	<div data-role="header">
-  		<h1 id="header8" style="font-size: 24px">Which goes with bed?</h1>
+  		<h1 id="header8" style="font-size: 24px">8. Which goes with bed?</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -378,8 +387,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes8" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn8" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway8" style="display: none;"><a data-role="button" onclick="endOfAssociationsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -387,7 +397,7 @@
   
   </div><div data-role="page" align="center" id="associationsQ9">
   	<div data-role="header">
-  		<h1 id="header9" style="font-size: 24px">Which goes with Birthday?</h1>
+  		<h1 id="header9" style="font-size: 24px">9. Which goes with Birthday?</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -400,8 +410,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes9" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn9" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway9" style="display: none;"><a data-role="button" onclick="endOfAssociationsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -409,7 +420,7 @@
   
   </div><div data-role="page" align="center" id="associationsQ10">
   	<div data-role="header">
-  		<h1 id="header10" style="font-size: 24px">Which goes with hammer?</h1>
+  		<h1 id="header10" style="font-size: 24px">10. Which goes with hammer?</h1>
   	</div>
   	<div data-role="content">
   		<script>
@@ -422,8 +433,9 @@
   		</script>
   	</div>
   	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
   		<textarea id="testNotes10" placeholder="Enter notes here"></textarea>
+		<span id="emailBtn10" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  		<span class="buttonSpacing" id="hideaway10" style="display: none;"><a data-role="button" onclick="endOfAssociationsButton();">End Test</a></span>
   	</div>
   
   </div>
@@ -431,21 +443,22 @@
   
   <div data-role="page" align="center" id="associationsQ11">
   	<div data-role="header">
-  		<h1 style="font-size: 20px">Results of the Test</h1>
-  	</div>
-  	<div data-role="content">
-  		<div>
-  			Student: <span id="studentName"></span>
-  			<script>
-  				$('#studentName').html(window.sessionStorage.getItem("name"));
-  			</script>
-  		</div>
-  	</div>
-  	<div data-role="footer">
-  		<button onclick="setEnd();">Email</button>
-  		<textarea id="testNotes11" placeholder="Any final notes?"></textarea>
-		<button onclick="endOfAssociationsButton();">((End of Section))</button>  	
+  		<h1 style="font-size: 20px">Congratulations <span id="studentName"></span>!<</h1>
 	</div>
-  </div>
+	<div data-role="content">
+		<div>
+			The test is over.<br />
+			Be sure to email the results before exiting the app.
+			<script>
+				$('#studentName').html(window.sessionStorage.getItem("name"));
+			</script>
+		</div>
+	</div>
+		<div data-role="footer">
+			<textarea id="testNotes11" placeholder="Any final notes?"></textarea>
+			<span id="emailBtn11" style="display: block;"><button onclick="setEnd();">Email</button></span>
+  			<span class="buttonSpacing" id="hideaway11" style="display: none;"><a data-role="button" onclick="endOfAssociationsButton();">End Test</a></span>
+		</div>
+    </div>
 </body>
 </html>
