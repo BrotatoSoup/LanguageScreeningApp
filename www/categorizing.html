@@ -158,7 +158,7 @@
 				emailString += "Score: " + testScoreCounter + "/" + amountOfQuestionsAnswered + "<br>";
 				for ( z = 0; z < gradingArray.length; z++) {
 					if(headerArray[z] != null){
-						emailString += "Question " + (z + 1) + ": " + headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br>";
+						emailString += headerArray[z] + "<br>Answer: "+ gradingArray[z] + "<br>";
 					}
 				}
 				emailString += "<br>NOTES: " + finalTestNotes;
