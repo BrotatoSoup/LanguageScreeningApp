@@ -1,5 +1,5 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="come.phonegap.languageScreener" version="1.0.0">
-  <name>Language Screening App</name>
+  <name>Language Screener</name>
   <description>
   	Language screening app for the Morgan Autism Center.
   </description>
